@@ -1,0 +1,16 @@
+
+
+// #NAV
+
+nav {
+
+}
+
+	.nav__link {
+		font-size: $slight_size;
+		
+		footer & {
+			font-size: $base_size;
+		}
+	}
+

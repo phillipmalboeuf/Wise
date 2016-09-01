@@ -1,0 +1,27 @@
+
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<article class="col col--6of12 col--medium--12of12">
+  <a href="{{product.url | within: collection}}" class="grid {% cycle '', '', 'grid--reverse', 'grid--reverse' %} a--bordered">
+    <div class="col col--6of12">
+      <img src="{{product.featured_image.src | img_url: 'large'}}" alt="{{product.featured_image.alt}}">
+    </div>
+    <div class="col col--6of12 padded">
+      <p>{{product.tags| join: ' / '}}</p>
+      <h3>{{product.title}}</h3>
+
+      {% for variant in product.variants %}
+      <p><em>{{variant.title}}</em></p>
+      {% endfor %}
+    </div>
+  </a>
+</article>

@@ -1,0 +1,30 @@
+
+
+
+
+
+
+  <div class="padded padded--very_thick js-products" id="products">
+
+    <div class="text_center big_bottom">
+      <h2>Search</h2>
+      <p>Search results for "{{ search.terms }}"</p>
+    </div>
+
+    {% if search.performed %}
+    {% if search.results_count > 0 %}
+    <div class="grid grid--guttered grid--center">
+      {% for item in search.results %}
+        {% assign product = item %}
+        {% include 'products_product' %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text_center">
+      <p>No results found.</p>
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+

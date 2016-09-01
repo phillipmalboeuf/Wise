@@ -1,0 +1,10 @@
+<nav class="padded padded--tight">
+  <div class="grid grid--guttered grid--center">
+    <a href="/collections" class="col nav__link {% unless collection %}a--focus{% endunless %}">Tout</a>
+
+    {% for other_collection in collections %}
+    {% assign title_split = other_collection.title | split: '|' %}
+    <a href="{{other_collection.url}}" class="col nav__link {% if collection.id == other_collection.id %}a--focus{% endif %}">{{title_split[0]}}</a>
+    {% endfor %}
+  </div>
+</nav>

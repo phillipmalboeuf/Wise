@@ -1,0 +1,59 @@
+
+// #COLORS
+
+$white: #fff;
+$black: #000;
+$brown: #8f5b2e;
+$grey: #dfdede;
+$grey--light: #f3f3f3;
+$red: #d20000;
+$green: #65bc45;
+
+$primary: $black;
+$highlight: $brown;
+$secondary: $grey;
+
+
+// #FONTS
+
+$body_font: "Agendatype", serif;
+$headings_font: "Agendatype", serif;
+$alternate_font: "Agendatype Swash", serif;
+
+$bold: bold;
+
+
+// #LAYOUT
+
+$base_size: 15px;
+$massive_size: 4.5rem;
+$huge_size: 2.667rem;
+$big_size: 2.333rem;
+$biggish_size: 2rem;
+$medium_size: 1.4rem;
+$almost_size: 1.267rem;
+$slight_size: 1.133rem;
+$small_size: 1rem;
+
+$vertical_rythm: 1.333rem;
+$line_height: 1.2;
+$letter_spacing: 0;
+$border_radius: 0;
+
+$number_of_columns: 12;
+$gutter: $vertical_rythm * 2;
+
+
+// #ANIMATIONS
+
+$fast: 0.5s;
+$slow: 1s;
+$very_slow: 1.666s;
+
+
+// #BREAKPOINTS
+
+$small: "all and (max-device-width:700px), all and (max-width:700px)";
+$medium: "all and (max-device-width:1100px), all and (max-width:1100px)";
+$breakpoints: "medium" $medium, "small" $small;
+

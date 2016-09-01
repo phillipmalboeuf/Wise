@@ -1,0 +1,30 @@
+<footer class="padded thick_line_height">
+	<div class="grid grid--guttered">
+		<nav class="col col--3of12">
+			<p class="small_bottom">Suivez-nous</p>
+			
+			{% for link in linklists.footer-social.links %}
+			<a href="{{ link.url }}" class=""><svg class="icon-{{ link.title }}"><use xlink:href="#icon-{{ link.title }}"></use></svg></a>&nbsp;&nbsp;
+			{% endfor %}
+		</nav>
+
+		<nav class="col col--3of12">
+			{% for link in linklists.footer.links %}
+			<a href="{{ link.url }}" class="nav__link">{{ link.title }}</a><br>
+			{% endfor %}
+		</nav>
+
+		<nav class="col col--3of12">
+			{% for link in linklists.footer-contact.links %}
+			<a href="{{ link.url }}" class="nav__link">{{ link.title }}</a><br>
+			{% endfor %}
+		</nav>
+
+		<nav class="col col--3of12">
+			<p class="small_bottom">Inscription à l'infolettre</p>
+			<form action="#">
+				<input class="input--tight" type="email" placeholder="Votre courriel ici" name="email">
+			</form>
+		</nav>
+	</div>
+</footer>

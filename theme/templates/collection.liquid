@@ -1,0 +1,20 @@
+
+{% include 'collections' %}
+
+
+<div class="grid grid--middle">
+{% for product in collection.products %}
+	{% include 'products_product' %}
+{% endfor %}
+	
+{% if collection.products_count % 2 %}
+	<div class="col col--6of12 col--medium--12of12 text_center">
+		<em>More products coming in 2017</em>
+	</div>
+{% endif %}
+</div>
+
+
+
+
+

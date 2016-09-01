@@ -1,0 +1,106 @@
+
+{% for link in linklists.homepage.links %}
+{% assign classes = 'grid grid--full_height padded padded--vertically_thick image_back' %}
+
+{% if link.type == 'blog_link' %}
+	{% for article in link.object.articles %}
+	{% if article.tags contains 'homepage' %}
+	<a href="{{article.url}}" class="{{classes}} {{article.tags| join: ' '}}" style="background-image: url({{article.image.src|img_url: 'original'}});">
+
+		<div class="em">
+			<h2>{{article.title}}</h2>
+			<h5>{{article.excerpt| strip_html}}</h5>
+		</div>
+		
+	</a>
+	{% endif %}
+	{% endfor %}
+{% elsif link.type == 'product_link' %}
+	{% for image in link.object.images %}
+	{% if image.alt == 'Banner' %}
+		{% assign image = image.src %}
+		{% break %}
+	{% endif %}
+	{% endfor %}
+	<a href="{{link.url}}" class="{{classes}} {{link.object.tags| join: ' '}}" style="background-image: url({{image|img_url: 'original'}});">
+
+		<div>
+			<h2>{{link.object.title}}</h2>
+			{% assign description_split = link.object.description | newline_to_br | split: '<br />' %}
+			<h5>{{description_split[0]}}</h5>
+		</div>
+		
+	</a>
+{% elsif link.type == 'collection_link' %}
+	<div class="{{classes}} {{link.object.tags| join: ' '}} center middle black">
+
+		<div class="col col--12of12">
+			<h2>{{link.object.title}}</h2>
+
+			<div class="grid grid--center grid--bottom grid--tight_guttered">
+				{% for product in link.object.products %}
+				<div class="col col--2of12">
+					<a href="{{product.url}}">
+						<p class="p--almost a__hide">
+							{{product.title}}<br>
+							{% for variant in product.variants %}
+							<em>{{variant.title}}</em>
+							{% endfor %}
+						</p>
+						<img src="{{product.featured_image.src|img_url: 'original'}}" alt="{{product.featured_image.alt}}">
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		
+	</div>
+{% endif %}
+
+
+{% endfor %}
+
+
+
+
+<section class="padded padded--thick light_grey_back text_center">
+	<h2 class="big_bottom">We aim to respect the following as much as possible:</h2>
+
+	<div class="grid grid--spaced_around big_bottom">
+		<div class="col">
+			<svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
+			<p class="p--almost">Natural<br>ingredients</p>
+		</div>
+
+		<div class="col">
+			<svg class="icon-local icon--big normal_bottom"><use xlink:href="#icon-local"></use></svg>
+			<p class="p--almost">Locally sourced<br>ingredients</p>
+		</div>
+
+		<div class="col">
+			<svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
+			<p class="p--almost">Healthy<br>ingredients</p>
+		</div>
+	</div>
+	<div class="grid grid--spaced_around">
+		<div class="col">
+			<svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>
+			<p class="p--almost">Reusable<br>container</p>
+		</div>	
+
+		<div class="col">
+			<svg class="icon-recyclable icon--big normal_bottom"><use xlink:href="#icon-recyclable"></use></svg>
+			<p class="p--almost">Recyclable<br>materials</p>
+		</div>
+
+		<div class="col">
+			<svg class="icon-reduced icon--big normal_bottom"><use xlink:href="#icon-reduced"></use></svg>
+			<p class="p--almost">Reduced usage<br>of materials</p>
+		</div>
+
+		<div class="col">
+			<svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
+			<p class="p--almost">Usage of<br>renewable materials</p>
+		</div>
+	</div>
+</section>

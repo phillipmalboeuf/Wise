@@ -1,0 +1,77 @@
+// #IMAGES
+
+img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+
+	&.img--center {
+		margin: 0 auto;
+	}
+
+	&.img--full {
+		width: 100%;
+		margin: 0 auto $vertical_rythm;
+	}
+
+	&.img--round {
+		width: 5.357rem;
+		margin: 0 auto $vertical_rythm/4;
+		border-radius: 50%;
+	}
+
+	&.img--icon {
+		max-width: 7.2rem;
+		margin: 0 auto $vertical_rythm;
+
+		&.img--round {
+			width: 9rem;
+			border-radius: 50%;
+		}
+
+		&.img--icon--small {
+			width: 4.5rem;
+		}
+	}
+
+	&.img--small_icon {
+		display: inline-block;
+		width: $small_size;
+		vertical-align: middle;
+	}
+}
+
+.container {
+	position: relative;
+	display: block;
+}
+
+
+	.container__image {
+		position: relative;
+		z-index: 1;
+
+		&.container__image--front {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+
+
+	.container__text {
+		z-index: 2;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+		.container__text--bottom {
+			top: auto;
+			bottom: $gutter*2;
+
+			width: 100%;
+			text-align: center;
+		}
+
+		

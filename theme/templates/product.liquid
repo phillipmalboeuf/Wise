@@ -1,0 +1,246 @@
+
+
+
+
+
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+
+<div class="grid light_grey_back">
+  <div class="col col--6of12 slider" data-slider>
+    <div class="slider__container" style="width: {{product.images | size}}00%;" data-slider-container>
+      {% for image in product.images %}
+        <div class="slide" data-slide={{forloop.index0}}>
+          <div data-slide-content><img src="{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="slider__button"><button class="button--transparent" data-previous-slide-button><svg class="icon-left"><use xlink:href="#icon-left"></use></svg></button></div>
+
+    <div class="slider__button slider__button--right"><button class="button--transparent" data-next-slide-button><svg class="icon-right"><use xlink:href="#icon-right"></use></svg></button></div>
+
+    <div class="slider__markers">
+      {% for image in product.images %}
+      <button class="slider__marker {% if forloop.first %}slider__marker--active{% endif %}" data-slide-marker={{forloop.index0}}>{{forloop.index0}}</button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="col col--6of12 padded">
+    <p class="p--medium">{{product.tags| join: ' / '}}</p>
+    <h2 class="flat_bottom">{{product.title}}</h2>
+    {% for variant in product.variants %}
+    <p class="p--medium"><em>{{variant.title}}</em></p>
+    {% endfor %}
+
+    <div class="big_bottom">
+    {{product.description}}
+    </div>
+
+    <button data-add-to-cart class="button--full">Add this product to your shopping bag</button>
+  </div>
+</div>
+
+
+<div class="grid">
+  <div class="col col--7of12">
+    
+  </div>
+  <div class="col col--5of12 text_right padded padded--vertically_thick">
+    <h2>Medium hold.</h2>
+    <p>Watch the usability video here:</p>
+    <button class="button--transparent"><svg class="icon-play icon--medium"><use xlink:href="#icon-play"></use></svg></button>
+  </div>
+</div>
+
+
+<section class="padded padded--thick light_grey_back text_center">
+  <h2 class="big_bottom">This product respects the following:</h2>
+
+  <div class="grid grid--spaced_around grid--stretch">
+    <div class="col">
+      <svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
+      <p>Natural<br>ingredients</p>
+    </div>
+
+    <div class="col">
+      <svg class="icon-local icon--big normal_bottom"><use xlink:href="#icon-local"></use></svg>
+      <p>Locally sourced<br>ingredients</p>
+    </div>
+
+    <div class="col">
+      <svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
+      <p>Healthy<br>ingredients</p>
+    </div>
+
+    <hr class="col hr--vertical">
+
+    <div class="col">
+      <svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>
+      <p>Reusable<br>container</p>
+    </div>  
+
+    <div class="col">
+      <svg class="icon-recyclable icon--big normal_bottom"><use xlink:href="#icon-recyclable"></use></svg>
+      <p>Recyclable<br>materials</p>
+    </div>
+
+    <div class="col">
+      <svg class="icon-reduced icon--big normal_bottom"><use xlink:href="#icon-reduced"></use></svg>
+      <p>Reduced usage<br>of materials</p>
+    </div>
+
+    <div class="col">
+      <svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
+      <p>Usage of<br>renewable materials</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <div class="padded padded--very_thick padded--flat_bottom light_grey_back js-product">
+  <div class="grid grid--center grid--middle">
+
+    <div class="col col--8of24 col--small--24of24 text_center">
+
+      <div class="padded relative">
+        {% if sold_out %}
+          <div class="product__sold_out">{{ 'products.product.sold_out' | t }}</div>
+        {% endif %}
+
+        <h3 class="h3--big h3--first_line flat_bottom">{% if search %}{{ product.title | replace: ' | ', '<br>' | highlight: search.terms }}{% else %}{{ product.title | replace: ' | ', '<br>' }}{% endif %}</h3>
+
+        <hr class="hr--dot">
+
+        <h6>№ {{ current_variant.sku }}</h6>
+
+        {% if product.description != '' %}
+        {% assign description_split = product.description | split: '<span style="text-decoration: underline;">' %}
+        {% assign details_split = description_split[1] | split: '</span>' %}
+
+        {{ description_split[0] }}
+        <a href="#" class="a--underline js-toggle_details"><h6>{{ details_split[0] }}</h6></a>
+        <div class="hide js-details">{{ details_split[1] }}</div>
+        {% endif %}
+
+        <hr>
+
+        <h4 class="small_bottom">
+          {% if on_sale %}
+            <s>{{ product.compare_at_price | money_with_currency }}</s>
+            {{ product.price | money_with_currency }}
+          {% else %}
+            {{ product.price | money_with_currency }}
+          {% endif %}
+        </h4>
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" class="js-add_to_cart">
+
+
+          {% for variant in product.variants %}
+          {% if current_variant_size == variant.option2 %}
+          <input type="radio" name="color" class="radio--variant" {% if variant.option1 == current_variant_color %}checked{% endif %} value="{{ variant.option1 }}" id="color_{{ variant.id }}" data-img="{{ variant.image.src | img_url: 'original' }}" data-color="{{ variant.option1 }}" title="{{ variant.option1 }}">
+          {% endif %}
+          {% endfor %}
+
+          <h6 class="js-color">{{ current_variant_color }}</h6>
+
+
+          {% for variant in product.variants %}
+          <input type="hidden" name="id" {% unless variant.available %}disabled{% endunless %} {% if variant == current_variant %}checked="checked"{% endif %} value="{{ variant.id }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}">
+          {% endfor %}
+          
+
+          
+          <button type="submit" name="add" class="button--slight js-add_to_cart_button {% unless current_variant.available %}button--sold_out{% endunless %} {% if sold_out %}button--sold_out{% endif %}" disabled>Available Soon</button>
+        </form>
+
+      </div>
+
+
+        
+
+
+      
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="padded padded--very_thick padded--small_top">
+  <hr>
+
+  <div class="grid grid--guttered grid--center text_center">
+    {% for tag in product.tags %}
+    {% assign split_tag = tag | split: ':' %}
+    {% assign title = split_tag[0] | downcase | append: '_' | append: split_tag[1] %}
+
+    {% if split_tag[0] == 'Insulation' or split_tag[0] == 'Fabric' or split_tag[0] == 'Fur' or split_tag[0] == 'Hood' %}
+    <div class="col col--6of24 col--medium--12of24 medium_bottom">
+      <h3>{{split_tag[0]}}</h3>
+      {% assign icon = title | append: '_icon.png' %}
+      <img src="{{icon | asset_url }}" alt="{{settings[title]}}" class="product__tag_image">
+      <h6 class="strong">{{settings[title]}}</h6>
+      <p class="p--alternate small">
+        {% assign text = title | append: '_text' %}
+        {{settings[text] | newline_to_br}}
+      </p>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <p class="medium_bottom text_center"><a href="/pages/technical-information" class="a--underline">Technical Information</a></p>
+
+  <hr>
+
+  <div class="grid grid--center text_center medium_bottom">
+    <div class="col col--10of24 col--medium--18of24 col--small--24of24">
+      <h3>{{ settings.products_warranty_title }}</h3>
+      <p>{{ settings.products_warranty | newline_to_br }}</p>
+    </div>
+  </div>
+
+  
+
+  
+
+  {% if collection %}
+    {% for tag in product.tags %}
+      {% assign split_tag = tag | split: ':' %}
+
+      {% if split_tag[0] == 'Similar' %}
+      {% assign split_similar = split_tag[1] | split: '|' %}
+      <hr>
+
+      <h3 class="text_center medium_bottom">Similar Styles</h3>
+
+      <div class="grid grid--guttered grid--center">
+      {% for product in collection.products %}
+
+        {% if split_similar contains product.handle  %}
+        {% include 'products_product' %}
+        {% endif %}
+
+      {% endfor %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+
+ -->
