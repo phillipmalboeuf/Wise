@@ -1,5 +1,5 @@
 
-
+{% include 'blog_tags' %}
 
 {% for article in blog.articles %}
   {% if forloop.first == true %}
@@ -22,7 +22,15 @@
         <img src="{{article.image.src | img_url: 'large'}}" alt="{{article.image.alt}}">
       </div>
       <div class="col col--6of12 padded">
-        <p>{{article.published_at|date: '%x'}}<br>{{article.tags| join: ' / '}}</p>
+        <p>
+          {{article.published_at|date: '%x'}}<br>
+          {% for tag in article.tags %}
+          {% assign first_letter = tag | handleize | first %}
+          {% if first_letter != '_' %}
+          <span class="slash_seperated">{{tag}}</span>
+          {% endif %} 
+          {% endfor %} 
+        </p>
         <h3>{{article.title | truncate: 36}}</h3>
       </div>
     </a>

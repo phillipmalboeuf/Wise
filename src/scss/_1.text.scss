@@ -85,7 +85,6 @@ h1, h2, h3, h4, h5, h6 {
 // #PARAGRAPHS
 
 p {
-	max-width: 42rem;
 	margin: 0 0 $vertical_rythm;
 
 	&.p--alternate,
@@ -341,7 +340,7 @@ sub {
 
 // #COLORS
 
-.white { color: $white; }
+.white, ._white { color: $white; }
 .black { color: $black; }
 .highlight { color: $highlight; }
 .green { color: $green; }
@@ -395,6 +394,11 @@ sub {
 		height: $big_size*1.5;
 		width: $big_size*1.5;
 	}
+
+	&.icon--small {
+		height: $medium_size;
+		width: $medium_size;
+	}
 }
 
 iframe {
@@ -430,7 +434,7 @@ em,
 .comma_seperated {
 
 	&:after {
-		content: " |";
+		content: " /";
 	}
 
 	&:last-of-type:after {

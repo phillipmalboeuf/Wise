@@ -16,7 +16,14 @@
       <img src="{{product.featured_image.src | img_url: 'large'}}" alt="{{product.featured_image.alt}}">
     </div>
     <div class="col col--6of12 padded">
-      <p>{{product.tags| join: ' / '}}</p>
+      <p>
+        {% for tag in product.tags %} 
+        {% assign first_letter = tag | first %}
+        {% if first_letter != '_' %}
+        <span class="slash_seperated">{{tag}}</span>
+        {% endif %} 
+        {% endfor %} 
+      </p>
       <h3>{{product.title}}</h3>
 
       {% for variant in product.variants %}

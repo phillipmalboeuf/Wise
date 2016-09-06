@@ -26,12 +26,26 @@
 
 	.slider__button {
 		position: absolute;
-		top: 45%;
-		left: $gutter;
+		top: 50%;
+		left: $gutter/2;
 
 		&.slider__button--right {
 			left: auto;
-			right: $gutter;
+			right: $gutter/2;
+		}
+
+		svg {
+			position: relative;
+			z-index: 1;
+		}
+
+		svg + svg {
+			fill: $white;
+			margin-left: -$medium_size;
+
+			position: relative;
+			left: 1px;
+			z-index: 0;
 		}
 	}
 

@@ -1,0 +1,12 @@
+<nav class="padded padded--tight">
+  <div class="grid grid--guttered grid--center">
+    <a href="/blogs/{{blog.handle}}" class="col nav__link">Tout</a>
+
+    {% for tag in blog.all_tags %}
+    {% assign first_letter = tag | handleize | first %}
+    {% if first_letter != '_' %}
+    <a href="/blogs/{{blog.handle}}/tagged/{{tag | handleize}}" class="col nav__link">{{tag}}</a>
+    {% endif %}
+    {% endfor %}
+  </div>
+</nav>
