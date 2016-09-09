@@ -1,9 +1,10 @@
 class Wise.Views.Nav extends Backbone.View
 
-	el: $("#nav")
 
 
-	events: {}
+	events: {
+		"click [data-toggle-cart]": "toggle_cart"
+	}
 	
 
 
@@ -20,6 +21,12 @@ class Wise.Views.Nav extends Backbone.View
 	render: ->
 
 		this
+
+
+
+	toggle_cart: (e)->
+		e.preventDefault()
+		Wise.cart_view.toggle()
 
 
 

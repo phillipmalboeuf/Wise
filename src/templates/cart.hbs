@@ -1,6 +1,43 @@
 
+<form action="/cart" method="post" class="cart__container {{#if model.item_count}}overlay__container--with_button{{/if}}" novalidate>
+	{{#if model.item_count}}
+	{{#each model.items}}
+	<div class="padded padded--tight text_center cart__item">
+		<a href="{{url}}">
+			<h6 class="small_bottom">{{{product_title}}}</h6>
+			<em>{{variant_title}}</em>
 
-	<a href="/cart" class="cart__button js-cart__button {{#unless model.item_count}}disabled{{/unless}}">
+			<img src="{{image}}">
+		</a>
+
+		<div class="grid grid--spaced grid--middle">
+			<div>{{{money price}}}</div>
+			<div>
+				<button class="button--transparent" data-decrement="{{id}}" data-current-quantity="{{quantity}}">-</button>
+				{{quantity}}
+				<button class="button--transparent" data-increment="{{id}}" data-current-quantity="{{quantity}}">+</button>
+			</div>
+			<div>
+				<button data-remove-from-cart="{{id}}" class="button--transparent"><svg class="icon-trash"><use xlink:href="#icon-trash"></use></svg></button>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+	<div class="padded padded--tight text_center">
+		<strong>Total {{{money model.total_price}}}</strong>
+	</div>
+
+	<button type="submit" name="checkout" class="overlay__button">Passer à la caisse</button>
+	{{else}}
+	<div class="padded text_center">
+		Votre panier est vide
+	</div>
+	{{/if}}
+</form>
+
+
+
+<!-- 	<a href="/cart" class="cart__button js-cart__button {{#unless model.item_count}}disabled{{/unless}}">
 		Cart <i class="fa fa-shopping-cart cart__icon"></i> <span class="text_underline">{{#if model.item_count}}{{model.item_count}}{{else}}0{{/if}}</span> <span class="cart__arrow js-arrow">▲</span>
 	</a>
 
@@ -60,3 +97,4 @@
 
 
 
+ -->

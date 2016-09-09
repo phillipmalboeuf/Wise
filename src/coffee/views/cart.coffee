@@ -7,10 +7,9 @@ class Wise.Views.Cart extends Backbone.View
 
 	data: {}
 	events: 
-		"click .js-cart__button": "toggle_cart"
-		"click .js-remove_from_cart": "remove_from_cart"
-		"click .js-increment": "increment"
-		"click .js-decrement": "decrement"
+		"click [data-remove-from-cart]": "remove_from_cart"
+		"click [data-increment]": "increment"
+		"click [data-decrement]": "decrement"
 
 
 
@@ -31,47 +30,57 @@ class Wise.Views.Cart extends Backbone.View
 		this.$el.html @template(@data)
 
 
-		if @model.get("item_count") == 0
-			this.hide_cart()
+		# if @model.get("item_count") == 0
+		# 	this.hide_cart()
 
 
-		Currency.convertAll(shopCurrency, cookieCurrency)
+		# Currency.convertAll(shopCurrency, cookieCurrency)
 
 
 		this
 
 
+	toggle: (e)->
+		if this.$el.hasClass "fade_out"
+			this.show(e)
 
-	toggle_cart: (e)->
-		e.preventDefault()
-
-		this.$el.toggleClass "cart--opened"
+		else
+			this.hide(e)
 
 
-	show_cart: ->
-		this.$el.addClass "cart--opened"
+	show: (e)->
+		if e?
+			e.preventDefault()
+	
+		this.$el.removeClass "fade_out"
+		Wise.router.navigate window.location.pathname+"?cart=true"
 
-	hide_cart: ->
-		this.$el.removeClass "cart--opened"
+
+	hide: (e)->
+		if e?
+			e.preventDefault()
+		
+		this.$el.addClass "fade_out"
+		Wise.router.navigate window.location.pathname
 
 
 
 	remove_from_cart: (e)->
 		e.preventDefault()
 
-		Wise.cart.remove $(e.currentTarget).attr("data-id")
+		Wise.cart.remove $(e.currentTarget).attr("data-remove-from-cart")
 
 
 	increment: (e)->
 		e.preventDefault()
 
-		Wise.cart.change $(e.currentTarget).attr("data-id"), parseInt($(e.currentTarget).attr("data-current-quantity"))+1
+		Wise.cart.change $(e.currentTarget).attr("data-increment"), parseInt($(e.currentTarget).attr("data-current-quantity"))+1
 
 
 	decrement: (e)->
 		e.preventDefault()
 
-		Wise.cart.change $(e.currentTarget).attr("data-id"), parseInt($(e.currentTarget).attr("data-current-quantity"))-1
+		Wise.cart.change $(e.currentTarget).attr("data-decrement"), parseInt($(e.currentTarget).attr("data-current-quantity"))-1
 
 
 

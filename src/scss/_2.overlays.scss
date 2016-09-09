@@ -27,8 +27,8 @@
 	}
 
 	&.overlay--top_right {
-		top: $gutter/4;
-		right: $gutter/4;
+		top: 5.067rem;
+		right: 0;
 	}
 
 	&.overlay--bottom_right {
@@ -51,8 +51,6 @@
 
 
 	.overlay__container {
-		@extend .padded;
-		@extend .padded--tight;
 		@extend .grey_back;
 
 		position: relative;
@@ -64,10 +62,7 @@
 
 		&.overlay__container--with_button {
 			border-radius: 0;
-
-			.slide {
-				padding-bottom: $vertical_rythm*4;
-			}
+			padding-bottom: 3.667rem;
 		}
 	}
 
@@ -87,17 +82,13 @@
 			left: 0;
 			width: 100%;
 
+			padding: $vertical_rythm;
 			border-radius: 0;
 			border: 0;
 
-			font-size: $medium_size;
+			font-size: $slight_size;
 			color: $white;
-			background: $secondary;
-
-			&:hover,
-			&:focus {
-				background: $black;
-			}
+			background: $highlight;
 		}
 
 

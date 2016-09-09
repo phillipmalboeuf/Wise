@@ -1,16 +1,20 @@
+
+
 <header class="padded padded--tight grid grid--spaced">
 	<div class="col header__logotype">
-		<a href="/">{{ shop.name }}</a>
+		<a href="/">{{shop.name}}</a>
 	</div>
 
-	<nav class="col grid grid--middle grid--guttered">
+	<nav class="col grid grid--middle grid--guttered" data-navigation>
 		{% for link in linklists.main-menu.links %}
-		<a href="{{ link.url }}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
+		<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
 		{% endfor %}
 
 		<div class="col grid grid--middle">
 			<a href="#" class="nav__link">Connexion</a>
-			<a href="#" class="nav__link spaced"><svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg></a>
+			<a href="?cart=true" class="nav__link spaced" data-toggle-cart>
+				<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
+			</a>
 		</div>
 	</nav>
 </header>

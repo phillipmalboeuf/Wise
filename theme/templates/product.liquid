@@ -15,7 +15,7 @@
 {% endif %}
 
 
-<div class="grid light_grey_back">
+<article class="grid light_grey_back" data-product-id="{{product.id}}">
   <div class="col col--6of12 slider" data-slider>
     <div class="slider__container" style="width: {{product.images | size}}00%;" data-slider-container>
       {% for image in product.images %}
@@ -54,9 +54,9 @@
     {{product.description}}
     </div>
 
-    <button data-add-to-cart class="button--full">Add this product to your shopping bag</button>
+    <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your shopping bag</button>
   </div>
-</div>
+</article>
 
 {% for tag in product.tags %} 
 {% assign tag_split = tag | split: ':' %}
@@ -80,7 +80,7 @@
 
 
 
-<section class="padded padded--thick light_grey_back text_center">
+<div class="padded padded--thick light_grey_back text_center">
   <h2 class="big_bottom">This product respects the following:</h2>
 
   <div class="grid grid--spaced_around">
@@ -139,5 +139,6 @@
       <p>Usage of<br>renewable materials<br>{{renewable | times:100 | floor}}%</p>
     </div>
   </div>
-</section>
+</div>
+
 

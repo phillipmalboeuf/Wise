@@ -7,12 +7,10 @@ window.Wise =
 
 	init: ->
 
-		
-		@nav_view = new Wise.Views.Nav()
 
-		# @cart = new Wise.Models.Cart()
-		# @cart_view = new Wise.Views.Cart
-		# 	model: @cart
+		@cart = new Wise.Models.Cart()
+		@cart_view = new Wise.Views.Cart
+			model: @cart
 
 		# @products_views = []
 		# $(".js-products").each (index, el)=>
@@ -32,35 +30,20 @@ window.Wise =
 		# 	@login_views.push new Wise.Views.Login({el: $(el)})
 
 
-		@slider_views = []
-		$("[data-slider]").each (index, el)=>
-			@slider_views.push new Wise.Views.Slider({el: $(el)})
 
+		# $("[data-scroll-to]").click (e)->
+		# 	scroll_to = $("#" + e.currentTarget.getAttribute("data-scroll-to"))
 
-		$("[data-scroll-to]").click (e)->
-			scroll_to = $("#" + e.currentTarget.getAttribute("data-scroll-to"))
-
-			if scroll_to.length > 0
-				e.preventDefault()
-				e.stopImmediatePropagation()
+		# 	if scroll_to.length > 0
+		# 		e.preventDefault()
+		# 		e.stopImmediatePropagation()
 	
-				scroll_to.velocity("scroll", { duration: 1500, easing: "easeOutQuart", offset: -50 })
+		# 		scroll_to.velocity("scroll", { duration: 1500, easing: "easeOutQuart", offset: -50 })
 
 
-		$("[data-scroll-to-text]").click (e)->
-			scroll_to = $("h5:contains('"+e.currentTarget.getAttribute("data-scroll-to-text")+"')")
-			console.log scroll_to
-
-			if scroll_to.length > 0
-				e.preventDefault()
-				e.stopImmediatePropagation()
-	
-				scroll_to.velocity("scroll", { duration: 1500, easing: "easeOutQuart", offset: -50 }) 
-
-
-		# @router = new Wise.Routers.Router()
-		# Backbone.history.start
-		# 	pushState: true
+		@router = new Wise.Routers.Router()
+		Backbone.history.start
+			pushState: true
 
 
 
@@ -72,12 +55,6 @@ Backbone = window.Backbone
 
 
 
-
-
-
 $ ->
-
 	Wise.init()
-
-
 

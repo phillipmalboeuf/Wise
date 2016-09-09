@@ -34,8 +34,6 @@ class Wise.Models.Cart extends Backbone.Model
 
 
 	change: (id, quantity)->
-		console.log id
-		console.log quantity
 
 		post = $.ajax "/cart/change.js",
 			method: "POST"
@@ -44,7 +42,6 @@ class Wise.Models.Cart extends Backbone.Model
 				quantity: quantity
 				id: parseInt(id)
 			success: (response)=>
-				console.log response
 
 				this.set response
 				this.trigger "sync"
@@ -56,6 +53,8 @@ class Wise.Models.Cart extends Backbone.Model
 	remove: (id)->
 
 		this.change id, 0
+
+
 
 
 			

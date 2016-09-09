@@ -2,28 +2,30 @@
 
 // #CART
 
-// .cart {
-// 	@extend .overlay;
-// 	@extend .overlay--full;
-	
-// 	font-family: $alternate_font;
-// }
+.cart {
+	@extend .overlay;
+	@extend .overlay--top_right;
+}
 
-// 	.cart__back {
-// 		@extend .overlay__back;
-// 	}
+	.cart__back {
+		@extend .overlay__back;
+	}
 
 
-// 	.cart__container {
-// 		@extend .overlay__container;
-// 		@extend .overlay__container--with_button;
+	.cart__container {
+		@extend .overlay__container;
 
-// 		padding: $gutter 0 0;
+		font-size: $slight_size;
 
-// 		max-width: 34rem;
-// 		background-color: $white;
-// 	}
+		width: 18.2rem;
+		border: 2px solid $highlight;
+		background-color: $white;
+	}
 
-// 		.cart__close {
-// 			@extend .overlay__close;
-// 		}
+		.cart__close {
+			@extend .overlay__close;
+		}
+
+		.cart__item {
+			border-bottom: 2px solid $highlight;
+		}
