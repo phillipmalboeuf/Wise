@@ -11,6 +11,8 @@ label,
 	font-size: 1rem;
 	font-weight: normal;
 	line-height: 1;
+
+	margin-bottom: $vertical_rythm;
 }
 
 
@@ -40,9 +42,11 @@ textarea,
 
 	color: inherit;
 	background: $grey;
-	padding: $vertical_rythm/2;
+	padding: $vertical_rythm/4;
 	border: 1px solid transparent;
 	border-radius: 0;
+
+	margin-bottom: $vertical_rythm/2;
 
 	@include transition(background $fast, color $fast, border-color $fast, opacity $fast);
 
@@ -90,10 +94,6 @@ textarea,
 
 	.input_group & {
 		margin-bottom: 0;
-	}
-
-	label + & {
-		margin-top: $vertical_rythm/4;
 	}
 }
 

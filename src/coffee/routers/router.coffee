@@ -6,6 +6,7 @@ class Wise.Routers.Router extends Backbone.Router
 		"products(/:product)(/)": "products"
 		"collections(/:collection)(/products/:product)(/)": "products"
 		"blogs(/:blog)(/:article)(/)": "articles"
+		"pages(/:page)": "pages"
 		"(/)": "home"
 	}
 
@@ -47,6 +48,11 @@ class Wise.Routers.Router extends Backbone.Router
 		else
 			Wise.cart_view.hide()
 
+		if @query.login?
+			Wise.login_view.show()
+		else
+			Wise.login_view.hide()
+
 
 
 	products: (collection, product)->
@@ -57,6 +63,10 @@ class Wise.Routers.Router extends Backbone.Router
 
 
 	articles: (blog, article)->
+
+
+	pages: (page)->
+
 
 
 	home: ->

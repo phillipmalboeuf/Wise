@@ -1,15 +1,17 @@
 class Wise.Views.Login extends Backbone.View
 
+	el: $("#login")
 
 
+
+	data: {}
 	events: 
-		"click .js-recover_button": "show_recover"
-		"click .js-login_button": "show_login"
+		"click [data-hide]": "hide"
 
 
 
 
-	initialize: ->		
+	initialize: ->
 
 		this.render()
 
@@ -23,25 +25,27 @@ class Wise.Views.Login extends Backbone.View
 		this
 
 
+	toggle: (e)->
+		if this.$el.hasClass "fade_out"
+			this.show(e)
 
-	show_recover: (e)->
-		e.preventDefault()
-
-		this.$el.find(".js-recover_form").removeClass "hide"
-		this.$el.find(".js-login_form").addClass "hide"
-
-
-	show_login: (e)->
-		e.preventDefault()
-
-		this.$el.find(".js-login_form").removeClass "hide"
-		this.$el.find(".js-recover_form").addClass "hide"
+		else
+			this.hide(e)
 
 
+	show: (e)->
+		if e?
+			e.preventDefault()
+	
+		this.$el.removeClass "fade_out"
+		Wise.router.navigate window.location.pathname+"?login=true"
 
 
-
+	hide: (e)->
+		if e?
+			e.preventDefault()
 		
-
+		this.$el.addClass "fade_out"
+		Wise.router.navigate window.location.pathname
 
 

@@ -20,16 +20,7 @@ body {
 // #HEADER
 
 header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 10;
-
-	@media #{$small} {
-		position: relative;
-		text-align: center;
-	}
+	
 }
 
 
@@ -40,6 +31,10 @@ header {
 
 	min-height: 100vh;
 	padding-top: 5rem;
+
+	@media #{$small} {
+		padding-top: 0;
+	}
 }
 
 
@@ -64,7 +59,7 @@ footer {
 		padding: $gutter*3;
 
 		@media #{$small} {
-			padding: $gutter*2;
+			padding: $gutter*2 $gutter;
 		}
 	}
 

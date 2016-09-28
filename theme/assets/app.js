@@ -11,6 +11,7 @@
       this.cart_view = new Wise.Views.Cart({
         model: this.cart
       });
+      this.login_view = new Wise.Views.Login();
       this.router = new Wise.Routers.Router();
       return Backbone.history.start({
         pushState: true
@@ -273,9 +274,12 @@
       return Login.__super__.constructor.apply(this, arguments);
     }
 
+    Login.prototype.el = $("#login");
+
+    Login.prototype.data = {};
+
     Login.prototype.events = {
-      "click .js-recover_button": "show_recover",
-      "click .js-login_button": "show_login"
+      "click [data-hide]": "hide"
     };
 
     Login.prototype.initialize = function() {
@@ -286,16 +290,28 @@
       return this;
     };
 
-    Login.prototype.show_recover = function(e) {
-      e.preventDefault();
-      this.$el.find(".js-recover_form").removeClass("hide");
-      return this.$el.find(".js-login_form").addClass("hide");
+    Login.prototype.toggle = function(e) {
+      if (this.$el.hasClass("fade_out")) {
+        return this.show(e);
+      } else {
+        return this.hide(e);
+      }
     };
 
-    Login.prototype.show_login = function(e) {
-      e.preventDefault();
-      this.$el.find(".js-login_form").removeClass("hide");
-      return this.$el.find(".js-recover_form").addClass("hide");
+    Login.prototype.show = function(e) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.$el.removeClass("fade_out");
+      return Wise.router.navigate(window.location.pathname + "?login=true");
+    };
+
+    Login.prototype.hide = function(e) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.$el.addClass("fade_out");
+      return Wise.router.navigate(window.location.pathname);
     };
 
     return Login;
@@ -316,7 +332,8 @@
     }
 
     Nav.prototype.events = {
-      "click [data-toggle-cart]": "toggle_cart"
+      "click [data-toggle-cart]": "toggle_cart",
+      "click [data-toggle-login]": "toggle_login"
     };
 
     Nav.prototype.initialize = function() {
@@ -330,6 +347,11 @@
     Nav.prototype.toggle_cart = function(e) {
       e.preventDefault();
       return Wise.cart_view.toggle();
+    };
+
+    Nav.prototype.toggle_login = function(e) {
+      e.preventDefault();
+      return Wise.login_view.toggle();
     };
 
     return Nav;
@@ -526,6 +548,7 @@
       "products(/:product)(/)": "products",
       "collections(/:collection)(/products/:product)(/)": "products",
       "blogs(/:blog)(/:article)(/)": "articles",
+      "pages(/:page)": "pages",
       "(/)": "home"
     };
 
@@ -570,9 +593,14 @@
       })(this));
       this.query = Wise.helpers.get_query_string();
       if (this.query.cart != null) {
-        return Wise.cart_view.show();
+        Wise.cart_view.show();
       } else {
-        return Wise.cart_view.hide();
+        Wise.cart_view.hide();
+      }
+      if (this.query.login != null) {
+        return Wise.login_view.show();
+      } else {
+        return Wise.login_view.hide();
       }
     };
 
@@ -587,6 +615,8 @@
     };
 
     Router.prototype.articles = function(blog, article) {};
+
+    Router.prototype.pages = function(page) {};
 
     Router.prototype.home = function() {};
 

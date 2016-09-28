@@ -1,0 +1,26 @@
+
+
+// #ADMIN
+
+.admin {
+	@extend .overlay;
+	@extend .overlay--full;
+}
+
+	.admin__back {
+		@extend .overlay__back;
+	}
+
+
+	.admin__container {
+		@extend .overlay__container;
+
+		max-width: 58rem;
+		width: 100%;
+		border: 2px solid $highlight;
+		background-color: $white;
+	}
+
+		.admin__close {
+			@extend .overlay__close;
+		}

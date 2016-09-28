@@ -1,0 +1,33 @@
+
+<section class="admin fades_out fade_out" id="login">
+	<a href="#" class="admin__back" data-hide></a>
+
+	<div class="admin__container overlay__container--with_button">
+		<div class="padded">
+			<div class="grid grid--guttered">
+				<div class="col col--6of12">
+					{% form 'create_customer' %}
+					<label for="email">Créer un compte</label>
+					<input type="text" placeholder="Votre prénom">
+					<input type="text" placeholder="Votre nom de famille">
+					<input type="email" name="customer[email]" id="email" placeholder="Votre courriel">
+					<input type="password" placeholder="Votre mot de passe">
+					{% endform %}
+				</div>
+
+				<div class="col col--6of12">
+					
+					{% form 'customer_login' %}
+					<label for="login_email">Connectez-vous à un compte existant</label>
+					<input type="email" name="customer[email]" id="login_email" placeholder="Votre courriel">
+					<input type="password" placeholder="Votre mot de passe">
+					{% endform %}
+				</div>
+			</div>
+
+			<button type="submit" class="overlay__button">Continuer</button>
+		</div>
+	</div>
+</section>
+
+

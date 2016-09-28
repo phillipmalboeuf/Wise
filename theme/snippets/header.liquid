@@ -5,13 +5,13 @@
 		<a href="/">{{shop.name}}</a>
 	</div>
 
-	<nav class="col grid grid--middle grid--guttered" data-navigation>
+	<nav class="col col--small--12of12 grid grid--middle grid--guttered grid--center" data-navigation>
 		{% for link in linklists.main-menu.links %}
 		<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
 		{% endfor %}
 
 		<div class="col grid grid--middle">
-			<a href="#" class="nav__link">Connexion</a>
+			<a href="?login=true" class="nav__link" data-toggle-login>Connexion</a>
 			<a href="?cart=true" class="nav__link spaced" data-toggle-cart>
 				<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
 			</a>

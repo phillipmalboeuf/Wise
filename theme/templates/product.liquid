@@ -16,7 +16,7 @@
 
 
 <article class="grid light_grey_back" data-product-id="{{product.id}}">
-  <div class="col col--6of12 slider" data-slider>
+  <div class="col col--6of12 col--small--12of12 slider" data-slider>
     <div class="slider__container" style="width: {{product.images | size}}00%;" data-slider-container>
       {% for image in product.images %}
         <div class="slide" data-slide={{forloop.index0}}>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="col col--6of12 padded">
+  <div class="col col--6of12 col--small--12of12 padded">
     <p class="p--medium">
       {% for tag in product.tags %} 
       {% assign first_letter = tag | first %}
@@ -63,12 +63,12 @@
 {% if tag_split[0] == '_video' %}
 {% assign video_split = tag | split: '_video:' %}
 <div class="grid">
-  <div class="col col--7of12">
+  <div class="col col--7of12 col--small--12of12 col--small--last">
     <div class="video_container">
       <iframe src="https://www.youtube.com/embed/{{video_split[1]}}?showinfo=0&theme=light" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
-  <div class="col col--5of12 text_right padded padded--vertically_thick">
+  <div class="col col--5of12 col--small--12of12 text_right padded padded--vertically_thick">
     <h2>Medium hold.</h2>
     <p>Watch the usability video here:</p>
     <button class="button--transparent"><svg class="icon-play icon--medium"><use xlink:href="#icon-play"></use></svg></button>
@@ -117,7 +117,7 @@
       <p>Healthy<br>ingredients<br>{{healthy | times:100 | floor}}%</p>
     </div>
 
-    <hr class="col hr--vertical">
+    <hr class="col col--small--12of12 hr--vertical">
 
     <div class="col" style="opacity: {{reusable}};">
       <svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>

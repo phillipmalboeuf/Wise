@@ -12,6 +12,9 @@ window.Wise =
 		@cart_view = new Wise.Views.Cart
 			model: @cart
 
+		@login_view = new Wise.Views.Login()
+		
+
 		# @products_views = []
 		# $(".js-products").each (index, el)=>
 		# 	@products_views.push new Wise.Views.Products({el: $(el)})

@@ -3,9 +3,24 @@
 // #HEADER
 
 header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+
 	background-color: $white;
+
+	@media #{$small} {
+		position: relative;
+		text-align: center;
+	}
 }
 
 	.header__logotype {
 		font-size: $biggish_size;
+
+		@media #{$small} {
+			margin: 0 auto;
+		}
 	}

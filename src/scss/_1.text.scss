@@ -230,6 +230,11 @@ hr {
 		border-top: none;
 		border-left: 2px solid;
 		margin: 0;
+
+		@media #{$small} {
+			height: $vertical_rythm;
+			border: none;
+		}
 	}
 }
 
