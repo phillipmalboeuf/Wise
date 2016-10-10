@@ -12,5 +12,17 @@ nav {
 		footer & {
 			font-size: $base_size;
 		}
+
+		&.nav__link--cart {
+			position: relative;
+
+			span {
+				position: absolute;
+				bottom: 0.5rem;
+
+				width: 100%;
+				text-align: center;
+			}
+		}
 	}
 

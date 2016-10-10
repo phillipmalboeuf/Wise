@@ -20,7 +20,7 @@
     <p class="p--medium"><em>{{article.excerpt}}</em></p>
 
     <div class="medium_bottom underline_links">
-      {% assign content_split = article.content | split: '<p><span><span>[Images]</span></span></p>' %}
+      {% assign content_split = article.content | split: '<p>[Images]</p>' %}
       {{content_split[0]}}
     </div>
   </div>

@@ -14,7 +14,9 @@ class Wise.Views.Slider extends Backbone.View
 	initialize: ->
 		@slides_count = this.$el.find("[data-slide]").length
 
-		this.render()
+		setTimeout =>
+			this.render()
+		, 1000
 
 		
 

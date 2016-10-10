@@ -6,6 +6,11 @@ class Wise.Models.Cart extends Backbone.Model
 
 	parse: (response)->
 
+		if response.item_count > 0
+			$("[data-item-count]").text response.item_count
+		else
+			$("[data-item-count]").text ""
+
 		response
 
 
@@ -43,8 +48,7 @@ class Wise.Models.Cart extends Backbone.Model
 				id: parseInt(id)
 			success: (response)=>
 
-				this.set response
-				this.trigger "sync"
+				this.fetch()
 
 
 			

@@ -85,6 +85,11 @@
     Cart.prototype.url = "/cart.js";
 
     Cart.prototype.parse = function(response) {
+      if (response.item_count > 0) {
+        $("[data-item-count]").text(response.item_count);
+      } else {
+        $("[data-item-count]").text("");
+      }
       return response;
     };
 
@@ -122,8 +127,7 @@
         },
         success: (function(_this) {
           return function(response) {
-            _this.set(response);
-            return _this.trigger("sync");
+            return _this.fetch();
           };
         })(this)
       });
@@ -487,7 +491,11 @@
 
     Slider.prototype.initialize = function() {
       this.slides_count = this.$el.find("[data-slide]").length;
-      return this.render();
+      return setTimeout((function(_this) {
+        return function() {
+          return _this.render();
+        };
+      })(this), 1000);
     };
 
     Slider.prototype.render = function() {
