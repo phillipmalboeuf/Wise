@@ -1,52 +1,14 @@
-{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
-
-
-<div class="padded--medium_top light_grey_back">
-  <div class="padded--very_thick">
-
-  
-
+<div class="padded">
+  <div class="grid grid--guttered">
+    <div class="col col--6of12">
       {% form 'activate_customer_password' %}
+      <label for="password">Activer votre compte en lui donnant un mot de passe</label>
+      <input type="password" id="password" name="customer[password]" placeholder="Votre mot de passe">
+      <input type="password" name="customer[password_confirmation]" placeholder="Confirmer ce mot de passe">
 
-        <h1 class="small_bottom text_center">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.title' | t }}{% endcapture %}{% include 'ly-static-string' with '2352132' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h1>
-        <p class="big_bottom text_center">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.subtext' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.subtext' | t }}{% endcapture %}{% include 'ly-static-string' with '2352133' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
-
-
-        <div class="grid grid--center">
-
-          <div class="bigass_bottom">
-
-            <div class="col col--8of12 col--medium--10of12 col--small--12of12">
-
-              {{ form.errors | default_errors }}
-
-
-              <label for="password" class="hide">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.password' | t }}{% endcapture %}{% include 'ly-static-string' with '2352134' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
-              <input type="password" name="customer[password]" id="password" class="{% if form.errors contains 'password' %} error{% endif %} medium_bottom" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.password' | t }}{% endcapture %}{% include 'ly-static-string' with '2352134' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">
-
-              <label for="password_confirmation" class="hide">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.password' | t }}{% endcapture %}{% include 'ly-static-string' with '2352134' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
-              <input type="password" name="customer[password_confirmation]" id="password_confirmation" class="{% if form.errors contains 'password' %} error{% endif %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.password_confirm' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.password_confirm' | t }}{% endcapture %}{% include 'ly-static-string' with '2352135' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">
-
-            </div>
-          </div>
-
-          <div class="col col--3of12 col--medium--6of12 col--small--12of12">
-            <button type="submit" class="button button--full button--dark medium_bottom">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.submit' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.submit' | t }}{% endcapture %}{% include 'ly-static-string' with '2352136' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %} <span class="button__arrow"><i class="fa fa-long-arrow-right"></i></span></button>
-          
-
-            <button type="submit" name="decline" class="button button--full button--bordered">{% comment %}ly_i18n_replace_for_[ 'customer.activate_account.cancel' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.activate_account.cancel' | t }}{% endcapture %}{% include 'ly-static-string' with '2352137' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
-
-          </div>
-
-
-        </div>
-      
+      <button type="submit" class="button">Submit</button>
       {% endform %}
-
-
-
+    </div>
   </div>
-
 </div>
-
 

@@ -93,6 +93,11 @@
 			font-size: $slight_size;
 			color: $white;
 			background: $highlight;
+
+			&:active {
+				top: auto;
+				bottom: -1px;
+			}
 		}
 
 

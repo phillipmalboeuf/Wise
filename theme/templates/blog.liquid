@@ -18,7 +18,7 @@
   {% if forloop.first == false %}
   <article class="col col--6of12 col--medium--12of12">
     <a href="{{article.url}}" class="grid {% cycle '', '', 'grid--reverse', 'grid--reverse' %} a--bordered">
-      <div class="col col--6of12">
+      <div class="col col--6of12 light_grey_back">
         <img src="{{article.image.src | img_url: 'large'}}" alt="{{article.image.alt}}">
       </div>
       <div class="col col--6of12 padded">

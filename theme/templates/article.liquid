@@ -32,12 +32,13 @@
 {% assign srcs_split = content_split[1] | split: 'src="' %}
 {% assign alts_split = content_split[1] | split: 'alt="' %}
 <div class="slider" data-slider>
-  <div class="slider__container" style="width: {{srcs_split | size | minus:1}}00%;" data-slider-container>
+  {% assign srcs_size = srcs_split | size | minus:1 %}
+  <div class="slider__container" style="width: {{srcs_size}}00%;" data-slider-container>
   {% for src in srcs_split %}
     {% unless forloop.first %}
     {% assign src_split = src | split: '"' %}
     {% assign alt_split = alts_split[forloop.index0] | split: '"' %}
-    <div class="slide" data-slide={{forloop.index0 | minus:1}}>
+    <div class="slide" data-slide={{forloop.index0 | minus:1}} style="width: {{100 | divided_by: srcs_size}}%;">
       <div data-slide-content>
         <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back" style="background-image:url({{src_split[0]}});">
           <div class="col col--4of12 col--medium--6of12 col--small--8of12 white">
@@ -51,9 +52,9 @@
   </div>
 
 
-  <div class="slider__button"><button class="button--transparent" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button></div>
+  <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
 
-  <div class="slider__button slider__button--right"><button class="button--transparent" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button></div>
+  <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
 
   <div class="slider__markers">
       {% for src in srcs_split %}

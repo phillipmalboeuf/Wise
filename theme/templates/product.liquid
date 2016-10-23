@@ -17,17 +17,18 @@
 
 <article class="grid light_grey_back" data-product-id="{{product.id}}">
   <div class="col col--6of12 col--small--12of12 slider" data-slider>
-    <div class="slider__container" style="width: {{product.images | size}}00%;" data-slider-container>
+    {% assign images_size = product.images | size %}
+    <div class="slider__container" style="width: {{images_size}}00%;" data-slider-container>
       {% for image in product.images %}
-        <div class="slide" data-slide={{forloop.index0}}>
-          <div data-slide-content><img src="{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
+        <div class="slide" data-slide={{forloop.index0}} style="width: {{100 | divided_by: images_size}}%;">
+          <div data-slide-content><img src="https://res.cloudinary.com/deming/image/fetch/c_fill,g_auto/dpr_auto,w_800/https:{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
         </div>
       {% endfor %}
     </div>
 
-    <div class="slider__button"><button class="button--transparent" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button></div>
+    <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
 
-    <div class="slider__button slider__button--right"><button class="button--transparent" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button></div>
+    <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
 
     <div class="slider__markers">
       {% for image in product.images %}
@@ -136,7 +137,7 @@
 
     <div class="col" style="opacity: {{renewable}};">
       <svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
-      <p>Usage of<br>renewable materials<br>{{renewable | times:100 | floor}}%</p>
+      <p>Renewable<br>materials<br>{{renewable | times:100 | floor}}%</p>
     </div>
   </div>
 </div>

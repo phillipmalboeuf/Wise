@@ -283,7 +283,10 @@
     Login.prototype.data = {};
 
     Login.prototype.events = {
-      "click [data-hide]": "hide"
+      "click [data-hide]": "hide",
+      "submit #customer_login": "customer_login",
+      "submit #create_customer": "create_customer",
+      "click [data-submit]": "submit_form"
     };
 
     Login.prototype.initialize = function() {
@@ -292,6 +295,36 @@
 
     Login.prototype.render = function() {
       return this;
+    };
+
+    Login.prototype.customer_login = function(e) {
+      e.preventDefault();
+      return $.ajax(e.currentTarget.getAttribute("action"), {
+        method: "POST",
+        dataType: "html",
+        data: {
+          "customer[email]": e.currentTarget["customer[email]"].value,
+          "customer[password]": e.currentTarget["customer[password]"].value,
+          checkout_url: "",
+          form_type: "customer_login",
+          utf8: "✓"
+        },
+        success: (function(_this) {
+          return function(response) {
+            return console.log(response);
+          };
+        })(this)
+      });
+    };
+
+    Login.prototype.create_customer = function(e) {};
+
+    Login.prototype.submit_form = function(e) {
+      if (this.$el.find("#customer_login [name='customer[email]']").val() !== "") {
+        return this.$el.find("#customer_login").submit();
+      } else if (this.$el.find("#create_customer [name='customer[email]']").val() !== "") {
+        return this.$el.find("#create_customer").submit();
+      }
     };
 
     Login.prototype.toggle = function(e) {
@@ -307,6 +340,7 @@
         e.preventDefault();
       }
       this.$el.removeClass("fade_out");
+      this.$el.find("#login_email").focus();
       return Wise.router.navigate(window.location.pathname + "?login=true");
     };
 
@@ -499,6 +533,8 @@
     };
 
     Slider.prototype.render = function() {
+      this.$el.find("[data-slider-container]").css("width", this.slides_count + "00%");
+      this.$el.find("[data-slide]").css("width", (100 / this.slides_count) + "%");
       this.previous_slide_height = this.$el.find("[data-slide=" + this.current_slide + "] [data-slide-content]").height();
       this.$el.find("[data-slider-container]").css("height", "-=" + (this.$el.find("[data-slide=" + this.current_slide + "]").height() - this.previous_slide_height) + "px");
       return this;

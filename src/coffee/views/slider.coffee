@@ -24,6 +24,8 @@ class Wise.Views.Slider extends Backbone.View
 
 	render: ->
 
+		this.$el.find("[data-slider-container]").css "width", @slides_count+"00%"
+		this.$el.find("[data-slide]").css "width", (100/@slides_count)+"%"
 		@previous_slide_height = this.$el.find("[data-slide="+@current_slide+"] [data-slide-content]").height()
 		this.$el.find("[data-slider-container]").css "height", "-="+(this.$el.find("[data-slide="+@current_slide+"]").height() - @previous_slide_height)+"px"
 
