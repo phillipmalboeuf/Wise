@@ -12,6 +12,7 @@
         model: this.cart
       });
       this.login_view = new Wise.Views.Login();
+      this.account_view = new Wise.Views.Account();
       this.router = new Wise.Routers.Router();
       return Backbone.history.start({
         pushState: true
@@ -147,6 +148,180 @@
   var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
 
+  Wise.Views.Login = (function(superClass) {
+    extend(Login, superClass);
+
+    function Login() {
+      return Login.__super__.constructor.apply(this, arguments);
+    }
+
+    Login.prototype.el = $("#login");
+
+    Login.prototype.data = {};
+
+    Login.prototype.events = {
+      "click [data-hide]": "hide",
+      "submit #customer_login": "customer_login",
+      "submit #create_customer": "create_customer",
+      "click [data-submit]": "submit_form"
+    };
+
+    Login.prototype.initialize = function() {
+      return this.render();
+    };
+
+    Login.prototype.render = function() {
+      return this;
+    };
+
+    Login.prototype.customer_login = function(e) {
+      e.preventDefault();
+      return $.ajax(e.currentTarget.getAttribute("action"), {
+        method: "POST",
+        dataType: "html",
+        data: {
+          "customer[email]": e.currentTarget["customer[email]"].value,
+          "customer[password]": e.currentTarget["customer[password]"].value,
+          form_type: "customer_login",
+          utf8: "✓"
+        },
+        success: (function(_this) {
+          return function(response) {
+            var errors;
+            errors = $(response).find(".errors");
+            if (errors.length > 0) {
+              return $(e.currentTarget).find("[data-errors]").text(errors.text());
+            } else {
+              $(e.currentTarget).find("[data-errors]").text("");
+              return Turbolinks.visit("?account=true");
+            }
+          };
+        })(this)
+      });
+    };
+
+    Login.prototype.create_customer = function(e) {
+      e.preventDefault();
+      return $.ajax(e.currentTarget.getAttribute("action"), {
+        method: "POST",
+        data: {
+          "customer[email]": e.currentTarget["customer[email]"].value,
+          "customer[password]": e.currentTarget["customer[password]"].value,
+          "customer[first_name]": e.currentTarget["customer[first_name]"].value,
+          "customer[last_name]": e.currentTarget["customer[last_name]"].value,
+          form_type: "create_customer",
+          utf8: "✓"
+        },
+        success: (function(_this) {
+          return function(response) {
+            var errors;
+            errors = $(response).find(".errors");
+            if (errors.length > 0) {
+              return $(e.currentTarget).find("[data-errors]").text(errors.text());
+            } else {
+              $(e.currentTarget).find("[data-errors]").text("");
+              return Turbolinks.visit("?account=true");
+            }
+          };
+        })(this)
+      });
+    };
+
+    Login.prototype.submit_form = function(e) {
+      if (this.$el.find("#customer_login [name='customer[email]']").val() !== "") {
+        return this.$el.find("#customer_login").submit();
+      } else if (this.$el.find("#create_customer [name='customer[email]']").val() !== "") {
+        return this.$el.find("#create_customer").submit();
+      }
+    };
+
+    Login.prototype.toggle = function(e) {
+      if (this.$el.hasClass("fade_out")) {
+        return this.show(e);
+      } else {
+        return this.hide(e);
+      }
+    };
+
+    Login.prototype.show = function(e) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.$el.removeClass("fade_out");
+      this.$el.find("#login_email").focus();
+      return Wise.router.navigate(window.location.pathname + "?login=true");
+    };
+
+    Login.prototype.hide = function(e) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.$el.addClass("fade_out");
+      return Wise.router.navigate(window.location.pathname);
+    };
+
+    return Login;
+
+  })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Wise.Views.Account = (function(superClass) {
+    extend(Account, superClass);
+
+    function Account() {
+      return Account.__super__.constructor.apply(this, arguments);
+    }
+
+    Account.prototype.el = $("#account");
+
+    Account.prototype.data = {};
+
+    Account.prototype.events = {
+      "click [data-hide]": "hide",
+      "click [data-logout]": "logout"
+    };
+
+    Account.prototype.initialize = function() {
+      return Account.__super__.initialize.call(this);
+    };
+
+    Account.prototype.render = function() {
+      Account.__super__.render.call(this);
+      return this;
+    };
+
+    Account.prototype.logout = function(e) {
+      return $.ajax("/account/logout", {
+        method: "GET",
+        success: function(response) {
+          return Turbolinks.visit("/");
+        }
+      });
+    };
+
+    Account.prototype.show = function(e) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.$el.removeClass("fade_out");
+      return Wise.router.navigate(window.location.pathname + "?account=true");
+    };
+
+    return Account;
+
+  })(Wise.Views.Login);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
   Wise.Views.Cart = (function(superClass) {
     extend(Cart, superClass);
 
@@ -271,97 +446,6 @@
   var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     hasProp = {}.hasOwnProperty;
 
-  Wise.Views.Login = (function(superClass) {
-    extend(Login, superClass);
-
-    function Login() {
-      return Login.__super__.constructor.apply(this, arguments);
-    }
-
-    Login.prototype.el = $("#login");
-
-    Login.prototype.data = {};
-
-    Login.prototype.events = {
-      "click [data-hide]": "hide",
-      "submit #customer_login": "customer_login",
-      "submit #create_customer": "create_customer",
-      "click [data-submit]": "submit_form"
-    };
-
-    Login.prototype.initialize = function() {
-      return this.render();
-    };
-
-    Login.prototype.render = function() {
-      return this;
-    };
-
-    Login.prototype.customer_login = function(e) {
-      e.preventDefault();
-      return $.ajax(e.currentTarget.getAttribute("action"), {
-        method: "POST",
-        dataType: "html",
-        data: {
-          "customer[email]": e.currentTarget["customer[email]"].value,
-          "customer[password]": e.currentTarget["customer[password]"].value,
-          checkout_url: "",
-          form_type: "customer_login",
-          utf8: "✓"
-        },
-        success: (function(_this) {
-          return function(response) {
-            return console.log(response);
-          };
-        })(this)
-      });
-    };
-
-    Login.prototype.create_customer = function(e) {};
-
-    Login.prototype.submit_form = function(e) {
-      if (this.$el.find("#customer_login [name='customer[email]']").val() !== "") {
-        return this.$el.find("#customer_login").submit();
-      } else if (this.$el.find("#create_customer [name='customer[email]']").val() !== "") {
-        return this.$el.find("#create_customer").submit();
-      }
-    };
-
-    Login.prototype.toggle = function(e) {
-      if (this.$el.hasClass("fade_out")) {
-        return this.show(e);
-      } else {
-        return this.hide(e);
-      }
-    };
-
-    Login.prototype.show = function(e) {
-      if (e != null) {
-        e.preventDefault();
-      }
-      this.$el.removeClass("fade_out");
-      this.$el.find("#login_email").focus();
-      return Wise.router.navigate(window.location.pathname + "?login=true");
-    };
-
-    Login.prototype.hide = function(e) {
-      if (e != null) {
-        e.preventDefault();
-      }
-      this.$el.addClass("fade_out");
-      return Wise.router.navigate(window.location.pathname);
-    };
-
-    return Login;
-
-  })(Backbone.View);
-
-}).call(this);
-
-(function() {
-  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    hasProp = {}.hasOwnProperty;
-
   Wise.Views.Nav = (function(superClass) {
     extend(Nav, superClass);
 
@@ -371,7 +455,8 @@
 
     Nav.prototype.events = {
       "click [data-toggle-cart]": "toggle_cart",
-      "click [data-toggle-login]": "toggle_login"
+      "click [data-toggle-login]": "toggle_login",
+      "click [data-toggle-account]": "toggle_account"
     };
 
     Nav.prototype.initialize = function() {
@@ -390,6 +475,11 @@
     Nav.prototype.toggle_login = function(e) {
       e.preventDefault();
       return Wise.login_view.toggle();
+    };
+
+    Nav.prototype.toggle_account = function(e) {
+      e.preventDefault();
+      return Wise.account_view.toggle();
     };
 
     return Nav;
@@ -599,9 +689,9 @@
     Router.prototype.views = [];
 
     Router.prototype.initialize = function() {
-      return document.addEventListener("turbolinks:render", (function(_this) {
+      return document.addEventListener("turbolinks:load", (function(_this) {
         return function(e) {
-          return _this.navigate(window.location.pathname, {
+          return _this.navigate(window.location.pathname + window.location.search, {
             trigger: true,
             replace: true
           });
@@ -642,9 +732,14 @@
         Wise.cart_view.hide();
       }
       if (this.query.login != null) {
-        return Wise.login_view.show();
+        Wise.login_view.show();
       } else {
-        return Wise.login_view.hide();
+        Wise.login_view.hide();
+      }
+      if (this.query.account != null) {
+        return Wise.account_view.show();
+      } else {
+        return Wise.account_view.hide();
       }
     };
 

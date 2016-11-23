@@ -24,12 +24,7 @@
 					<input type="email" name="customer[email]" id="login_email" placeholder="Votre courriel">
 					<input type="password" name="customer[password]" placeholder="Votre mot de passe">
 
-
-					{% if form.posted_successfully? %}
-					Success
-					{% else %}
-					{{ form.errors | default_errors }}
-					{% endif %}
+					<div class="alert alert--errors" data-errors></div>
 
 					<button type="submit" class="hide"></button>
 					{% endform %}

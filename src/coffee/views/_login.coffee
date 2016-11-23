@@ -34,31 +34,43 @@ class Wise.Views.Login extends Backbone.View
 			data: {
 				"customer[email]": e.currentTarget["customer[email]"].value
 				"customer[password]": e.currentTarget["customer[password]"].value
-				checkout_url: ""
 				form_type: "customer_login"
 				utf8: "✓"
 			}
 			success: (response)=>
 
-				console.log response
+				errors = $(response).find(".errors")
+				if errors.length > 0
+					$(e.currentTarget).find("[data-errors]").text(errors.text())
+
+				else
+					$(e.currentTarget).find("[data-errors]").text("")
+					Turbolinks.visit "?account=true"
 
 
 
 	create_customer: (e)->
-		# e.preventDefault()
+		e.preventDefault()
 
-		# $.ajax e.currentTarget.getAttribute("action"),
-		# 	method: "POST"
-		# 	data: {
-		# 		"customer[email]": e.currentTarget["customer[email]"].value
-		# 		"customer[password]": e.currentTarget["customer[password]"].value
-		# 		"customer[first_name]": e.currentTarget["customer[first_name]"].value
-		# 		"customer[last_name]": e.currentTarget["customer[last_name]"].value
-		# 		checkout_url: ""
-		# 	}
-		# 	success: (response)=>
+		$.ajax e.currentTarget.getAttribute("action"),
+			method: "POST"
+			data: {
+				"customer[email]": e.currentTarget["customer[email]"].value
+				"customer[password]": e.currentTarget["customer[password]"].value
+				"customer[first_name]": e.currentTarget["customer[first_name]"].value
+				"customer[last_name]": e.currentTarget["customer[last_name]"].value
+				form_type: "create_customer"
+				utf8: "✓"
+			}
+			success: (response)=>
 
-		# 		console.log response
+				errors = $(response).find(".errors")
+				if errors.length > 0
+					$(e.currentTarget).find("[data-errors]").text(errors.text())
+
+				else
+					$(e.currentTarget).find("[data-errors]").text("")
+					Turbolinks.visit "?account=true"
 
 
 

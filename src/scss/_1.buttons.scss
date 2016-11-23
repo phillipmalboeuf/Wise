@@ -61,6 +61,18 @@ button,
 		border-color: transparent;
 	}
 
+	&.button--black {
+		color: $grey--light;
+		background: $primary;
+		border-color: transparent;
+
+		&:hover,
+		&:focus {
+			background: $red;
+		}
+	}
+
+
 	&.button--transparent {
 		color: $primary;
 		background: transparent;

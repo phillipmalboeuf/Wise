@@ -1,0 +1,14 @@
+// #ALERTS
+
+.alert {
+	color: $grey--light;
+	text-align: center;
+	background: $red;
+
+	padding: $vertical_rythm/4 $vertical_rythm/2;
+	border: 1px solid;
+
+	&:empty {
+		display: none;
+	}
+}

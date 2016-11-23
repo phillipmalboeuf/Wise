@@ -14,8 +14,8 @@ class Wise.Routers.Router extends Backbone.Router
 	
 
 	initialize: ->
-		document.addEventListener "turbolinks:render", (e)=>
-			this.navigate window.location.pathname,
+		document.addEventListener "turbolinks:load", (e)=>
+			this.navigate window.location.pathname+window.location.search,
 				trigger: true
 				replace: true
 
@@ -52,6 +52,11 @@ class Wise.Routers.Router extends Backbone.Router
 			Wise.login_view.show()
 		else
 			Wise.login_view.hide()
+
+		if @query.account?
+			Wise.account_view.show()
+		else
+			Wise.account_view.hide()
 
 
 

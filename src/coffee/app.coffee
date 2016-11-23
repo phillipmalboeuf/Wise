@@ -13,6 +13,7 @@ window.Wise =
 			model: @cart
 
 		@login_view = new Wise.Views.Login()
+		@account_view = new Wise.Views.Account()
 		
 
 		# @products_views = []
