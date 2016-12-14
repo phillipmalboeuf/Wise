@@ -60,6 +60,7 @@
 .fades_out {
 	visibility: visible;
 	opacity: 1;
+	pointer-events: auto;
 
 	@include transition(opacity $fast, visibility 0s);
 		
@@ -67,7 +68,12 @@
 	&.fade_out {
 		visibility: hidden;
 		opacity: 0;
+		pointer-events: none;
 
 		@include transition(opacity $fast, visibility 0s linear $fast);	
+	}
+
+	.fade_out & {
+		pointer-events: none;
 	}
 }
