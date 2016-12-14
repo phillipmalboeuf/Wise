@@ -7,7 +7,7 @@
 	{% if article.tags contains '_homepage' %}
 	<a href="{{article.url}}" class="{{classes}} {{article.tags| join: ' '}}" style="background-image: url({{article.image.src|img_url: 'original'}});">
 
-		<div class="em">
+		<div class="white em">
 			<h2>{{article.title}}</h2>
 			<h5>{{article.excerpt| strip_html}}</h5>
 		</div>
@@ -63,7 +63,7 @@
 
 
 
-<section class="padded padded--thick light_grey_back text_center">
+<a href="pages/about-us" class="block padded padded--thick light_grey_back text_center">
 	<h2 class="big_bottom">We aim to respect the following as much as possible:</h2>
 
 	<div class="grid grid--spaced_around big_bottom">
@@ -103,4 +103,4 @@
 			<p class="p--almost">Renewable<br>materials</p>
 		</div>
 	</div>
-</section>
+</a>

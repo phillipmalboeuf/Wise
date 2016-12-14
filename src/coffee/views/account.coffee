@@ -8,6 +8,7 @@ class Wise.Views.Account extends Wise.Views.Login
 	events: 
 		"click [data-hide]": "hide"
 		"click [data-logout]": "logout"
+		"click [data-show-tab]": "show_tab"
 
 
 
@@ -23,6 +24,23 @@ class Wise.Views.Account extends Wise.Views.Login
 		super()
 
 		this
+
+
+	show_tab: (e)->
+		show = e.currentTarget.getAttribute("data-show-tab")
+		this.$el.find("[data-tab]").addClass "fade_out"
+		this.$el.find("[data-show-tab]").removeClass "overlay__link--focus"
+
+		setTimeout =>
+			this.$el.find("[data-tab]").addClass "hide"
+			this.$el.find("[data-tab='"+show+"']").removeClass "hide"
+			this.$el.find("[data-show-tab='"+show+"']").addClass "overlay__link--focus"
+			setTimeout =>
+				this.$el.find("[data-tab='"+show+"']").removeClass "fade_out"
+			, 10
+
+		, 500
+
 
 
 	logout: (e)->

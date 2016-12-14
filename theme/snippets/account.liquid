@@ -1,13 +1,13 @@
 
-<section class="admin fades_out fade_out" id="account" data-turbolinks-permanent>
+<section class="admin fades_out " id="account" data-turbolinks-permanent>
 	<a href="#" class="admin__back" data-hide></a>
 
 	<div class="admin__container">
 		<div class="grid grid--stretch">
 			<div class="col col--4of12 overlay__container--with_button">
-				<button class="overlay__link overlay__link--focus">Mon compte</button>
-				<button class="overlay__link">Mes commandes</button>
-				<button class="overlay__link">Mes coordonnées</button>
+				<button class="overlay__link overlay__link--focus" data-show-tab="account">Mon compte</button>
+				<button class="overlay__link" data-show-tab="orders">Mes commandes</button>
+				<button class="overlay__link" data-show-tab="addresses">Mes coordonnées</button>
 				<button class="overlay__link">Méthode de paiement</button>
 				<button class="overlay__link">Livraison</button>
 				<button class="overlay__link">Code promo</button>
@@ -16,11 +16,80 @@
 			</div>
 			<div class="col col--8of12 overlay__container--with_button">
 				<div class="padded">
-					<div class="grid grid--guttered">
-						<div class="col col--6of12">
-							
-						</div>
+					<div class="fades_out grid" data-tab="account">
+						<form class="col col--8of12 col--medium--10of12">
+							<label for="last_name">Modifiez vos informations</label>
+							<input type="text" name="customer[first_name]" placeholder="Votre prénom">
+							<input type="text" name="customer[last_name]" placeholder="Votre nom de famille">
+							<input type="email" name="customer[email]" id="email" placeholder="Votre courriel">
+							<input type="password" name="customer[password]" placeholder="Votre mot de passe">
 
+							<button type="submit" class="hide"></button>
+						</form>
+						<div class="col col--4of12"></div>
+					</div>
+					<div class="fades_out fade_out hide" data-tab="orders">
+						{% if customer.orders.size != 0 %}
+						<table width="100%" class="table--lined" border="0" cellspacing="0" cellpadding="0">
+							<thead>
+								<tr>
+									<th>{{'customer.orders.order_number' | t}}</th>
+									<th>{{'customer.orders.date' | t}}</th>
+									<th>{{'customer.orders.payment_status' | t}}</th>
+									<th>{{'customer.orders.fulfillment_status' | t}}</th>
+									<th>{{'customer.orders.total' | t}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for order in customer.orders %}
+								<tr>
+									<td>{{ order.name | link_to: order.customer_url }}</td>
+									<td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+									<td>{{ order.financial_status_label }}</td>
+									<td>{{ order.fulfillment_status_label }}</td>
+									<td>{{ order.total_price | money }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						{% else %}
+						<p>{{'customer.orders.none' | t}}</p>
+						{% endif %}
+					</div>
+
+					<div class="fades_out fade_out hide grid grid--guttered" data-tab="addresses">
+						{% if customer.addresses.size != 0 %}
+						
+						{% for address in customer.addresses %}
+						<div class="col col--6of12">
+						<p>
+							{{ address.address1 }}{% if address == customer.default_address %} <strong>({{'customer.addresses.default' | t}})</strong>{% endif %}<br>
+							{% if address.address2 != "" %}
+							{{ address.address2 }}<br>
+							{% endif %}
+							{% if address.city != "" %}
+							{{ address.city }}<br>
+							{% endif %}
+							{% if address.province_code != "" %}
+							{{ address.province_code | upcase }}<br>
+							{% endif %}
+							{% if address.zip != "" %}
+							{{ address.zip | upcase }}<br>
+							{% endif %}
+							{% if address.country != "" %}
+							{{ address.country }}<br>
+							{% endif %}
+							{% if address.phone != "" %}
+							{{ address.phone }}
+							{% endif %}
+						</p>
+						</div>
+						{% endfor %}
+						{% else %}
+						<div class="col col--6of12">
+							<p>{{'customer.addresses.none' | t}}</p>
+						</div>
+						{% endif %}
 					</div>
 
 					<button class="overlay__button" data-submit>Sauvegarder</button>

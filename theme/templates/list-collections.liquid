@@ -1,6 +1,7 @@
 {% include 'collections' %}
 
-{% for collection in collections %}
+{% for link in linklists['collections'].links %}
+{% assign collection = link.object %}
 {% assign title_split = collection.title | split: '|' %}
 <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{title_split[1] | split: ',' | join: ' '}}" style="background-image: url({{collection.image.src|img_url: 'original'}});">
 	<div>

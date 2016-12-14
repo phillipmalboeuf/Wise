@@ -4,7 +4,7 @@
 {% for article in blog.articles %}
   {% if forloop.first == true %}
   <a href="{{article.url}}" class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{article.tags| join: ' '}}" style="background-image:url({{article.image.src|img_url: 'original'}})">
-    <div class="em">
+    <div class="em white">
       <h2>{{article.title}}</h2>
       <h5>{{article.excerpt| strip_html}}</h5>
     </div>

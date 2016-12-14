@@ -180,6 +180,15 @@ a {
 		pointer-events: none;
 		text-decoration: line-through;
 	}
+
+	&.grid--full_height {
+		border: 2px solid transparent;
+
+		&:focus,
+		&:hover {
+			border-color: $highlight;
+		}
+	}
 }
 
 
@@ -280,8 +289,12 @@ table {
 		width: 100%;
 		border-collapse: collapse;
 
-		font-family: $alternate_font;
 		font-size: $small_size;
+
+		thead {
+			font-weight: bold;
+			text-align: left;
+		}
 		
 
 		td {
@@ -293,18 +306,7 @@ table {
 		}
 
 		tr {
-			border-bottom: 1px solid $grey;
 
-			&:first-child {
-				font-weight: bold;
-
-				border-top: 2px solid $grey;
-				border-width: 2px;
-			}
-
-			&:last-child {
-				border-width: 2px;
-			}
 		}
 	}
 }

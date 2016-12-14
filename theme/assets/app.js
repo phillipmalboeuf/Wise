@@ -283,7 +283,8 @@
 
     Account.prototype.events = {
       "click [data-hide]": "hide",
-      "click [data-logout]": "logout"
+      "click [data-logout]": "logout",
+      "click [data-show-tab]": "show_tab"
     };
 
     Account.prototype.initialize = function() {
@@ -293,6 +294,23 @@
     Account.prototype.render = function() {
       Account.__super__.render.call(this);
       return this;
+    };
+
+    Account.prototype.show_tab = function(e) {
+      var show;
+      show = e.currentTarget.getAttribute("data-show-tab");
+      this.$el.find("[data-tab]").addClass("fade_out");
+      this.$el.find("[data-show-tab]").removeClass("overlay__link--focus");
+      return setTimeout((function(_this) {
+        return function() {
+          _this.$el.find("[data-tab]").addClass("hide");
+          _this.$el.find("[data-tab='" + show + "']").removeClass("hide");
+          _this.$el.find("[data-show-tab='" + show + "']").addClass("overlay__link--focus");
+          return setTimeout(function() {
+            return _this.$el.find("[data-tab='" + show + "']").removeClass("fade_out");
+          }, 10);
+        };
+      })(this), 500);
     };
 
     Account.prototype.logout = function(e) {
