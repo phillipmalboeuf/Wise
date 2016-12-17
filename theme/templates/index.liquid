@@ -1,69 +1,10 @@
 
-{% for link in linklists.homepage.links %}
-{% assign classes = 'grid grid--full_height padded padded--vertically_thick image_back' %}
-
-{% if link.type == 'blog_link' %}
-	{% for article in link.object.articles %}
-	{% if article.tags contains '_homepage' %}
-	<a href="{{article.url}}" class="{{classes}} {{article.tags| join: ' '}}" style="background-image: url({{article.image.src|img_url: 'original'}});">
-
-		<div class="white em">
-			<h2>{{article.title}}</h2>
-			<h5>{{article.excerpt| strip_html}}</h5>
-		</div>
-		
-	</a>
-	{% endif %}
-	{% endfor %}
-{% elsif link.type == 'product_link' %}
-	{% for image in link.object.images %}
-	{% if image.alt == 'Banner' %}
-		{% assign image = image.src %}
-		{% break %}
-	{% endif %}
-	{% endfor %}
-	<a href="{{link.url}}" class="{{classes}} {{link.object.tags| join: ' '}}" style="background-image: url({{image|img_url: 'original'}});">
-
-		<div>
-			<h2>{{link.object.title}}</h2>
-			{% assign description_split = link.object.description | newline_to_br | split: '<br />' %}
-			<h5>{{description_split[0]}}</h5>
-		</div>
-		
-	</a>
-{% elsif link.type == 'collection_link' %}
-	<div class="{{classes}} {{link.object.tags| join: ' '}} _center _middle">
-
-		<div class="col col--12of12">
-			<h2 class="medium_bottom">{{link.object.title}}</h2>
-
-			<div class="grid grid--center grid--bottom grid--tight_guttered">
-				{% for product in link.object.products %}
-				<div class="col col--2of12 col--small--6of12">
-					<a href="{{product.url}}">
-						<p class="p--almost a__hide">
-							{{product.title}}<br>
-							{% for variant in product.variants %}
-							<em>{{variant.title}}</em>
-							{% endfor %}
-						</p>
-						<img src="{{product.featured_image.src|img_url: 'original'}}" alt="{{product.featured_image.alt}}">
-					</a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-		
-	</div>
-{% endif %}
-
-
-{% endfor %}
+{{ content_for_index }}
 
 
 
 
-<a href="pages/about-us" class="block padded padded--thick light_grey_back text_center">
+<a href="pages/approche" class="block padded padded--thick light_grey_back text_center">
 	<h2 class="big_bottom">We aim to respect the following as much as possible:</h2>
 
 	<div class="grid grid--spaced_around big_bottom">

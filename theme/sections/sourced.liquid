@@ -1,0 +1,51 @@
+
+{% for tag in article.tags %}
+{% assign tag_split = tag | split: ':' %}
+{% if tag_split[0] == '_sourced' %}
+
+{% capture image %}{% for block in section.blocks %}{% if block.settings.source_title == tag_split[1] %}{{block.settings.source_image.src|img_url: 'original'}}{% endif %}{% endfor %}{% endcapture %}
+
+<div class="grid grid--full_height middle center grid--full_height--small padded padded--vertically_thick image_back" style="background-image: url({{image}});">
+  <div>
+    <h2><em>Sourced in<br>{{tag_split[1]}}.</em></h2>
+  </div>
+</div>
+{% break %}   
+{% endif %}
+{% endfor %}
+
+
+{% schema %}
+{
+  "name": "Sources",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "source_map",
+      "name": "Source Map",
+      "settings": [
+      	{
+	      "type": "text",
+	      "id": "source_title",
+	      "label": "Source title"
+	    },
+        {
+	      "type": "image_picker",
+	      "id": "source_image",
+	      "label": "Source map"
+	    }
+	   ]
+	}
+  ],
+  "presets": [
+    {
+      "name": "Source Map",
+      "category": "Text",
+      "blocks": [
+      ]
+    }
+  ]
+}
+{% endschema %}

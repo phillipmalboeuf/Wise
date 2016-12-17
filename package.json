@@ -12,7 +12,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-open": "^0.2.3",
     "grunt-sass": "^1.2.0",
-    "grunt-shopify": "^0.6.4"
+    "grunt-shopify": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,0 +1,119 @@
+
+{% include 'collections' %}
+
+{% for block in section.blocks %}
+{% assign collection = collections[block.settings.collection] %}
+{% assign image = block.settings.image | default: collection.image %}
+{% assign title_split = collection.title | split: '|' %}
+<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}}" style="background-image: url({{image.src|img_url: 'original'}});">
+	<div>
+		{{collection.description}}
+	</div>
+</div>
+
+<div class="grid grid--middle">
+{% for product in collection.products %}
+	{% include 'products_product' %}
+{% endfor %}
+
+<div class="col col--6of12 text_center hide_on_small">
+	<em>More products coming in 2017</em>
+</div>
+</div>
+{% endfor %}
+
+
+{% schema %}
+{
+  "name": "Collections",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+      	{
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+	      "type": "image_picker",
+	      "id": "image",
+	      "label": "Background Image"
+	    },
+	    {
+	      "type": "select",
+	      "id": "color",
+	      "label": "Text color",
+	      "default": "white",
+	      "options": [
+	        {
+	          "value": "white",
+	          "label": "White"
+	        },
+	        {
+	          "value": "black",
+	          "label": "Black"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "horizontal_alignment",
+	      "label": "Horizontal text alignment",
+	      "default": "left",
+	      "options": [
+	        {
+	          "value": "left",
+	          "label": "Left"
+	        },
+	        {
+	          "value": "center",
+	          "label": "Center"
+	        },
+	        {
+	          "value": "right",
+	          "label": "Right"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "vertical_alignment",
+	      "label": "Vertical text alignment",
+	      "default": "top",
+	      "options": [
+	        {
+	          "value": "top",
+	          "label": "Top"
+	        },
+	        {
+	          "value": "middle",
+	          "label": "Middle"
+	        },
+	        {
+	          "value": "bottom",
+	          "label": "Bottom"
+	        }
+	      ]
+	    }
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "collection_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

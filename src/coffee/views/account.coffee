@@ -55,7 +55,6 @@ class Wise.Views.Account extends Wise.Views.Login
 			e.preventDefault()
 	
 		this.$el.removeClass "fade_out"
-		Wise.router.navigate window.location.pathname+"?account=true"
 
 
 

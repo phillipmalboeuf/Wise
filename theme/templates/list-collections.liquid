@@ -1,23 +1,2 @@
-{% include 'collections' %}
 
-{% for link in linklists['collections'].links %}
-{% assign collection = link.object %}
-{% assign title_split = collection.title | split: '|' %}
-<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{title_split[1] | split: ',' | join: ' '}}" style="background-image: url({{collection.image.src|img_url: 'original'}});">
-	<div>
-		{{collection.description}}
-	</div>
-</div>
-
-<div class="grid grid--middle">
-{% for product in collection.products %}
-	{% include 'products_product' %}
-{% endfor %}
-
-{% if collection.products_count % 2 %}
-	<div class="col col--6of12 text_center hide_on_small">
-		<em>More products coming in 2017</em>
-	</div>
-{% endif %}
-</div>
-{% endfor %}
+{% section 'collections' %}

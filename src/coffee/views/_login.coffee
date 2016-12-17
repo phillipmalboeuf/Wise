@@ -99,7 +99,6 @@ class Wise.Views.Login extends Backbone.View
 	
 		this.$el.removeClass "fade_out"
 		this.$el.find("#login_email").focus()
-		Wise.router.navigate window.location.pathname+"?login=true"
 
 
 	hide: (e)->
@@ -107,6 +106,5 @@ class Wise.Views.Login extends Backbone.View
 			e.preventDefault()
 		
 		this.$el.addClass "fade_out"
-		Wise.router.navigate window.location.pathname
 
 

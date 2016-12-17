@@ -1,0 +1,45 @@
+
+{%assign collection=collections[section.settings.collection]%}
+<div class="grid grid--full_height padded padded--vertically_thick center middle">
+  <div class="col col--12of12">
+    <h2 class="medium_bottom">{{collection.title}}</h2>
+
+    <div class="grid grid--center grid--bottom grid--tight_guttered">
+      {% for product in collection.products %}
+      <div class="col col--2of12 col--small--6of12">
+        <a href="{{product.url}}">
+          <p class="p--almost flat_bottom a__hide">
+            {{product.title}}<br>
+            {% for variant in product.variants %}
+            <em>{{variant.title}}</em>
+            {% endfor %}
+          </p>
+          <img src="{{product.featured_image.src|img_url: 'original'}}" alt="{{product.featured_image.alt}}">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+</div>
+
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "class": "index-section",
+  "settings": [
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

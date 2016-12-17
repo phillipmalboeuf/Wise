@@ -92,20 +92,20 @@
 			min-height: 66vh;
 		}
 
-		&._middle {
+		&.middle {
 			@extend .grid--middle;
 		}
 
-		&._bottom {
+		&.bottom {
 			@extend .grid--bottom;
 		}
 
-		&._center {
+		&.center {
 			@extend .grid--center;
 			text-align: center;
 		}
 
-		&._right {
+		&.right {
 			@extend .grid--right;
 			text-align: right;
 		}

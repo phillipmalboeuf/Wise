@@ -66,17 +66,8 @@
 </div>
 {% endif %}
 
-{% for tag in article.tags %}
-{% assign tag_split = tag | split: ':' %}
-{% if tag_split[0] == '_sourced' %}
-<div class="grid grid--full_height _middle _center grid--full_height--small padded padded--vertically_thick image_back">
-  <div>
-    <h2><em>Sourced in<br>{{tag_split[1]}}.</em></h2>
-  </div>
-</div>
-{% break %}   
-{% endif %}
-{% endfor %}
+
+{% section 'sourced' %}
 
 
 {% for tag in article.tags %}
@@ -90,9 +81,10 @@
   <div class="grid grid--guttered grid--center">
     {% for handle in product_handles %}
     {% assign product = all_products[handle] %}
+    {% if product.title != '' %}
     <div class="col col--4of12 col--small--6of12">
       <a href="{{product.url}}">
-        <p class="p--almost a__hide">
+        <p class="p--almost flat_bottom a__hide">
           {{product.title}}<br>
           {% for variant in product.variants %}
           <em>{{variant.title}}</em>
@@ -101,6 +93,7 @@
         <img src="{{product.featured_image.src|img_url: 'original'}}" alt="{{product.featured_image.alt}}">
       </a>
     </div>
+    {% endif %}
     {% endfor %} 
   </div>
 </div>

@@ -5,6 +5,9 @@ window.Wise =
 	Routers:{}
 
 
+	views: []
+
+
 	init: ->
 
 
@@ -16,38 +19,42 @@ window.Wise =
 		@account_view = new Wise.Views.Account()
 		
 
-		# @products_views = []
-		# $(".js-products").each (index, el)=>
-		# 	@products_views.push new Wise.Views.Products({el: $(el)})
-
-		# @product_views = []
-		# $(".js-product").each (index, el)=>
-		# 	@product_views.push new Wise.Views.Product({el: $(el)})
-
-		# @collections_views = []
-		# $(".js-collections").each (index, el)=>
-		# 	@collections_views.push new Wise.Views.Collections({el: $(el)})
-
-
-		# @login_views = []
-		# $(".js-login").each (index, el)=>
-		# 	@login_views.push new Wise.Views.Login({el: $(el)})
+		this.render_views()
+		document.addEventListener "turbolinks:render", this.render_views.bind(this)
 
 
 
-		# $("[data-scroll-to]").click (e)->
-		# 	scroll_to = $("#" + e.currentTarget.getAttribute("data-scroll-to"))
 
-		# 	if scroll_to.length > 0
-		# 		e.preventDefault()
-		# 		e.stopImmediatePropagation()
-	
-		# 		scroll_to.velocity("scroll", { duration: 1500, easing: "easeOutQuart", offset: -50 })
+	render_views: ->
+
+		for view in @views
+			view.undelegateEvents()
+
+		delete @views
+		@views = []
 
 
-		@router = new Wise.Routers.Router()
-		Backbone.history.start
-			pushState: true
+		$("[data-product-id]").each (index, element)=>
+			@views.push new Wise.Views.Product({
+				el: element
+			})
+
+		$("[data-navigation]").each (index, element)=>
+			@views.push new Wise.Views.Nav({
+				el: element
+			})
+
+		$("[data-slider]").each (index, element)=>
+			@views.push new Wise.Views.Slider({
+				el: element
+			})
+
+
+		@query = Wise.helpers.get_query_string()
+		if @query.cart? then Wise.cart_view.show() else Wise.cart_view.hide()
+		if @query.login? then Wise.login_view.show() else Wise.login_view.hide()
+		if @query.account? then Wise.account_view.show() else Wise.account_view.hide()
+
 
 
 

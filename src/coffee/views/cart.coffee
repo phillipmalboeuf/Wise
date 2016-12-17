@@ -53,7 +53,6 @@ class Wise.Views.Cart extends Backbone.View
 			e.preventDefault()
 	
 		this.$el.removeClass "fade_out"
-		Wise.router.navigate window.location.pathname+"?cart=true"
 
 
 	hide: (e)->
@@ -61,7 +60,6 @@ class Wise.Views.Cart extends Backbone.View
 			e.preventDefault()
 		
 		this.$el.addClass "fade_out"
-		Wise.router.navigate window.location.pathname
 
 
 

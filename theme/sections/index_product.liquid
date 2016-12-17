@@ -1,0 +1,93 @@
+
+{%assign product=all_products[section.settings.product]%}
+<a href="{{product.url}}" class="grid grid--full_height padded padded--vertically_thick image_back {{section.settings.horizontal_alignment}} {{section.settings.vertical_alignment}}" style="background-image: url({{section.settings.image|img_url: 'original'}});">
+
+  <div class="col col--4of12 col--medium--6of12 col--small--9of12 {{section.settings.color}}">
+    <h2>{{product.title}}</h2>
+    {% assign description_split = product.description | newline_to_br | split: '<br />' %}
+    <h5>{{description_split[0]}}</h5>
+  </div>
+  
+</a>
+
+
+{% schema %}
+{
+  "name": "Featured product",
+  "class": "index-section",
+  "settings": [
+    {
+      "id": "product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Text color",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical text alignment",
+      "default": "top",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

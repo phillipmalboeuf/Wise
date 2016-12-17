@@ -1,0 +1,119 @@
+
+{% include 'blog_tags' %}
+
+{% if section.settings.article %}
+{% for article in blog.articles %}
+  {% if article.handle == section.settings.article %}
+  {% assign image = section.settings.image|default: article.image %}
+  <a href="{{article.url}}" class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{section.settings.horizontal_alignment}} {{section.settings.vertical_alignment}}" style="background-image: url({{image.src|img_url: 'original'}});">
+    <div class="col col--4of12 col--medium--6of12 col--small--9of12 em {{section.settings.color}}">
+      <h2>{{article.title}}</h2>
+      <h5>{{article.excerpt| strip_html}}</h5>
+    </div>
+  </a>
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="grid">
+
+{% for article in blog.articles %}
+  {% unless article.handle == section.settings.article %}
+  <article class="col col--6of12 col--medium--12of12">
+    <a href="{{article.url}}" class="grid {% cycle '', '', 'grid--reverse', 'grid--reverse' %} a--bordered">
+      <div class="col col--6of12 light_grey_back">
+        <img src="{{article.image.src | img_url: 'large'}}" alt="{{article.image.alt}}">
+      </div>
+      <div class="col col--6of12 padded">
+        <p>
+          {{article.published_at|date: '%x'}}<br>
+          {% for tag in article.tags %}
+          {% assign first_letter = tag | handleize | first %}
+          {% if first_letter != '_' %}
+          <span class="slash_seperated">{{tag}}</span>
+          {% endif %} 
+          {% endfor %} 
+        </p>
+        <h3>{{article.title | truncate: 36}}</h3>
+      </div>
+    </a>
+  </article>
+  {% endunless %}
+{% endfor %}
+  
+</div>
+
+
+{% schema %}
+{
+  "name": "Journal",
+  "settings": [
+    {
+      "id": "article",
+      "type": "article",
+      "label": "Featured Article"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Text color",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical text alignment",
+      "default": "top",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

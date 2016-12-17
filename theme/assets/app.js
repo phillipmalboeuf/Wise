@@ -6,6 +6,7 @@
     Models: {},
     Views: {},
     Routers: {},
+    views: [],
     init: function() {
       this.cart = new Wise.Models.Cart();
       this.cart_view = new Wise.Views.Cart({
@@ -13,10 +14,55 @@
       });
       this.login_view = new Wise.Views.Login();
       this.account_view = new Wise.Views.Account();
-      this.router = new Wise.Routers.Router();
-      return Backbone.history.start({
-        pushState: true
-      });
+      this.render_views();
+      return document.addEventListener("turbolinks:render", this.render_views.bind(this));
+    },
+    render_views: function() {
+      var i, len, ref, view;
+      ref = this.views;
+      for (i = 0, len = ref.length; i < len; i++) {
+        view = ref[i];
+        view.undelegateEvents();
+      }
+      delete this.views;
+      this.views = [];
+      $("[data-product-id]").each((function(_this) {
+        return function(index, element) {
+          return _this.views.push(new Wise.Views.Product({
+            el: element
+          }));
+        };
+      })(this));
+      $("[data-navigation]").each((function(_this) {
+        return function(index, element) {
+          return _this.views.push(new Wise.Views.Nav({
+            el: element
+          }));
+        };
+      })(this));
+      $("[data-slider]").each((function(_this) {
+        return function(index, element) {
+          return _this.views.push(new Wise.Views.Slider({
+            el: element
+          }));
+        };
+      })(this));
+      this.query = Wise.helpers.get_query_string();
+      if (this.query.cart != null) {
+        Wise.cart_view.show();
+      } else {
+        Wise.cart_view.hide();
+      }
+      if (this.query.login != null) {
+        Wise.login_view.show();
+      } else {
+        Wise.login_view.hide();
+      }
+      if (this.query.account != null) {
+        return Wise.account_view.show();
+      } else {
+        return Wise.account_view.hide();
+      }
     }
   };
 
@@ -248,16 +294,14 @@
         e.preventDefault();
       }
       this.$el.removeClass("fade_out");
-      this.$el.find("#login_email").focus();
-      return Wise.router.navigate(window.location.pathname + "?login=true");
+      return this.$el.find("#login_email").focus();
     };
 
     Login.prototype.hide = function(e) {
       if (e != null) {
         e.preventDefault();
       }
-      this.$el.addClass("fade_out");
-      return Wise.router.navigate(window.location.pathname);
+      return this.$el.addClass("fade_out");
     };
 
     return Login;
@@ -326,8 +370,7 @@
       if (e != null) {
         e.preventDefault();
       }
-      this.$el.removeClass("fade_out");
-      return Wise.router.navigate(window.location.pathname + "?account=true");
+      return this.$el.removeClass("fade_out");
     };
 
     return Account;
@@ -384,16 +427,14 @@
       if (e != null) {
         e.preventDefault();
       }
-      this.$el.removeClass("fade_out");
-      return Wise.router.navigate(window.location.pathname + "?cart=true");
+      return this.$el.removeClass("fade_out");
     };
 
     Cart.prototype.hide = function(e) {
       if (e != null) {
         e.preventDefault();
       }
-      this.$el.addClass("fade_out");
-      return Wise.router.navigate(window.location.pathname);
+      return this.$el.addClass("fade_out");
     };
 
     Cart.prototype.remove_from_cart = function(e) {
@@ -682,105 +723,5 @@
     return Slider;
 
   })(Backbone.View);
-
-}).call(this);
-
-(function() {
-  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    hasProp = {}.hasOwnProperty;
-
-  Wise.Routers.Router = (function(superClass) {
-    extend(Router, superClass);
-
-    function Router() {
-      return Router.__super__.constructor.apply(this, arguments);
-    }
-
-    Router.prototype.routes = {
-      "products(/:product)(/)": "products",
-      "collections(/:collection)(/products/:product)(/)": "products",
-      "blogs(/:blog)(/:article)(/)": "articles",
-      "pages(/:page)": "pages",
-      "(/)": "home"
-    };
-
-    Router.prototype.views = [];
-
-    Router.prototype.initialize = function() {
-      return document.addEventListener("turbolinks:load", (function(_this) {
-        return function(e) {
-          return _this.navigate(window.location.pathname + window.location.search, {
-            trigger: true,
-            replace: true
-          });
-        };
-      })(this));
-    };
-
-    Router.prototype.execute = function(callback, args) {
-      var i, len, ref, view;
-      ref = this.views;
-      for (i = 0, len = ref.length; i < len; i++) {
-        view = ref[i];
-        view.undelegateEvents();
-      }
-      delete this.views;
-      this.views = [];
-      if (callback != null) {
-        callback.apply(this, args);
-      }
-      $("[data-navigation]").each((function(_this) {
-        return function(index, element) {
-          return _this.views.push(new Wise.Views.Nav({
-            el: element
-          }));
-        };
-      })(this));
-      $("[data-slider]").each((function(_this) {
-        return function(index, element) {
-          return _this.views.push(new Wise.Views.Slider({
-            el: element
-          }));
-        };
-      })(this));
-      this.query = Wise.helpers.get_query_string();
-      if (this.query.cart != null) {
-        Wise.cart_view.show();
-      } else {
-        Wise.cart_view.hide();
-      }
-      if (this.query.login != null) {
-        Wise.login_view.show();
-      } else {
-        Wise.login_view.hide();
-      }
-      if (this.query.account != null) {
-        return Wise.account_view.show();
-      } else {
-        return Wise.account_view.hide();
-      }
-    };
-
-    Router.prototype.products = function(collection, product) {
-      return $("[data-product-id]").each((function(_this) {
-        return function(index, element) {
-          return _this.views.push(new Wise.Views.Product({
-            el: element
-          }));
-        };
-      })(this));
-    };
-
-    Router.prototype.articles = function(blog, article) {};
-
-    Router.prototype.pages = function(page) {};
-
-    Router.prototype.home = function() {};
-
-    Router.prototype.page = function() {};
-
-    return Router;
-
-  })(Backbone.Router);
 
 }).call(this);

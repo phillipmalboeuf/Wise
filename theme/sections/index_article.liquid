@@ -1,0 +1,93 @@
+
+{%assign article=articles[section.settings.article]%}
+{%assign image=section.settings.image|default: article.image%}
+<a href="{{article.url}}" class="grid grid--full_height padded padded--vertically_thick image_back {{section.settings.horizontal_alignment}} {{section.settings.vertical_alignment}}" style="background-image: url({{image.src|img_url: 'original'}});">
+
+  <div class="col col--4of12 col--medium--6of12 col--small--9of12 {{section.settings.color}} em">
+    <h2>{{article.title}} {{article}}</h2>
+    <h5>{{article.excerpt|strip_html}}</h5>
+  </div>
+  
+</a>
+
+
+{% schema %}
+{
+  "name": "Featured article",
+  "class": "index-section",
+  "settings": [
+    {
+      "id": "article",
+      "type": "article",
+      "label": "Article"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Text color",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical text alignment",
+      "default": "top",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured article",
+      "category": "Articles"
+    }
+  ]
+}
+{% endschema %}

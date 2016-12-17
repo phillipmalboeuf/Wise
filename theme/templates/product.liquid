@@ -21,7 +21,7 @@
     <div class="slider__container" style="width: {{images_size}}00%;" data-slider-container>
       {% for image in product.images %}
         <div class="slide" data-slide={{forloop.index0}} style="width: {{100 | divided_by: images_size}}%;">
-          <div data-slide-content><img src="https://res.cloudinary.com/deming/image/fetch/c_fill,g_auto/dpr_auto,w_800/https:{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
+          <div data-slide-content><img src="{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
         </div>
       {% endfor %}
     </div>
@@ -81,7 +81,7 @@
 
 
 
-<a href="/pages/about-us" class="block padded padded--thick light_grey_back text_center">
+<a href="/pages/approche" class="block padded padded--thick light_grey_back text_center">
   <h2 class="big_bottom">This product respects the following:</h2>
 
   <div class="grid grid--spaced_around">
@@ -141,5 +141,16 @@
     </div>
   </div>
 </a>
+
+
+{% if product.type == 'Clay' %}
+  {% section 'clay_content' %}
+{% elsif product.type == 'Cream' %}
+  {% section 'cream_content' %}
+{% elsif product.type == 'Pommade' %}
+  {% section 'pommade_content' %}
+{% elsif product.type == 'Shampoo' %}
+  {% section 'shampoo_content' %}
+{% endif %}
 
 
