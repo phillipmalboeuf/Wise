@@ -392,6 +392,11 @@ sub {
     display: inline-block;
     fill: currentColor;
 
+    &.icon--huge {
+		height: $huge_size*2;
+		width: $huge_size*2;
+	}
+
 	&.icon--big {
 		height: $big_size*2;
 		width: $big_size*2;

@@ -1,0 +1,179 @@
+
+<div class="grid light_grey_back">
+  <div class="col col--6of12 col--phone--12of12">
+	<img src="{{section.settings.image|img_url: 'original'}}" alt="{{article.image.alt}}">
+  </div>
+
+  <div class="col col--6of12 col--phone--12of12 padded">
+    <p class="p--medium medium_bottom">
+      {{page.title}}
+    </p>
+
+    <div class="medium_bottom underline_links">
+      {{page.content}}
+    </div>
+  </div>
+</div>
+
+{% for block in section.blocks %}
+{% include 'content' %}
+{% endfor %}
+
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
+  <div class="col col--12of12">
+  	<svg class="icon-natural icon--huge medium_bottom"><use xlink:href="#icon-natural"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #1</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
+  <div class="col col--12of12">
+  	<svg class="icon-local icon--huge medium_bottom"><use xlink:href="#icon-local"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #2</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
+  <div class="col col--12of12">
+  	<svg class="icon-healthy icon--huge medium_bottom"><use xlink:href="#icon-healthy"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #3</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
+  <div class="col col--12of12">
+  	<svg class="icon-reusable icon--huge medium_bottom"><use xlink:href="#icon-reusable"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #4</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
+  <div class="col col--12of12">
+  	<svg class="icon-recyclable icon--huge medium_bottom"><use xlink:href="#icon-recyclable"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #5</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
+  <div class="col col--12of12">
+  	<svg class="icon-reduced icon--huge medium_bottom"><use xlink:href="#icon-reduced"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #6</p>
+  </div>
+</article>
+
+<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
+  <div class="col col--12of12">
+  	<svg class="icon-sustainable icon--huge medium_bottom"><use xlink:href="#icon-sustainable"></use></svg>
+    <h2>Use natural ingredients as much as possible</h2>
+    <p class="p--medium">Goal #7</p>
+  </div>
+</article>
+
+
+{% schema %}
+{
+  "name": "Approche Page",
+  "settings": [
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Featured Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content",
+      "settings": [
+      	{
+          "type": "page",
+	      "id": "page",
+	      "label": "Content Page"
+        },
+      	{
+          "type": "url",
+	      "id": "button_link",
+	      "label": "Button link"
+        },
+        {
+	      "type": "image_picker",
+	      "id": "image",
+	      "label": "Background Image"
+	    },
+	    {
+	      "type": "select",
+	      "id": "color",
+	      "label": "Text color",
+	      "default": "white",
+	      "options": [
+	        {
+	          "value": "white",
+	          "label": "White"
+	        },
+	        {
+	          "value": "black",
+	          "label": "Black"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "horizontal_alignment",
+	      "label": "Horizontal text alignment",
+	      "default": "left",
+	      "options": [
+	        {
+	          "value": "left",
+	          "label": "Left"
+	        },
+	        {
+	          "value": "center",
+	          "label": "Center"
+	        },
+	        {
+	          "value": "right",
+	          "label": "Right"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "vertical_alignment",
+	      "label": "Vertical text alignment",
+	      "default": "top",
+	      "options": [
+	        {
+	          "value": "top",
+	          "label": "Top"
+	        },
+	        {
+	          "value": "middle",
+	          "label": "Middle"
+	        },
+	        {
+	          "value": "bottom",
+	          "label": "Bottom"
+	        }
+	      ]
+	    }
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clay Content",
+      "category": "Text",
+      "blocks": [
+      ]
+    }
+  ]
+}
+{% endschema %}
