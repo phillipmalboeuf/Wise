@@ -32,7 +32,7 @@ header {
 	min-height: 100vh;
 	padding-top: 4rem;
 
-	@media #{$small} {
+	@media #{$phone} {
 		padding-top: 0;
 	}
 }
@@ -58,7 +58,7 @@ footer {
 	&.padded--thick {
 		padding: $gutter*3;
 
-		@media #{$small} {
+		@media #{$phone} {
 			padding: $gutter*2 $gutter;
 		}
 	}
@@ -66,11 +66,11 @@ footer {
 	&.padded--very_thick {
 		padding: $gutter*6 12.5%;
 
-		@media #{$medium} {
+		@media #{$tablet_landscape} {
 			padding: $gutter*4 9.375%;
 		}
 
-		@media #{$small} {
+		@media #{$phone} {
 			padding: $gutter*2 $gutter;
 		}
 	}
@@ -88,7 +88,7 @@ footer {
 .huge_bottom { 
 	margin-bottom: $vertical_rythm*8;
 
-	@media #{$medium} {
+	@media #{$tablet_landscape} {
 		margin-bottom: $vertical_rythm*4;
 	}
 }
@@ -104,7 +104,7 @@ footer {
 .block { display: block; }
 .inline_block { display: inline-block; }
 .text_center { text-align: center; }
-.text_center_on_small { @media #{$small} { text-align: center; } }
+.text_center_on_small { @media #{$phone} { text-align: center; } }
 .text_right { text-align: right; }
 
 

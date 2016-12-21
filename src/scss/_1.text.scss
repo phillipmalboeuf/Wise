@@ -15,7 +15,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-tap-highlight-color: fade-out($primary, 0.8);
 
-	@media #{$small} {
+	@media #{$phone} {
 		font-size: 12px;
 	}
 }
@@ -240,7 +240,7 @@ hr {
 		border-left: 2px solid;
 		margin: 0;
 
-		@media #{$small} {
+		@media #{$phone} {
 			height: $vertical_rythm;
 			border: none;
 		}
@@ -314,7 +314,7 @@ table {
 .table_container {
 	overflow-x: auto;
 
-	@media #{$small} {
+	@media #{$phone} {
 		table {
 			&.table--lined {
 				width: 200%;

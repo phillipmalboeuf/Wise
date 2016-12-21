@@ -11,7 +11,7 @@ header {
 
 	background-color: $white;
 
-	@media #{$small} {
+	@media #{$phone} {
 		position: relative;
 		text-align: center;
 	}
@@ -20,7 +20,7 @@ header {
 	.header__logotype {
 		font-size: $biggish_size;
 
-		@media #{$small} {
+		@media #{$phone} {
 			margin: 0 auto;
 		}
 	}

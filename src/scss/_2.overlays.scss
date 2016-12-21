@@ -26,12 +26,12 @@
 	}
 
 	&.overlay--top_right {
-		top: 5.067rem;
+		top: 3.733rem;
 		right: 0;
 
-		@media #{$small} {
+		@media #{$phone} {
 			position: absolute;
-			top: 7.3rem;
+			top: 6rem;
 		}
 	}
 
