@@ -14,6 +14,7 @@
       });
       this.login_view = new Wise.Views.Login();
       this.account_view = new Wise.Views.Account();
+      this.newsletter_view = new Wise.Views.Newsletter();
       this.render_views();
       return document.addEventListener("turbolinks:render", this.render_views.bind(this));
     },
@@ -75,6 +76,45 @@
   $(function() {
     return Wise.init();
   });
+
+}).call(this);
+
+(function() {
+  Wise.cookies = {
+    set: function(name, value, expiry_days) {
+      var d, expires;
+      d = new Date();
+      d.setTime(d.getTime() + (expiry_days * 24 * 60 * 60 * 1000));
+      expires = "expires=" + d.toGMTString();
+      return document.cookie = "X-" + name + "=" + value + "; " + expires + "; path=/";
+    },
+    set_for_a_session: function(name, value) {
+      return document.cookie = "X-" + name + "=" + value + "; path=/";
+    },
+    get: function(name) {
+      var cookie, cookies, fn, i, len, value;
+      name = "X-" + name + "=";
+      value = false;
+      cookies = document.cookie.split(';');
+      fn = function(cookie) {
+        cookie = cookie.trim();
+        if (cookie.indexOf(name) === 0) {
+          return value = cookie.substring(name.length, cookie.length);
+        }
+      };
+      for (i = 0, len = cookies.length; i < len; i++) {
+        cookie = cookies[i];
+        fn(cookie);
+      }
+      if (!value) {
+        value = null;
+      }
+      return value;
+    },
+    "delete": function(name) {
+      return document.cookie = 'X-' + name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+    }
+  };
 
 }).call(this);
 
@@ -544,6 +584,79 @@
     return Nav;
 
   })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Wise.Views.Newsletter = (function(superClass) {
+    extend(Newsletter, superClass);
+
+    function Newsletter() {
+      return Newsletter.__super__.constructor.apply(this, arguments);
+    }
+
+    Newsletter.prototype.el = $("#newsletter");
+
+    Newsletter.prototype.data = {};
+
+    Newsletter.prototype.events = {
+      "click [data-hide]": "hide",
+      "submit [data-newsletter-form]": "signup"
+    };
+
+    Newsletter.prototype.initialize = function() {
+      return Newsletter.__super__.initialize.call(this);
+    };
+
+    Newsletter.prototype.render = function() {
+      var delay;
+      if (Wise.cookies.get("newsletter_hidden") == null) {
+        delay = this.$el.attr("data-newsletter-delay");
+        if (delay !== "never") {
+          setTimeout((function(_this) {
+            return function() {
+              return _this.show();
+            };
+          })(this), this.$el.attr("data-newsletter-delay") * 1000);
+        }
+      }
+      return Newsletter.__super__.render.call(this);
+    };
+
+    Newsletter.prototype.signup = function(e) {
+      e.preventDefault();
+      return $.ajax("https://shopify.destruct.codes/_newsletter/signup", {
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+          email: e.currentTarget["email"].value,
+          shop: e.currentTarget["shop"].value
+        }),
+        success: (function(_this) {
+          return function(response) {
+            Wise.cookies.set("newsletter_hidden", true);
+            return $(e.currentTarget).text(e.currentTarget.getAttribute("data-succes-text"));
+          };
+        })(this),
+        error: (function(_this) {
+          return function(response) {
+            return $(e.currentTarget).find("[data-errors]").text(response.responseJSON.error);
+          };
+        })(this)
+      });
+    };
+
+    Newsletter.prototype.hide = function(e) {
+      Wise.cookies.set("newsletter_hidden", true);
+      return Newsletter.__super__.hide.call(this, e);
+    };
+
+    return Newsletter;
+
+  })(Wise.Views.Login);
 
 }).call(this);
 

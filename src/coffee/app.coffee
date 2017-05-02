@@ -17,6 +17,7 @@ window.Wise =
 
 		@login_view = new Wise.Views.Login()
 		@account_view = new Wise.Views.Account()
+		@newsletter_view = new Wise.Views.Newsletter()
 		
 
 		this.render_views()

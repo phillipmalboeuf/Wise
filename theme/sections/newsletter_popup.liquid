@@ -1,0 +1,88 @@
+{% include 'hack-languify-sections' %}
+
+<section class="admin fades_out fade_out" data-section-id="{{ section.id }}" data-section-type="newsletter-section" id="newsletter" data-newsletter-delay={% if section.settings.disabled %}"never"{% else %}{{section.settings.delay}}{% endif %} data-turbolinks-permanent>
+  <a href="#" class="admin__back" data-hide></a>
+
+  <div class="admin__container overlay__container--with_button">
+    <a href="#" class="overlay__close" data-hide><svg class="icon-close icon--small"><use xlink:href="#icon-close"></use></svg></a>
+
+    <form action="https://shopify.destruct.codes/_newsletter/signup" method="post" target="_blank" data-newsletter-form data-succes-text="{{section_success_text}}" class="padded padded--vertically_thick">
+      <div class="alert alert--errors" data-errors></div>
+      
+      <h2 class="text_center small_bottom">{{section_title}}</h2>
+      <p class="p--almost text_center medium_bottom">{{section_body}}</p>
+      <input type="hidden" name="shop" value="{{shop.domain}}">
+      <input type="email" class="" name="email" required placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}">
+
+      <button class="overlay__button" data-submit>{{section_button_text}}</button>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Popup",
+  "settings": [
+    {
+      "id": "disabled",
+      "type": "checkbox",
+      "label": "Is disabled?",
+      "default": false
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Let’s keep in touch"
+    },
+    {
+      "id": "title_fr",
+      "type": "text",
+      "label": "Title (FR)",
+      "default": "Let’s keep in touch"
+    },
+    {
+      "id": "body",
+      "type": "text",
+      "label": "Text",
+      "default": "Want to receive the latest news and promotions from Wise, write us your e-mail adress down below."
+    },
+    {
+      "id": "body_fr",
+      "type": "text",
+      "label": "Text (FR)",
+      "default": "Want to receive the latest news and promotions from Wise, write us your e-mail adress down below."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Sign up CTA",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "button_text_fr",
+      "label": "Sign up CTA (FR)",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success Text",
+      "default": "Thanks for signing up, we'll keep in touch."
+    },
+    {
+      "type": "text",
+      "id": "success_text_fr",
+      "label": "Success Text (FR)",
+      "default": "Merci pour votre inscription, on vous écrit sous peu."
+    },
+    {
+      "type": "text",
+      "id": "delay",
+      "label": "Delay (in seconds)",
+      "default": "1"
+    }
+  ]
+}
+{% endschema %}

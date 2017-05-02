@@ -1,0 +1,41 @@
+
+{% assign host_split = request.host | split: '.' %}
+<!-- <script>console.log("{{host_split[0]}}")</script> -->
+
+{% assign section_title = section.settings.title %}
+{% assign section_secondary_title = section.settings.secondary_title %}
+{% assign section_text = section.settings.text %}
+{% assign section_body = section.settings.body %}
+{% assign section_button_text = section.settings.button_text %}
+{% assign section_title_right = section.settings.title_right %}
+{% assign section_body_right = section.settings.body_right %}
+{% assign section_button_text_right = section.settings.button_text_right %}
+{% assign section_success_text = section.settings.success_text %}
+{% assign section_instagram_title = section.settings.instagram_title %}
+{% assign section_message_text = section.settings.message_text %}
+{% assign section_sizing_guide_title = section.settings.sizing_guide_title %}
+{% assign section_shipping_and_returns_title = section.settings.shipping_and_returns_title %}
+{% assign section_shipping_and_returns = section.settings.shipping_and_returns %}
+{% assign section_related_products = section.settings.related_products %}
+
+
+{% if host_split[0] == 'fr' %}
+{% assign section_title = section.settings.title_fr %}
+{% assign section_secondary_title = section.settings.secondary_title_fr %}
+{% assign section_text = section.settings.text_fr %}
+{% assign section_body = section.settings.body_fr %}
+{% assign section_button_text = section.settings.button_text_fr %}
+{% assign section_title_right = section.settings.title_fr_right %}
+{% assign section_body_right = section.settings.body_fr_right %}
+{% assign section_button_text_right = section.settings.button_text_fr_right %}
+{% assign section_success_text = section.settings.success_text_fr %}
+{% assign section_instagram_title = section.settings.instagram_title_fr %}
+{% assign section_message_text = section.settings.message_text_fr %}
+{% assign section_sizing_guide_title = section.settings.sizing_guide_title_fr %}
+{% assign section_shipping_and_returns_title = section.settings.shipping_and_returns_title_fr %}
+{% assign section_shipping_and_returns = section.settings.shipping_and_returns_fr %}
+{% assign section_related_products = section.settings.related_products_fr %}
+{% endif %}
+
+
+
