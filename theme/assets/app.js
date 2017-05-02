@@ -690,6 +690,8 @@
 
     Product.prototype.add_to_cart = function(e) {
       e.preventDefault();
+      e.stopImmediatePropagation();
+      e.currentTarget.blur();
       Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"));
       return Wise.cart_view.show();
     };

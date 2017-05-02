@@ -18,6 +18,8 @@ class Wise.Views.Product extends Backbone.View
 
 	add_to_cart: (e)->
 		e.preventDefault()
+		e.stopImmediatePropagation()
+		e.currentTarget.blur()
 
 		Wise.cart.add $(e.currentTarget).attr("data-add-to-cart")
 		Wise.cart_view.show()
