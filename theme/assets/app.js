@@ -444,6 +444,11 @@
 
     Cart.prototype.initialize = function() {
       this.listenTo(this.model, "sync", this.render);
+      $(".main").on("click", (function(_this) {
+        return function() {
+          return _this.hide();
+        };
+      })(this));
       return this.render();
     };
 

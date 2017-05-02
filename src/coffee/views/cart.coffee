@@ -16,6 +16,9 @@ class Wise.Views.Cart extends Backbone.View
 
 	initialize: ->
 		this.listenTo @model, "sync", this.render
+		
+		$(".main").on "click", =>
+			this.hide()
 
 		this.render()
 
