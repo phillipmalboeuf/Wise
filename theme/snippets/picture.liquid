@@ -1,0 +1,6 @@
+<picture>
+	<source srcset="{{image.src|img_url: '600x'}}" media="(max-width: 600px)">
+	<source srcset="{{image.src|img_url: '900x'}}" media="(max-width: 900px)">
+	<source srcset="{{image.src|img_url: '1200x'}}" media="(max-width: 1200px)">
+	<img src="{{image.src|img_url: '1500x'}}" alt="{{image.alt}}">
+</picture>

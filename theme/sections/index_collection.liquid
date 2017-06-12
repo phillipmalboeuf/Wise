@@ -14,7 +14,7 @@
             <em>{{variant.title}}</em>
             {% endfor %}
           </p>
-          <img src="{{product.featured_image.src|img_url: 'original'}}" alt="{{product.featured_image.alt}}">
+          {% include 'picture', image: product.featured_image %}
         </a>
       </div>
       {% endfor %}

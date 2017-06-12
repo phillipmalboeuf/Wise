@@ -188,6 +188,8 @@
       if (quantity == null) {
         quantity = 1;
       }
+      Turbolinks.controller.adapter.progressBar.setValue(0);
+      Turbolinks.controller.adapter.progressBar.show();
       return $.ajax("/cart/add.js", {
         method: "POST",
         dataType: "json",
@@ -197,6 +199,8 @@
         },
         success: (function(_this) {
           return function(response) {
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
             return _this.fetch();
           };
         })(this)
@@ -205,6 +209,8 @@
 
     Cart.prototype.change = function(id, quantity) {
       var post;
+      Turbolinks.controller.adapter.progressBar.setValue(0);
+      Turbolinks.controller.adapter.progressBar.show();
       return post = $.ajax("/cart/change.js", {
         method: "POST",
         dataType: "json",
@@ -214,6 +220,8 @@
         },
         success: (function(_this) {
           return function(response) {
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
             return _this.fetch();
           };
         })(this)

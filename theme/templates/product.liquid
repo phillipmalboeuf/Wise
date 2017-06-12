@@ -21,7 +21,9 @@
     <div class="slider__container" style="width: {{images_size}}00%;" data-slider-container>
       {% for image in product.images %}
         <div class="slide" data-slide={{forloop.index0}} style="width: {{100 | divided_by: images_size}}%;">
-          <div data-slide-content><img src="{{image.src|img_url: 'original'}}" alt="{{image.alt}}"></div>
+          <div data-slide-content>
+            {% include 'picture', image: image %}
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -51,11 +53,28 @@
     <p class="p--medium"><em>{{variant.title}}</em></p>
     {% endfor %}
 
-    <div class="big_bottom">
+    <div class="big_bottom underline_links max_width">
     {{product.description}}
     </div>
 
-    <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your shopping bag</button>
+    {% if product.tags contains '_recurring' %} 
+    <div class="grid grid--tight_guttered">
+      <div class="col col--6of12 relative">
+        <select class="select--button" name="recurring">
+          <option value=0>One time purchase</option>
+          <option value=1>Ship every month</option>
+          <option value=2>Ship every 2 months</option>
+          <option value=3>Ship every 3 months</option>
+        </select>
+        <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
+      </div>
+      <div class="col col--6of12">
+        <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--highlight">Add to cart</button>
+      </div>
+    </div>
+    {% else %}
+    <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your cart</button>
+    {% endif %} 
   </div>
 </article>
 
@@ -92,6 +111,8 @@
       {% assign local = tag_split[1] %}
     {% elsif tag_split[0] == '_healthy' %}
       {% assign healthy = tag_split[1] %}
+    {% elsif tag_split[0] == '_oils' %}
+      {% assign healthy = tag_split[1] %}
     {% elsif tag_split[0] == '_reusable' %}
       {% assign reusable = tag_split[1] %}
     {% elsif tag_split[0] == '_recyclable' %}
@@ -115,6 +136,11 @@
     <div class="col" style="opacity: {{healthy}};">
       <svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
       <p>Healthy<br>ingredients<br>{{healthy | times:100 | floor}}%</p>
+    </div>
+
+    <div class="col" style="opacity: {{oils}};">
+      <svg class="icon-oils icon--big normal_bottom"><use xlink:href="#icon-oils"></use></svg>
+      <p>Essential<br>oils<br>{{oils | times:100 | floor}}%</p>
     </div>
 
     <hr class="col col--phone--12of12 hr--vertical">
@@ -142,20 +168,7 @@
 </a>
 
 
-{% for tag in product.tags %}
-{% assign tag_split = tag | split: ':' %}
-{% if tag_split[0] == '_articles' %}
-{% assign article_handles = tag_split[1] | split: '|' %}
 
-<div class="grid">
-  {% for handle in article_handles %}
-    {% assign article = articles[handle] %}
-    {% include 'blog_article' %}
-  {% endfor %}
-</div>
-{% break %}   
-{% endif %} 
-{% endfor %}
 
 
 
@@ -169,4 +182,20 @@
   {% section 'shampoo_content' %}
 {% endif %}
 
+
+
+{% comment %}{% for tag in product.tags %}
+{% assign tag_split = tag | split: ':' %}
+{% if tag_split[0] == '_articles' %}
+{% assign article_handles = tag_split[1] | split: '|' %}
+
+<div class="grid">
+  {% for handle in article_handles %}
+    {% assign article = articles[handle] %}
+    {% include 'blog_article' %}
+  {% endfor %}
+</div>
+{% break %}   
+{% endif %} 
+{% endfor %}{% endcomment %}
 

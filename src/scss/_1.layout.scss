@@ -48,6 +48,10 @@ footer {
 
 // #MIXINS
 
+.max_width {
+	max-width: 42em;
+}
+
 .padded {
 	padding: $gutter;
 

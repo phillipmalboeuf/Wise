@@ -1,7 +1,7 @@
 
 <div class="grid light_grey_back">
   <div class="col col--6of12 col--phone--12of12">
-	<img src="{{section.settings.image|img_url: 'original'}}" alt="{{article.image.alt}}">
+    {% include 'picture', image: section.settings.image %}
   </div>
 
   <div class="col col--6of12 col--phone--12of12 padded">
@@ -9,72 +9,56 @@
       {{page.title}}
     </p>
 
-    <div class="medium_bottom underline_links">
+    <div class="medium_bottom underline_links max_width">
       {{page.content}}
     </div>
   </div>
 </div>
 
 {% for block in section.blocks %}
-{% include 'content' %}
+{% assign page = pages[block.settings.page] %}
+
+<article class="slider" data-slider>
+  <div class="slider__container" style="width: 200%;" data-slider-container>
+    <div class="slide" data-slide=0 style="width: 100%;">
+      <div data-slide-content>
+        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle 'grey_back', 'light_grey_back' %}">
+          <div class="col col--12of12">
+            <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
+            <h2>{{page.title}}</h2>
+            <p class="p--medium">Goal #{{forloop.index}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-slide=1 style="width: 100%;">
+      <div data-slide-content>
+        {% assign class = 'block--'|append: forloop.index %}
+        {% include 'background', class: class, image: block.settings.image %}
+        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back image_back--{{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+          <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12 {{block.settings.color}}">
+            <div class="almost medium_bottom">{{page.content}}</div>
+            {% if block.settings.button_link %}<a href="{{block.settings.button_link}}" class="grid grid--middle">Click here for more <svg class="icon-right icon--small spaced"><use xlink:href="#icon-right"></use></svg></a>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
+
+  <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
+
+  <div class="slider__markers">
+    <button class="slider__marker slider__marker--active" data-slide-marker=0>0</button>
+    <button class="slider__marker" data-slide-marker=1>1</button>
+  </div>
+</article>
 {% endfor %}
 
 
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
-  <div class="col col--12of12">
-  	<svg class="icon-natural icon--huge medium_bottom"><use xlink:href="#icon-natural"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #1</p>
-  </div>
-</article>
 
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
-  <div class="col col--12of12">
-  	<svg class="icon-local icon--huge medium_bottom"><use xlink:href="#icon-local"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #2</p>
-  </div>
-</article>
-
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
-  <div class="col col--12of12">
-  	<svg class="icon-healthy icon--huge medium_bottom"><use xlink:href="#icon-healthy"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #3</p>
-  </div>
-</article>
-
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
-  <div class="col col--12of12">
-  	<svg class="icon-reusable icon--huge medium_bottom"><use xlink:href="#icon-reusable"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #4</p>
-  </div>
-</article>
-
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
-  <div class="col col--12of12">
-  	<svg class="icon-recyclable icon--huge medium_bottom"><use xlink:href="#icon-recyclable"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #5</p>
-  </div>
-</article>
-
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle">
-  <div class="col col--12of12">
-  	<svg class="icon-reduced icon--huge medium_bottom"><use xlink:href="#icon-reduced"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #6</p>
-  </div>
-</article>
-
-<article class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle light_grey_back">
-  <div class="col col--12of12">
-  	<svg class="icon-sustainable icon--huge medium_bottom"><use xlink:href="#icon-sustainable"></use></svg>
-    <h2>Use natural ingredients as much as possible</h2>
-    <p class="p--medium">Goal #7</p>
-  </div>
-</article>
 
 
 {% schema %}
@@ -92,10 +76,25 @@
       "type": "content_block",
       "name": "Content",
       "settings": [
+        {
+          "type": "select",
+        "id": "icon",
+        "label": "Icon",
+        "options": [
+{"value" : "natural", "label" : "natural"},
+{"value" : "local", "label" : "local"},
+{"value" : "healthy", "label" : "healthy"},
+{"value" : "oils", "label" : "oils"},
+{"value" : "reusable", "label" : "reusable"},
+{"value" : "recyclable", "label" : "recyclable"},
+{"value" : "reduced", "label" : "reduced"},
+{"value" : "sustainable", "label" : "sustainable"}
+        ]
+        },
       	{
           "type": "page",
-	      "id": "page",
-	      "label": "Content Page"
+  	      "id": "page",
+  	      "label": "Content Page"
         },
       	{
           "type": "url",
@@ -169,7 +168,7 @@
   ],
   "presets": [
     {
-      "name": "Clay Content",
+      "name": "Approche",
       "category": "Text",
       "blocks": [
       ]

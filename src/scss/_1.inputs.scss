@@ -32,6 +32,11 @@ optgroup,
 select,
 textarea,
 .input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+
 	position: relative;
 	width: 100%;
 
@@ -113,7 +118,26 @@ textarea {
 
 select {
 	cursor: pointer;
+
+	&.select--button {
+		font-size: $medium_size;
+		line-height: 1;
+		color: $highlight;
+		padding: $vertical_rythm/2;
+		background: transparent;
+		border: 2px solid;
+	}
 }
+
+	.select--button__icon {
+		position: absolute;
+		top: $vertical_rythm/1.5;
+		right: $vertical_rythm/1.5;
+
+		color: $highlight;
+
+		@include transform(rotate(-90deg));
+	}
 
 input[type="search"] {
 	box-sizing: border-box;

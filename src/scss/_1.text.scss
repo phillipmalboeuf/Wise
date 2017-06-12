@@ -376,7 +376,13 @@ sub {
 
 .image_back {
 	background-size: cover;
+	background-color: $black;
 	background-position: center;
+	background-repeat: no-repeat;
+
+	&.image_back--black {
+		background-color: $grey--light;
+	}
 
 	&.image_back--bottom {
 		background-position: center bottom;

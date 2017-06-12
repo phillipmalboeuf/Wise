@@ -3,7 +3,7 @@
 {% assign tag_split = tag | split: ':' %}
 {% if tag_split[0] == '_sourced' %}
 
-{% capture image %}{% for block in section.blocks %}{% if block.settings.source_title == tag_split[1] %}{{block.settings.source_image.src|img_url: 'original'}}{% endif %}{% endfor %}{% endcapture %}
+{% capture image %}{% for block in section.blocks %}{% if block.settings.source_title == tag_split[1] %}{{block.settings.source_image.src|img_url: 'master'}}{% endif %}{% endfor %}{% endcapture %}
 
 <div class="grid grid--full_height middle center grid--full_height--small padded padded--vertically_thick image_back" style="background-image: url({{image}});">
   <div>

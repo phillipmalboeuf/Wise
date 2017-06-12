@@ -5,8 +5,12 @@
 {% assign collection = collections[block.settings.collection] %}
 {% assign image = block.settings.image | default: collection.image %}
 {% assign title_split = collection.title | split: '|' %}
-<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}}" style="background-image: url({{image.src|img_url: 'original'}});">
-	<div>
+
+{% assign class = 'collection--'|append: collection.id %}
+{% include 'background', class: class, image: image %}
+
+<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back image_back--{{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+	<div class="{{block.settings.color}}">
 		{{collection.description}}
 	</div>
 </div>

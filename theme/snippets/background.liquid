@@ -1,0 +1,25 @@
+{% if image != blank %}
+  <style>
+    .{{class}} {
+      background-image: url('{{image.src|img_url: '1500x'}}');
+    }
+
+    @media screen and (max-width: 1200px) {
+      .{{class}} {
+        background-image: url('{{image.src| img_url: '1200x' }}');
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .{{class}} {
+        background-image: url('{{image.src| img_url: '900x' }}');
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .{{class}} {
+        background-image: url('{{image.src| img_url: '600x' }}');
+      }
+    }    
+  </style>
+  {% endif %}

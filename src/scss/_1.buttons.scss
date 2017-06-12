@@ -54,6 +54,12 @@ button,
 		}
 	}
 
+	&.button--highlight {
+		color: $grey--light;
+		background: $highlight;
+		border-color: transparent;
+	}
+
 	&:hover,
 	&:focus {
 		color: $grey--light;
