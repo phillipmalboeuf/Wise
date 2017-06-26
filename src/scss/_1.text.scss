@@ -389,6 +389,15 @@ sub {
 	}
 }
 
+	.image_back__content {
+		@extend .padded;
+		background: $white;
+
+		.image_back--white {
+			background-color: $black;
+		}
+	}
+
 
 // #MISC
 
@@ -404,8 +413,8 @@ sub {
 	}
 
 	&.icon--big {
-		height: $big_size*2;
-		width: $big_size*2;
+		height: $big_size*2.25;
+		width: $big_size*2.25;
 	}
 
 	&.icon--medium {

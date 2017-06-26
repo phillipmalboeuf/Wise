@@ -18,6 +18,12 @@ header {
 	}
 }
 
+	.header__logo {
+		height: 4rem;
+    	width: 6rem;
+    	margin: -0.5rem -1rem -1rem;
+	}
+
 	.header__logotype {
 		font-size: $biggish_size;
 
