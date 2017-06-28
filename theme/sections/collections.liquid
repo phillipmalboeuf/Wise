@@ -9,10 +9,8 @@
 {% assign class = 'collection--'|append: collection.id %}
 {% include 'background', class: class, image: image %}
 
-<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back image_back--{{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
-	<div class="{{block.settings.color}}">
-		{{collection.description}}
-	</div>
+<div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+	{{collection.description}}
 </div>
 
 <div class="grid grid--middle">

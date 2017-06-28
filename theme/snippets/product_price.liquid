@@ -1,0 +1,9 @@
+
+
+{% if product.compare_at_price > product.price %}
+{% unless hide_compare_at %}<span class="strike">{{product.compare_at_price|divided_by:100}} $ CAD</span>{% endunless %}
+<span class="highlight">{{product.price|divided_by:100}} $ CAD</span>
+{% else %}
+<span class="">{{product.price|divided_by:100}} $ CAD</span>
+{% endif %}
+

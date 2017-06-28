@@ -347,8 +347,12 @@ sub {
 
 // #COLORS
 
-.white, ._white { color: $white; }
-.black { color: $black; }
+.white {
+	color: $white;
+}
+.black {
+	color: $black;
+}
 .highlight { color: $highlight; }
 .green { color: $green; }
 
@@ -380,7 +384,7 @@ sub {
 	background-position: center;
 	background-repeat: no-repeat;
 
-	&.image_back--black {
+	&.black {
 		background-color: $grey--light;
 	}
 

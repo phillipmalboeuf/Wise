@@ -5,13 +5,13 @@
 	  </div>
 	  <div class="col col--6of12 padded">
 	    <p>
-	      {{article.published_at|date: '%x'}}<br>
-	      {% for tag in article.tags %}
-	      {% assign first_letter = tag | handleize | first %}
-	      {% if first_letter != '_' %}
-	      <span class="slash_seperated">{{tag}}</span>
-	      {% endif %} 
-	      {% endfor %} 
+			{{article.published_at|date: '%d.%m.%y'}}<br>
+			{% for tag in article.tags %}
+			{% assign first_letter = tag | handleize | first %}
+			{% if first_letter != '_' %}
+			<span class="slash_seperated">{{tag}}</span>
+			{% endif %} 
+			{% endfor %} 
 	    </p>
 	    <h3>{{article.title | truncate: 36}}</h3>
 	  </div>

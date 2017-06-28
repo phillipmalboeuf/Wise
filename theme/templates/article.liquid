@@ -8,7 +8,7 @@
 
   <div class="col col--6of12 col--phone--12of12 padded">
     <p class="p--medium">
-      {{article.published_at|date: '%x'}}<br>
+      {{article.published_at|date: '%d.%m.%y'}}<br>
       {% for tag in article.tags %}
       {% assign first_letter = tag | handleize | first %}
       {% if first_letter != '_' %}

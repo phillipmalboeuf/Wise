@@ -36,8 +36,8 @@
       <div data-slide-content>
         {% assign class = 'block--'|append: forloop.index %}
         {% include 'background', class: class, image: block.settings.image %}
-        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back image_back--{{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
-          <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12 {{block.settings.color}}">
+        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+          <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
             <div class="almost medium_bottom">{{page.content}}</div>
             {% if block.settings.button_link %}<a href="{{block.settings.button_link}}" class="grid grid--middle">Click here for more <svg class="icon-right icon--small spaced"><use xlink:href="#icon-right"></use></svg></a>{% endif %}
           </div>

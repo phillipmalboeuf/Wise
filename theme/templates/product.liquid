@@ -50,14 +50,14 @@
     </p>
     <h2 class="small_bottom">{{product.title}}</h2>
     {% for variant in product.variants %}
-    <p class="p--medium"><em>{{variant.title}}</em></p>
+    <p class="p--medium"><em>{{variant.title}} / {% include 'product_price' %}</em></p>
     {% endfor %}
 
     <div class="big_bottom underline_links max_width">
     {{product.description}}
     </div>
 
-    {% if product.tags contains '_recurring' %} 
+    {% if product.tags contains 'Refill' %} 
     <div class="grid grid--tight_guttered">
       <div class="col col--6of12 relative">
         <select class="select--button" name="recurring">
@@ -69,7 +69,7 @@
         <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
       </div>
       <div class="col col--6of12">
-        <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--highlight">Add to cart</button>
+        <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">Add to cart</button>
       </div>
     </div>
     {% else %}
@@ -123,47 +123,64 @@
       {% assign renewable = tag_split[1] %}
     {% endif %} 
     {% endfor %} 
+    
+    {% if natural %}
     <div class="col" style="opacity: {{natural}};">
       <svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
       <p>Natural<br>ingredients<br>{{natural | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
+    {% if local %}
     <div class="col" style="opacity: {{local}};">
       <svg class="icon-local icon--big normal_bottom"><use xlink:href="#icon-local"></use></svg>
       <p>Locally sourced<br>ingredients<br>{{local | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
+    {% if healthy %}
     <div class="col" style="opacity: {{healthy}};">
       <svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
       <p>Healthy<br>ingredients<br>{{healthy | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
+    {% if oils %}}
     <div class="col" style="opacity: {{oils}};">
       <svg class="icon-oils icon--big normal_bottom"><use xlink:href="#icon-oils"></use></svg>
       <p>Essential<br>oils<br>{{oils | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
     {% comment %}<hr class="col col--phone--12of12 hr--vertical">{% endcomment %}
 
+    {% if reusable %}
     <div class="col" style="opacity: {{reusable}};">
       <svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>
       <p>Reusable<br>container<br>{{reusable | times:100 | floor}}%</p>
     </div>  
+    {% endif %}
 
+    {% if recyclable %}
     <div class="col" style="opacity: {{recyclable}};">
       <svg class="icon-recyclable icon--big normal_bottom"><use xlink:href="#icon-recyclable"></use></svg>
       <p>Recyclable<br>materials<br>{{recyclable | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
+    {% if reduced %}
     <div class="col" style="opacity: {{reduced}};">
       <svg class="icon-reduced icon--big normal_bottom"><use xlink:href="#icon-reduced"></use></svg>
       <p>Reduced usage<br>of materials<br>{{reduced | times:100 | floor}}%</p>
     </div>
+    {% endif %}
 
+    {% if renewable %}
     <div class="col" style="opacity: {{renewable}};">
       <svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
       <p>Renewable<br>materials<br>{{renewable | times:100 | floor}}%</p>
     </div>
+    {% endif %}
   </div>
 </a>
 

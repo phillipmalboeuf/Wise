@@ -48,6 +48,19 @@ footer {
 
 // #MIXINS
 
+.relative { position: relative; }
+.absolute {
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100%;
+
+	&.absolute--bottom {
+		top: auto;
+		bottom: 0;
+	}
+}
+
 .max_width {
 	max-width: 42em;
 }
@@ -80,8 +93,8 @@ footer {
 	}
 
 	&.padded--vertically_thick {
-		padding-top: $gutter*1.5;
-		padding-bottom: $gutter*1.5;
+		padding-top: $gutter*2;
+		padding-bottom: $gutter*2;
 	}
 
 	&.padded--flat_bottom {
@@ -103,7 +116,6 @@ footer {
 .flat_bottom { margin-bottom: 0 !important; }
 .medium_top { margin-top: $vertical_rythm*2; }
 
-.relative { position: relative; }
 .hide { display: none !important; }
 .block { display: block; }
 .inline_block { display: inline-block; }
