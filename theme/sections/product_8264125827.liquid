@@ -1,14 +1,34 @@
 
-{% for block in section.blocks %}
-{% include 'content' %}
-{% endfor %}
+{% include 'product_content' %}
 
 
 {% schema %}
 {
-  "name": "Pommade Content",
+  "name": "Content",
   "settings": [
-
+	{
+		"type": "video_url",
+		"id": "video",
+		"label": "Video URL",
+		"accept": ["vimeo"]
+	},
+	{
+		"type": "text",
+		"id": "video_text",
+		"label": "Video Text",
+		"default": "Free of Sodium Laureth Sulfate, it will produce very light foam comapred to a regular shampoo."
+	},
+	{
+		"type": "text",
+		"id": "video_cta",
+		"label": "Video CTA",
+		"default": "Rewatch the video"
+	},
+	{
+		"type": "article",
+		"id": "article",
+		"label": "Article"
+	}
   ],
   "blocks": [
     {
@@ -16,14 +36,14 @@
       "name": "Content",
       "settings": [
       	{
-          "type": "page",
-	      "id": "page",
-	      "label": "Content Page"
+          "type": "text",
+	      "id": "text",
+	      "label": "Text"
         },
       	{
           "type": "url",
-	      "id": "button_link",
-	      "label": "Button link"
+	      "id": "link",
+	      "label": "Link"
         },
         {
 	      "type": "image_picker",
@@ -92,7 +112,7 @@
   ],
   "presets": [
     {
-      "name": "Pommade Content",
+      "name": "Content",
       "category": "Text",
       "blocks": [
       ]

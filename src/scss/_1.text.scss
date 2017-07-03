@@ -397,7 +397,7 @@ sub {
 		@extend .padded;
 		background: $white;
 
-		.image_back--white {
+		.white & {
 			background-color: $black;
 		}
 	}

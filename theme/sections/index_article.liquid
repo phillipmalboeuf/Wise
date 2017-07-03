@@ -1,27 +1,6 @@
 
 {% assign article = articles[section.settings.article] %}
-{% assign image = section.settings.image|default: article.image %}
-
-{% assign class = 'article--'|append: article.id %}
-{% include 'background', class: class, image: image %}
-
-<a href="{{article.url}}" class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back image_back--{{section.settings.color}} {{section.settings.horizontal_alignment}} {{section.settings.vertical_alignment}} {{class}}">
-
-  <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12 image_back__content {{section.settings.color}} em">
-    <h5>
-      {{article.published_at|date: '%d.%m.%y'}} /
-      {% for tag in article.tags %}
-      {% assign first_letter = tag | handleize | first %}
-      {% if first_letter != '_' %}
-      <span class="slash_seperated">{{tag}}</span>
-      {% endif %} 
-      {% endfor %} 
-    </h5>
-    <h2>{{article.title}}</h2>
-    <h5>{{article.excerpt|strip_html}}</h5>
-  </div>
-  
-</a>
+{% include 'full_article' %}
 
 
 {% schema %}

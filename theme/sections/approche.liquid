@@ -1,5 +1,5 @@
 
-<div class="grid light_grey_back">
+<div class="grid grey_back">
   <div class="col col--6of12 col--phone--12of12">
     {% include 'picture', image: section.settings.image %}
   </div>
@@ -16,45 +16,18 @@
 </div>
 
 {% for block in section.blocks %}
-{% assign page = pages[block.settings.page] %}
 
-<article class="slider" data-slider>
-  <div class="slider__container" style="width: 200%;" data-slider-container>
-    <div class="slide" data-slide=0 style="width: 100%;">
-      <div data-slide-content>
-        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle 'grey_back', 'light_grey_back' %}">
-          <div class="col col--12of12">
-            <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
-            <h2>{{page.title}}</h2>
-            <p class="p--medium">Goal #{{forloop.index}}</p>
-          </div>
-        </div>
-      </div>
+<article>
+  <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle 'light_grey_back', 'grey_back' %}">
+    <div class="col col--12of12">
+      <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
+      <p class="p--medium">Goal #{{forloop.index}}</p>
+      <h2>{{block.settings.title}}</h2>
+      <p class="p--medium">{{block.settings.body}}</p>
     </div>
-
-    <div class="slide" data-slide=1 style="width: 100%;">
-      <div data-slide-content>
-        {% assign class = 'block--'|append: forloop.index %}
-        {% include 'background', class: class, image: block.settings.image %}
-        <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
-          <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
-            <div class="almost medium_bottom">{{page.content}}</div>
-            {% if block.settings.button_link %}<a href="{{block.settings.button_link}}" class="grid grid--middle">Click here for more <svg class="icon-right icon--small spaced"><use xlink:href="#icon-right"></use></svg></a>{% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
-
-  <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
-
-  <div class="slider__markers">
-    <button class="slider__marker slider__marker--active" data-slide-marker=0>0</button>
-    <button class="slider__marker" data-slide-marker=1>1</button>
   </div>
 </article>
+
 {% endfor %}
 
 
@@ -92,20 +65,15 @@
         ]
         },
       	{
-          "type": "page",
-  	      "id": "page",
-  	      "label": "Content Page"
-        },
-      	{
-          "type": "url",
-	      "id": "button_link",
-	      "label": "Button link"
+          "type": "text",
+  	      "id": "title",
+  	      "label": "Title"
         },
         {
-	      "type": "image_picker",
-	      "id": "image",
-	      "label": "Background Image"
-	    },
+          "type": "text",
+          "id": "body",
+          "label": "Body"
+        },
 	    {
 	      "type": "select",
 	      "id": "color",
