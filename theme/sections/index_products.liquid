@@ -10,7 +10,7 @@
       {% assign class = 'product--'|append: product.id %}
       {% include 'background', class: class, image: block.settings.image %}
 
-      <a href="{{product.url}}" class="grid grid--full_height padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}" data-slide-content>
+      <a href="{{product.url}}" class="grid grid--full_height padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}" data-slide-content>
 
         <div class="col col--5of12 col--tablet_landscape--6of12 col--phone--9of12">
           {% if block.settings.title != blank %}
@@ -30,6 +30,7 @@
   {% endfor %}
   </div>
 
+  {% if products_size > 1 %}
   <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
 
   <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
@@ -39,6 +40,7 @@
     <button class="slider__marker {% if forloop.first %}slider__marker--active{% endif %}" data-slide-marker={{forloop.index0}}>{{forloop.index0}}</button>
     {% endfor %}
   </div>
+  {% endif %}
 </div>
   
 

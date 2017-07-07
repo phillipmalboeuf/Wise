@@ -1,0 +1,70 @@
+
+
+{% assign content_size = section.blocks | size %}
+
+<div class="slider" data-slider>
+  <div class="slider__container" style="width: {{content_size}}00%;" data-slider-container>
+
+  {% for block in section.blocks  %}
+    <div class="slide" data-slide={{forloop.index0}} style="width: {{100 | divided_by: content_size}}%;">
+      <div data-slide-content>
+        {% include 'content' %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+
+  <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
+
+  <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
+
+  <div class="slider__markers">
+      {% for block in section.blocks %}
+      <button class="slider__marker {% if forloop.first %}slider__marker--active{% endif %}" data-slide-marker={{forloop.index0}}>{{forloop.index0}}</button>
+      {% endfor %}
+    </div>
+</div>
+
+
+
+{% assign class = 'sourced' %}
+{% include 'background', class: class, image: section.settings.source_image %}
+
+<div class="grid grid--full_height middle center grid--full_height--small padded padded--vertically_thick image_back {{class}}">
+  <div>
+    <h2><em>{{section.settings.source_title}}</em></h2>
+  </div>
+</div>
+
+
+{% assign collection = collections[section.settings.related_collection] %}
+{% assign products_texts = collection.description | split: '&amp;' %}
+
+{% if collection %}
+<div class="padded padded--thick light_grey_back text_center">
+  <h2><em>This ingredient can be found in the following products</em></h2>
+
+
+  <h4 class="text_center">{{collection.title}}</h4>
+
+  <div class="grid grid--guttered grid--center grid--overflow">
+    {% for product in collection.products %}
+    <div class="col col--4of12 col--tablet_portrait--6of12">
+      <a class="inline_block relative text_center" href="{{product.url}}">
+        {% comment %}<p class="p--almost flat_bottom a__hide">
+          {{product.title}}<br>
+          {% for variant in product.variants %}
+          <em>{{variant.title}} / {% include 'product_price' %}</em>
+          {% endfor %}
+        </p>{% endcomment %}
+
+        {% include 'picture', image: product.featured_image %}
+
+        <p class="p--almost absolute absolute--bottom hide_on_phone">{{products_texts[forloop.index0]}}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

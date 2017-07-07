@@ -126,10 +126,17 @@ select {
 		padding: $vertical_rythm/2;
 		background: transparent;
 		border: 2px solid;
+
+		&:hover,
+		&:focus {
+			color: $primary;
+		}
 	}
 }
 
 	.select--button__icon {
+		pointer-events: none;
+
 		position: absolute;
 		top: $vertical_rythm/1.5;
 		right: $vertical_rythm/1.5;
@@ -137,6 +144,12 @@ select {
 		color: $highlight;
 
 		@include transform(rotate(-90deg));
+		@include transition(color $fast);
+
+		select:hover + &,
+		select:focus + & {
+			color: $primary;
+		}
 	}
 
 input[type="search"] {

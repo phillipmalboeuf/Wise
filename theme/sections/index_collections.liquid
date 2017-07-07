@@ -17,16 +17,16 @@
           {% for product in collection.products %}
           <div class="col col--4of12 col--tablet_portrait--6of12">
             <a class="inline_block relative text_center" href="{{product.url}}">
-              <p class="p--almost flat_bottom a__hide">
+              {% comment %}<p class="p--almost flat_bottom a__hide">
                 {{product.title}}<br>
                 {% for variant in product.variants %}
                 <em>{{variant.title}} / {% include 'product_price' %}</em>
                 {% endfor %}
-              </p>
+              </p>{% endcomment %}
 
               {% include 'picture', image: product.featured_image %}
 
-              <p class="p--almost absolute absolute--bottom">{{products_texts[forloop.index0]}}</p>
+              <p class="p--almost absolute absolute--bottom hide_on_phone">{{products_texts[forloop.index0]}}</p>
             </a>
           </div>
           {% endfor %}
@@ -36,6 +36,7 @@
   {% endfor %}
   </div>
 
+  {% if collections_size > 1 %}
   <button class="button--transparent slider__button" data-previous-slide-button><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg><svg class="icon-left icon--small"><use xlink:href="#icon-left"></use></svg></button>
 
   <button class="button--transparent slider__button slider__button--right" data-next-slide-button><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg><svg class="icon-right icon--small"><use xlink:href="#icon-right"></use></svg></button>
@@ -45,6 +46,7 @@
     <button class="slider__marker {% if forloop.first %}slider__marker--active{% endif %}" data-slide-marker={{forloop.index0}}>{{forloop.index0}}</button>
     {% endfor %}
   </div>
+  {% endif %}
 </div>
 
 

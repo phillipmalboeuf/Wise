@@ -1,5 +1,5 @@
 
-<div class="grid grey_back">
+<div class="grid light_grey_back">
   <div class="col col--6of12 col--phone--12of12">
     {% include 'picture', image: section.settings.image %}
   </div>
@@ -18,7 +18,7 @@
 {% for block in section.blocks %}
 
 <article>
-  <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle 'light_grey_back', 'grey_back' %}">
+  <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle '', 'light_grey_back' %}">
     <div class="col col--12of12">
       <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
       <p class="p--medium">Goal #{{forloop.index}}</p>

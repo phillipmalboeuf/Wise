@@ -1,6 +1,6 @@
 <nav class="padded padded--tight">
   <div class="grid grid--guttered grid--center">
-    <a href="/blogs/{{blog.handle}}" class="col nav__link">Tout</a>
+    <a href="/blogs/{{blog.handle}}" class="col nav__link">All</a>
 
     {% for tag in blog.all_tags %}
     {% assign first_letter = tag | handleize | first %}

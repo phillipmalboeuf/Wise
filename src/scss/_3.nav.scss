@@ -10,14 +10,16 @@ nav {
 		font-size: $slight_size;
 		
 		footer & {
-			font-size: $base_size;
+			font-size: $small_size;
 		}
 
 		&.nav__link--cart {
 			position: relative;
+			margin-left: $vertical_rythm*2;
 
 			span {
 				position: absolute;
+				right: 0;
 				bottom: 0.5rem;
 
 				width: 100%;

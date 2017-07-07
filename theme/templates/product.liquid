@@ -39,58 +39,61 @@
     </div>
   </div>
 
-  <div class="col col--6of12 col--phone--12of12 padded">
-    <p class="p--medium">
-      {% for tag in product.tags %} 
-      {% assign first_letter = tag | first %}
-      {% if first_letter != '_' %}
-      <span class="slash_seperated">{{tag}}</span>
+  <div class="col col--6of12 col--phone--12of12 padded grid grid--vertically_spaced">
+    <div class="col col--12of12">
+      <p class="p--medium">
+        {% for tag in product.tags %} 
+        {% assign first_letter = tag | first %}
+        {% if first_letter != '_' %}
+        <span class="slash_seperated">{{tag}}</span>
+        {% endif %} 
+        {% endfor %} 
+      </p>
+      <h2 class="small_bottom">{{product.title}}</h2>
+      {% for variant in product.variants %}
+      <p class="p--medium"><em>{{variant.title}} / {% include 'product_price' %}</em></p>
+      {% endfor %}
+
+      <div class="big_bottom underline_links max_width product__description">
+      {{product.description}}
+      </div>
+    </div>
+
+    <div class="col col--12of12">
+      {% if product.tags contains 'Refill' %} 
+      <div class="grid grid--tight_guttered">
+        <div class="col col--6of12 relative">
+          <select class="select--button" name="recurring">
+            <option value=0>One time purchase</option>
+            <option value=1>Ship every month</option>
+            <option value=2>Ship every 2 months</option>
+            <option value=3>Ship every 3 months</option>
+          </select>
+          <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
+        </div>
+        <div class="col col--6of12">
+          <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">Add to cart</button>
+        </div>
+      </div>
+      {% else %}
+      <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your cart</button>
       {% endif %} 
-      {% endfor %} 
-    </p>
-    <h2 class="small_bottom">{{product.title}}</h2>
-    {% for variant in product.variants %}
-    <p class="p--medium"><em>{{variant.title}} / {% include 'product_price' %}</em></p>
-    {% endfor %}
-
-    <div class="huge_bottom underline_links max_width product__description">
-    {{product.description}}
     </div>
-
-    {% if product.tags contains 'Refill' %} 
-    <div class="grid grid--tight_guttered">
-      <div class="col col--6of12 relative">
-        <select class="select--button" name="recurring">
-          <option value=0>One time purchase</option>
-          <option value=1>Ship every month</option>
-          <option value=2>Ship every 2 months</option>
-          <option value=3>Ship every 3 months</option>
-        </select>
-        <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
-      </div>
-      <div class="col col--6of12">
-        <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">Add to cart</button>
-      </div>
-    </div>
-    {% else %}
-    <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your cart</button>
-    {% endif %} 
   </div>
 </article>
 
 
-
-{% if product.id|string == '8737784259' %}
+{% if product.id == 8737784259 %}
 {% section 'product_8737784259' %}
-{% elsif product.id|string == '8737960579' %}
+{% elsif product.id == 8737960579 %}
 {% section 'product_8737960579' %}
-{% elsif product.id|string == '8737690371' %}
+{% elsif product.id == 8737690371 %}
 {% section 'product_8737690371' %}
-{% elsif product.id|string == '8264125827' %}
+{% elsif product.id == 8264125827 %}
 {% section 'product_8264125827' %}
-{% elsif product.id|string == '8737823811' %}
+{% elsif product.id == 8737823811 %}
 {% section 'product_8737823811' %}
-{% elsif product.id|string == '8190808451' %}
+{% elsif product.id == 8190808451 %}
 {% section 'product_8190808451' %}
 {% endif %}
 

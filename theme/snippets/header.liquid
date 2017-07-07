@@ -1,21 +1,23 @@
 
 
-<header class="padded padded--tight grid grid--spaced">
+<header class="padded padded--tight grid grid--spaced grid--middle">
 	<div class="col header__logotype">
 		<a href="/"><svg class="icon-logo header__logo"><use xlink:href="#icon-logo"></use></svg></a>
 	</div>
 
-	<nav class="col col--phone--12of12 grid grid--middle grid--guttered grid--center" data-navigation>
-		{% for link in linklists.main-menu.links %}
-		<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
-		{% endfor %}
+	<nav class="col col--phone--12of12" data-navigation>
+		<div class="grid grid--middle grid--guttered grid--center">
+			{% for link in linklists.main-menu.links %}
+			<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
+			{% endfor %}
 
-		<div class="col grid grid--middle">
-			{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>Hi <span class="hide_on_phone">{{customer.first_name}}</span></a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>Connexion</a>{% endif %}</a>
-			<a href="?cart=true" class="nav__link nav__link--cart spaced" data-toggle-cart>
-				<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
-				<span id="item_count" data-item-count>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
-			</a>
+			<div class="col grid grid--middle">
+				{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>Hi <span class="hide_on_phone">{{customer.first_name}}</span></a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>Login</a>{% endif %}</a>
+				<a href="?cart=true" class="nav__link nav__link--cart" data-toggle-cart>
+					<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
+					<span id="item_count" data-item-count>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
+				</a>
+			</div>
 		</div>
 	</nav>
 </header>

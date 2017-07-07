@@ -109,6 +109,10 @@ p {
 	&.p--almost,
 	.almost & {
 		font-size: $almost_size;
+
+		@media #{$phone} {
+			font-size: 1rem;
+		}
 	}
 
 	&:last-child {
@@ -165,30 +169,30 @@ a {
 		font-weight: $bold;
 	}
 
-	&.a--bordered {
-		border-color: transparent;
+	// &.a--bordered {
+	// 	border-color: transparent;
 
-		&:focus,
-		&:hover {
-			margin: -2px;
-			border: 2px solid $highlight;
-			z-index: 5;
-		}
-	}
+	// 	&:focus,
+	// 	&:hover {
+	// 		margin: -2px;
+	// 		border: 2px solid $highlight;
+	// 		z-index: 5;
+	// 	}
+	// }
 
 	&[disabled] {
 		pointer-events: none;
 		text-decoration: line-through;
 	}
 
-	&.grid--full_height {
-		border: 2px solid transparent;
+	// &.grid--full_height {
+	// 	border: 2px solid transparent;
 
-		&:focus,
-		&:hover {
-			border-color: $highlight;
-		}
-	}
+	// 	&:focus,
+	// 	&:hover {
+	// 		border-color: $highlight;
+	// 	}
+	// }
 }
 
 
@@ -419,6 +423,11 @@ sub {
 	&.icon--big {
 		height: $big_size*2.25;
 		width: $big_size*2.25;
+
+		@media #{$phone} {
+			height: $big_size*1.8;
+			width: $big_size*1.8;
+		}
 	}
 
 	&.icon--medium {

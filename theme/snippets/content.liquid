@@ -2,7 +2,7 @@
 {% assign class = 'block--'|append: block.id %}
 {% include 'background', class: class, image: block.settings.image %}
 
-<{% if block.settings.link %}a href="{{block.settings.link}}"{% else %}article{% endif %} class="grid grid--full_height grid--full_height--small padded padded--vertically_thick image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+<{% if block.settings.link %}a href="{{block.settings.link}}"{% else %}article{% endif %} class="grid grid--full_height grid--full_height--small padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
 
   <div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
     <h2>{{block.settings.title}}</h2>

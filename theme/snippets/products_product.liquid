@@ -27,7 +27,7 @@
       <h3>{{product.title}}</h3>
 
       {% for variant in product.variants %}
-      <p><em>{{variant.title}}</em></p>
+      <p><em>{{variant.title}} / {% include 'product_price' %}</em></p>
       {% endfor %}
     </div>
   </a>

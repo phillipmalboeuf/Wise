@@ -1,7 +1,7 @@
 <footer class="padded thick_line_height">
 	<div class="grid grid--guttered">
 		<nav class="col col--3of12 col--phone--6of12 col--phone--last">
-			<p class="small_bottom">Suivez-nous</p>
+			<p class="small_bottom">Follow us</p>
 			
 			{% for link in linklists.footer-social.links %}
 			<a href="{{ link.url }}" class=""><svg class="icon-{{ link.title }}"><use xlink:href="#icon-{{ link.title }}"></use></svg></a>&nbsp;&nbsp;
@@ -21,9 +21,9 @@
 		</nav>
 
 		<nav class="col col--3of12 col--phone--6of12">
-			<p class="small_bottom">Inscription à l'infolettre</p>
+			<p class="small_bottom">Subscribe to our newsletter</p>
 			<form action="#">
-				<input class="input--tight" type="email" placeholder="Votre courriel ici" name="email">
+				<input class="input--tight" type="email" placeholder="Enter email here" name="email">
 			</form>
 		</nav>
 	</div>

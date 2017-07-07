@@ -1,6 +1,6 @@
 
 {% assign collection = collections[section.settings.collection] %}
-<div class="grid grid--full_height padded padded--vertically_thick center middle">
+<div class="grid grid--full_height padded center middle">
   <div class="col col--12of12">
     <h2 class="medium_bottom">{{collection.title}}</h2>
 
@@ -8,13 +8,15 @@
       {% for product in collection.products %}
       <div class="col col--2of12 col--tablet_portrait--4of12">
         <a href="{{product.url}}">
-          <p class="p--almost flat_bottom a__hide">
+          {% comment %}<p class="p--almost flat_bottom a__hide">
             {{product.title}}<br>
             {% for variant in product.variants %}
             <em>{{variant.title}}</em>
             {% endfor %}
-          </p>
+          </p>{% endcomment %}
           {% include 'picture', image: product.featured_image %}
+
+          <p class="p--almost absolute absolute--bottom hide_on_phone">{{products_texts[forloop.index0]}}</p>
         </a>
       </div>
       {% endfor %}

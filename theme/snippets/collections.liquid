@@ -1,6 +1,6 @@
 <nav class="padded padded--tight">
   <div class="grid grid--guttered grid--center">
-    <a href="/collections" class="col nav__link {% unless collection %}a--focus{% endunless %}">Tout</a>
+    <a href="/collections" class="col nav__link {% unless collection %}a--focus{% endunless %}">All</a>
 
     {% for link in linklists['collections'].links %}
 	{% assign other_collection = link.object %}

@@ -1,47 +1,46 @@
 
-{% include 'collections' %}
-
-{% for block in section.blocks %}
-{% assign collection = collections[block.settings.collection] %}
-{% assign image = block.settings.image | default: collection.image %}
-{% assign title_split = collection.title | split: '|' %}
-
-{% assign class = 'collection--'|append: collection.id %}
-{% include 'background', class: class, image: image %}
-
-<div class="grid grid--full_height grid--full_height--small padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
-	<div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
-		{{collection.description}}
-	</div>
-</div>
-
-<div class="grid grid--middle">
-{% for product in collection.products %}
-	{% include 'products_product' %}
-{% endfor %}
-
-<div class="col col--6of12 text_center hide_on_tablet_portrait">
-	<em>More products coming in 2017</em>
-</div>
-</div>
-{% endfor %}
+{% include 'article_content' %}
 
 
 {% schema %}
 {
-  "name": "Collections",
+  "name": "Content",
   "settings": [
-
+  	{
+      "type": "text",
+      "id": "source_title",
+      "label": "Source title"
+    },
+    {
+      "type": "image_picker",
+      "id": "source_image",
+      "label": "Source map"
+    },
+	{
+		"type": "collection",
+		"id": "related_collection",
+		"label": "Related Collection"
+	}
   ],
   "blocks": [
     {
-      "type": "collection_block",
-      "name": "Collection",
+      "type": "content_block",
+      "name": "Content",
       "settings": [
       	{
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
+          "type": "text",
+	      "id": "title",
+	      "label": "Title"
+        },
+        {
+          "type": "text",
+	      "id": "text",
+	      "label": "Text"
+        },
+      	{
+          "type": "url",
+	      "id": "link",
+	      "label": "Link"
         },
         {
 	      "type": "image_picker",
@@ -110,12 +109,9 @@
   ],
   "presets": [
     {
-      "name": "Collections",
-      "category": "Products",
+      "name": "Content",
+      "category": "Text",
       "blocks": [
-        {
-          "type": "collection_block"
-        }
       ]
     }
   ]

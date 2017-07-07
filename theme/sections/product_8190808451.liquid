@@ -4,7 +4,7 @@
 
 {% schema %}
 {
-  "name": "Content",
+  "name": "Product: 8190808451",
   "settings": [
 	{
 		"type": "video_url",
@@ -23,11 +23,6 @@
 		"id": "video_cta",
 		"label": "Video CTA",
 		"default": "Rewatch the video"
-	},
-	{
-		"type": "article",
-		"id": "article",
-		"label": "Article"
 	}
   ],
   "blocks": [
@@ -36,6 +31,11 @@
       "name": "Content",
       "settings": [
       	{
+          "type": "text",
+	      "id": "title",
+	      "label": "Text"
+        },
+        {
           "type": "text",
 	      "id": "text",
 	      "label": "Text"
@@ -108,13 +108,78 @@
 	    }
         
       ]
-    }
-  ],
-  "presets": [
+    },
     {
-      "name": "Content",
-      "category": "Text",
-      "blocks": [
+      "type": "article_block",
+      "name": "Article",
+      "settings": [
+      	{
+	      "id": "article",
+	      "type": "article",
+	      "label": "Article"
+	    },
+        {
+	      "type": "image_picker",
+	      "id": "image",
+	      "label": "Background Image"
+	    },
+	    {
+	      "type": "select",
+	      "id": "color",
+	      "label": "Text color",
+	      "default": "white",
+	      "options": [
+	        {
+	          "value": "white",
+	          "label": "White"
+	        },
+	        {
+	          "value": "black",
+	          "label": "Black"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "horizontal_alignment",
+	      "label": "Horizontal text alignment",
+	      "default": "left",
+	      "options": [
+	        {
+	          "value": "left",
+	          "label": "Left"
+	        },
+	        {
+	          "value": "center",
+	          "label": "Center"
+	        },
+	        {
+	          "value": "right",
+	          "label": "Right"
+	        }
+	      ]
+	    },
+	    {
+	      "type": "select",
+	      "id": "vertical_alignment",
+	      "label": "Vertical text alignment",
+	      "default": "top",
+	      "options": [
+	        {
+	          "value": "top",
+	          "label": "Top"
+	        },
+	        {
+	          "value": "middle",
+	          "label": "Middle"
+	        },
+	        {
+	          "value": "bottom",
+	          "label": "Bottom"
+	        }
+	      ]
+	    }
+        
       ]
     }
   ]

@@ -143,6 +143,11 @@
 	&.grid--thick_guttered {
 		margin-left: -$gutter*2;
 		margin-bottom: -$gutter*2;
+
+		@media #{$phone} {
+			margin-left: -$gutter*1.5;
+			margin-bottom: -$gutter*1.5;
+		}
 	}
 }
 	
@@ -165,6 +170,11 @@
 		.grid--thick_guttered > & {
 			padding-left: $gutter*2;
 			padding-bottom: $gutter*2;
+
+			@media #{$phone} {
+				padding-left: $gutter*1.5;
+				padding-bottom: $gutter*1.5;
+			}
 		}
 
 		.grid--overflow > & {
