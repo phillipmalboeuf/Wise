@@ -1,35 +1,450 @@
-[{
+[
+  {
     "name": "Header",
     "settings": [
       {
-        "type": "header",
-        "content": "Logos"
+        "type": "text",
+        "id": "pages_approche",
+        "label": "About (FR)",
+        "default": "Approche"
       },
       {
-        "type": "image",
-        "id": "logotype.png",
-        "label": "Wise Logotype"
+        "type": "text",
+        "id": "collections",
+        "label": "Products (FR)",
+        "default": "Produits"
       },
       {
-        "type": "image",
-        "id": "logo.png",
-        "label": "Wise Logo"
+        "type": "text",
+        "id": "blogs_news",
+        "label": "Journal (FR)",
+        "default": "Journal"
       },
       {
-        "type": "image",
-        "id": "logo_white.png",
-        "label": "Wise Logo – White"
-      },
-      {
-        "type": "header",
-        "content": "Favicon"
-      },
-      {
-        "type": "image",
-        "id": "favicon.png",
-        "label": "32px x 32px png",
-        "max-width": 32,
-        "max-height": 32
+        "type": "text",
+        "id": "login",
+        "label": "Login (FR)",
+        "default": "Connexion"
       }
     ]
-  }]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "follow_us",
+        "label": "Follow Us (FR)",
+        "default": "Nous suivre"
+      },
+      {
+        "type": "text",
+        "id": "pages_conditions-dachat",
+        "label": "Terms of purchase (FR)",
+        "default": "Conditions d'achat"
+      },
+      {
+        "type": "text",
+        "id": "pages_politique-de-retour",
+        "label": "Return policy (FR)",
+        "default": "Politique de retour"
+      },
+      {
+        "type": "text",
+        "id": "pages_infos-sur-le-transport",
+        "label": "Shipping Information (FR)",
+        "default": "Info sur le transport"
+      },
+      {
+        "type": "text",
+        "id": "subscribe",
+        "label": "Subscribe to our newsletter (FR)",
+        "default": "Inscrivez-vous à l'infolettre"
+      },
+      {
+        "type": "text",
+        "id": "enter_email",
+        "label": "Enter email here (FR)",
+        "default": "Entrez votre adresse courriel"
+      }
+    ]
+  },
+  {
+    "name": "Icons",
+    "settings": [
+      {
+        "type": "text",
+        "id": "aim",
+        "label": "We Aim"
+      },
+      {
+        "type": "text",
+        "id": "aim_fr",
+        "label": "We Aim (FR)"
+      },
+      {
+        "type": "text",
+        "id": "natural",
+        "label": "natural"
+      },
+      {
+        "type": "text",
+        "id": "natural_fr",
+        "label": "natural (FR)"
+      },
+      {
+        "type": "text",
+        "id": "local",
+        "label": "local"
+      },
+      {
+        "type": "text",
+        "id": "local_fr",
+        "label": "local (FR)"
+      },
+      {
+        "type": "text",
+        "id": "healthy",
+        "label": "healthy"
+      },
+      {
+        "type": "text",
+        "id": "healthy_fr",
+        "label": "healthy (FR)"
+      },
+      {
+        "type": "text",
+        "id": "oils",
+        "label": "oils"
+      },
+      {
+        "type": "text",
+        "id": "oils_fr",
+        "label": "oils (FR)"
+      },
+      {
+        "type": "text",
+        "id": "reusable",
+        "label": "reusable"
+      },
+      {
+        "type": "text",
+        "id": "reusable_fr",
+        "label": "reusable (FR)"
+      },
+      {
+        "type": "text",
+        "id": "recyclable",
+        "label": "recyclable"
+      },
+      {
+        "type": "text",
+        "id": "recyclable_fr",
+        "label": "recyclable (FR)"
+      },
+      {
+        "type": "text",
+        "id": "reduced",
+        "label": "reduced"
+      },
+      {
+        "type": "text",
+        "id": "reduced_fr",
+        "label": "reduced (FR)"
+      },
+      {
+        "type": "text",
+        "id": "sustainable",
+        "label": "sustainable"
+      },
+      {
+        "type": "text",
+        "id": "sustainable_fr",
+        "label": "sustainable (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "add_to_cart",
+        "label": "Add to Cart",
+        "default": "Add this product to cart"
+      },
+      {
+        "type": "text",
+        "id": "add_to_cart_fr",
+        "label": "Add to Cart (FR)",
+        "default": "Ajouter au panier"
+      },
+      {
+        "type": "text",
+        "id": "respects",
+        "label": "Respects",
+        "default": "This product respects the following:"
+      },
+      {
+        "type": "text",
+        "id": "respects_fr",
+        "label": "Respects (FR)",
+        "default": "Ce produit suit ces principes :"
+      },
+      {
+        "type": "text",
+        "id": "more_products",
+        "label": "More Products",
+        "default": "More products coming in 2017"
+      },
+      {
+        "type": "text",
+        "id": "more_products_fr",
+        "label": "More Products (FR)",
+        "default": "Plus de produits sont en route"
+      }
+    ]
+  },
+  {
+    "name": "Product: Birch Bark Daily Shampoo in Refill Bag",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8737823811_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8737823811_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Birch Bark Daily Shampoo in Reusable Glass Bottle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8737784259_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8737784259_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Glacier Clay Pomade in Refill Tube",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8737690371_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8737690371_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Glacier Clay Pomade in Reusable Glass Bottle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8190808451_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8190808451_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Red Maple Cream Pomade in Refill Tube",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8264125827_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8264125827_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Red Maple Creme Pomade in Reusable Glass Bottle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "8737960579_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "8737960579_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Reusable",
+    "settings": [
+      {
+        "type": "text",
+        "id": "286329667_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "286329667_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Refill",
+    "settings": [
+      {
+        "type": "text",
+        "id": "286330435_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "286330435_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Glacier Clay Pomade",
+    "settings": [
+      {
+        "type": "text",
+        "id": "391215555_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "391215555_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Birch Bark Daily Shampoo",
+    "settings": [
+      {
+        "type": "text",
+        "id": "391216003_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "391216003_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Red Maple Styling Cream",
+    "settings": [
+      {
+        "type": "text",
+        "id": "391215939_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "391215939_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Articles",
+    "settings": [
+      {
+        "type": "text",
+        "id": "found_in",
+        "label": "Found In",
+        "default": "This ingredient can be found in the following products"
+      },
+      {
+        "type": "text",
+        "id": "found_in_fr",
+        "label": "Found In (FR)",
+        "default": "Ces ingredients peuvent être retrouvés dans ces produits"
+      }
+    ]
+  },
+  {
+    "name": "Article: Believe in Red Maple bark",
+    "settings": [
+      {
+        "type": "text",
+        "id": "154582787_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "154582787_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "154582787_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Article: Behind the Birch Bark",
+    "settings": [
+      {
+        "type": "text",
+        "id": "149975811_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "149975811_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "149975811_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Article: Glacier clay’s rejuvenating properties",
+    "settings": [
+      {
+        "type": "text",
+        "id": "148196483_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "148196483_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "148196483_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  }
+]

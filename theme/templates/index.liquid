@@ -1,51 +1,51 @@
 
 {{ content_for_index }}
 
-
+{% include 'translations' %}
 
 
 <a href="pages/approche" class="block padded padded--thick light_grey_back text_center">
-	<h2 class="big_bottom black">We aim to respect the following:</h2>
+	<h2 class="big_bottom black">{{aim}}</h2>
 
 	<div class="grid grid--thick_guttered grid--center">
 		<div class="col col--3of12">
 			<svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
-			<p class="p--almost">Natural<br>ingredients</p>
+			<p class="p--almost">{{natural}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-local icon--big normal_bottom"><use xlink:href="#icon-local"></use></svg>
-			<p class="p--almost">Locally<br>produced</p>
+			<p class="p--almost">{{local}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
-			<p class="p--almost">Healthy<br>ingredients</p>
+			<p class="p--almost">{{healthy}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-oils icon--big normal_bottom"><use xlink:href="#icon-oils"></use></svg>
-			<p class="p--almost">Scented with<br>essential oils</p>
+			<p class="p--almost">{{oils}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>
-			<p class="p--almost">Reusable<br>packaging</p>
+			<p class="p--almost">{{reusable}}</p>
 		</div>	
 
 		<div class="col col--3of12">
 			<svg class="icon-recyclable icon--big normal_bottom"><use xlink:href="#icon-recyclable"></use></svg>
-			<p class="p--almost">Recyclable<br>packaging</p>
+			<p class="p--almost">{{recyclable}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-reduced icon--big normal_bottom"><use xlink:href="#icon-reduced"></use></svg>
-			<p class="p--almost">Reduced usage<br>of materials</p>
+			<p class="p--almost">{{reduced}}</p>
 		</div>
 
 		<div class="col col--3of12">
 			<svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
-			<p class="p--almost">Renewable<br>materials</p>
+			<p class="p--almost">{{sustainable}}</p>
 		</div>
 	</div>
 </a>

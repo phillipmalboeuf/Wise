@@ -8,7 +8,7 @@ this["templates"]["cart"] = Handlebars.template({"1":function(container,depth0,h
   return ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.model : depth0)) != null ? stack1.items : stack1),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "	<div class=\"padded padded--tight text_center\">\n		<strong>Total "
     + ((stack1 = (helpers.money || (depth0 && depth0.money) || helpers.helperMissing).call(alias1,((stack1 = (depth0 != null ? depth0.model : depth0)) != null ? stack1.total_price : stack1),{"name":"money","hash":{},"data":data})) != null ? stack1 : "")
-    + "</strong>\n	</div>\n\n	<button type=\"submit\" name=\"checkout\" class=\"overlay__button\">Passer à la caisse</button>\n";
+    + "</strong>\n	</div>\n\n	<button type=\"submit\" name=\"checkout\" class=\"overlay__button\">Continue to Checkout</button>\n";
 },"4":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -36,7 +36,7 @@ this["templates"]["cart"] = Handlebars.template({"1":function(container,depth0,h
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\" class=\"button--transparent\"><svg class=\"icon-trash\"><use xlink:href=\"#icon-trash\"></use></svg></button>\n			</div>\n		</div>\n	</div>\n";
 },"6":function(container,depth0,helpers,partials,data) {
-    return "	<div class=\"padded text_center\">\n		Votre panier est vide\n	</div>\n";
+    return "	<div class=\"padded text_center\">\n		Your cart is empty\n	</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 

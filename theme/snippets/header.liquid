@@ -1,4 +1,5 @@
 
+{% include 'translations'  %}
 
 <header class="padded padded--tight grid grid--spaced grid--middle">
 	<div class="col header__logotype">
@@ -7,17 +8,26 @@
 
 	<nav class="col col--phone--12of12" data-navigation>
 		<div class="grid grid--middle grid--guttered grid--center">
+
 			{% for link in linklists.main-menu.links %}
-			<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{{ link.title }}</a>
+			{% assign path = link.url|replace_first:'/',''|replace:'/','_' %}
+			
+			<a href="{{link.url}}" class="col nav__link {% if link.active %}a--focus{% endif %}">{% if lang == 'fr' %}{{settings[path]}}{% else %}{{ link.title }}{% endif %}</a>
 			{% endfor %}
 
 			<div class="col grid grid--middle">
-				{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>Hi <span class="hide_on_phone">{{customer.first_name}}</span></a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>Login</a>{% endif %}</a>
+				{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>Hi <span class="hide_on_phone">{{customer.first_name}}</span></a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>{% if lang == 'fr' %}{{settings['login']}}{% else %}Login{% endif %}</a>{% endif %}</a>
 				<a href="?cart=true" class="nav__link nav__link--cart" data-toggle-cart>
 					<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
 					<span id="item_count" data-item-count>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
 				</a>
 			</div>
+
+			{% if lang == 'fr' %}
+			<div class="col nav__link hide_on_tablet_portrait"><small><a href="https://{{shop.domain}}{{request.path}}">En</a> / <strong>Fr</strong></small></a>
+			{% else %}
+			<div class="col nav__link hide_on_tablet_portrait"><small><strong>En</strong> / <a href="https://fr.wisemenscare.com{{request.path}}">Fr</a></small></a>
+			{% endif %}
 		</div>
 	</nav>
 </header>

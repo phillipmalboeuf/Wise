@@ -1,5 +1,5 @@
 
-
+{% include 'translations' %}
 {% include 'collections' %}
 
 
@@ -49,13 +49,13 @@
         {% endif %} 
         {% endfor %} 
       </p>
-      <h2 class="small_bottom">{{product.title}}</h2>
+      <h2 class="small_bottom">{{product_title}}</h2>
       {% for variant in product.variants %}
       <p class="p--medium"><em>{{variant.title}} / {% include 'product_price' %}</em></p>
       {% endfor %}
 
       <div class="big_bottom underline_links max_width product__description">
-      {{product.description}}
+      {{product_description}}
       </div>
     </div>
 
@@ -72,12 +72,12 @@
           <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
         </div>
         <div class="col col--6of12">
-          <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">Add to cart</button>
+          <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">{% if lang == 'fr' %}{{settings['add_to_cart_fr']}}{% else %}{{settings['add_to_cart']}}{% endif %}</button>
         </div>
       </div>
       {% else %}
-      <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">Add this product to your cart</button>
-      {% endif %} 
+      <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">{% if lang == 'fr' %}{{settings['add_to_cart_fr']}}{% else %}{{settings['add_to_cart']}}{% endif %}</button>
+      {% endif %}
     </div>
   </div>
 </article>

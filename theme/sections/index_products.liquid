@@ -7,20 +7,22 @@
     <div class="slide" data-slide={{forloop.index0}} style="width: {{100 | divided_by: products_size}}%;">
       {% assign product = all_products[block.settings.product] %}
 
+      {% include 'translations' %}
+
       {% assign class = 'product--'|append: product.id %}
       {% include 'background', class: class, image: block.settings.image %}
 
       <a href="{{product.url}}" class="grid grid--full_height padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}" data-slide-content>
 
         <div class="col col--5of12 col--tablet_landscape--6of12 col--phone--9of12">
-          {% if block.settings.title != blank %}
-          <h2>{{block.settings.title}}</h2>
+          {% if block_title != blank %}
+          <h2>{{block_title}}</h2>
           {% else %}
-          <h2>{{product.title}}</h2>
+          <h2>{{product_title}}</h2>
           {% endif %}
 
-          {% if block.settings.description != blank %}
-          <h5>{{block.settings.description}}</h5>
+          {% if block_description != blank %}
+          <h5>{{block_description}}</h5>
           {% endif %}
           
         </div>
@@ -66,9 +68,19 @@
           "label": "Title"
         },
         {
+          "id": "title_fr",
+          "type": "text",
+          "label": "Title (FR)"
+        },
+        {
           "id": "description",
           "type": "text",
           "label": "Description"
+        },
+        {
+          "id": "description_fr",
+          "type": "text",
+          "label": "Description (FR)"
         },
         {
           "type": "image_picker",

@@ -1,3 +1,6 @@
+
+{% include 'translations' %}
+
 <article class="col col--6of12 col--tablet_portrait--12of12">
 	<a href="{{article.url}}" class="grid {% cycle collection.handle: 'grid--phone--reverse', '', 'grid--reverse grid--phone--reverse', 'grid--reverse' %} a--bordered">
 	  <div class="col col--6of12 light_grey_back">
@@ -13,7 +16,7 @@
 			{% endif %} 
 			{% endfor %} 
 	    </p>
-	    <h3>{{article.title | truncate: 36}}</h3>
+	    <h3>{{article_title | truncate: 36}}</h3>
 	  </div>
 	</a>
 </article>

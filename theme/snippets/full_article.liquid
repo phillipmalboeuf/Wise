@@ -1,3 +1,5 @@
+{% include 'translations' %}
+
 {% assign image = section.settings.image|default: article.image %}
 
 {% assign class = 'article--'|append: article.id %}
@@ -15,8 +17,8 @@
       {% endif %} 
       {% endfor %} 
     </h5>
-    <h2>{{article.title}}</h2>
-    <h5>{{article.excerpt|strip_html}}</h5>
+    <h2>{{article_title}}</h2>
+    <h5>{{article_excerpt}}</h5>
   </div>
   
 </a>

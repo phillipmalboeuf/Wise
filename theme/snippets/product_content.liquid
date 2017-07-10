@@ -1,4 +1,7 @@
 
+{% include 'translations' %}
+
+
 <div class="grid grid--stretch">
   <div class="col col--7of12 col--phone--12of12 col--phone--last grid grid--vertically_spaced">
     <div class="col col--12of12"></div>
@@ -18,83 +21,83 @@
 
 
 <a href="/pages/approche" class="block padded padded--thick light_grey_back text_center">
-  <h2 class="big_bottom black">This product respects the following:</h2>
+  <h2 class="big_bottom black">{% if lang == 'fr' %}{{settings['respects_fr']}}{% else %}{{settings['respects']}}{% endif %}</h2>
 
   <div class="grid grid--spaced_around">
     {% for tag in product.tags %} 
     {% assign tag_split = tag | split: ':' %}
     {% if tag_split[0] == '_natural' %}
-      {% assign natural = tag_split[1] %}
+      {% assign is_natural = tag_split[1] %}
     {% elsif tag_split[0] == '_local' %}
-      {% assign local = tag_split[1] %}
+      {% assign is_local = tag_split[1] %}
     {% elsif tag_split[0] == '_healthy' %}
-      {% assign healthy = tag_split[1] %}
+      {% assign is_healthy = tag_split[1] %}
     {% elsif tag_split[0] == '_oils' %}
-      {% assign oils = tag_split[1] %}
+      {% assign is_oils = tag_split[1] %}
     {% elsif tag_split[0] == '_reusable' %}
-      {% assign reusable = tag_split[1] %}
+      {% assign is_reusable = tag_split[1] %}
     {% elsif tag_split[0] == '_recyclable' %}
-      {% assign recyclable = tag_split[1] %}
+      {% assign is_recyclable = tag_split[1] %}
     {% elsif tag_split[0] == '_reduced' %}
-      {% assign reduced = tag_split[1] %}
+      {% assign is_reduced = tag_split[1] %}
     {% elsif tag_split[0] == '_renewable' %}
-      {% assign renewable = tag_split[1] %}
+      {% assign is_renewable = tag_split[1] %}
     {% endif %} 
     {% endfor %} 
     
-    {% if natural %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{natural}};">
+    {% if is_natural %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_natural}};">
       <svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
-      <p>Natural<br>ingredients<br>{{natural | times:100 | floor}}%</p>
+      <p>{{natural}}<br>{{is_natural | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if local %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{local}};">
+    {% if is_local %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_local}};">
       <svg class="icon-local icon--big normal_bottom"><use xlink:href="#icon-local"></use></svg>
-      <p>Locally sourced<br>ingredients<br>{{local | times:100 | floor}}%</p>
+      <p>{{local}}<br>{{is_local | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if healthy %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{healthy}};">
+    {% if is_healthy %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_healthy}};">
       <svg class="icon-healthy icon--big normal_bottom"><use xlink:href="#icon-healthy"></use></svg>
-      <p>Healthy<br>ingredients<br>{{healthy | times:100 | floor}}%</p>
+      <p>{{healthy}}<br>{{is_healthy | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if oils %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{oils}};">
+    {% if is_oils %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_oils}};">
       <svg class="icon-oils icon--big normal_bottom"><use xlink:href="#icon-oils"></use></svg>
-      <p>Essential<br>oils<br>{{oils | times:100 | floor}}%</p>
+      <p>{{oils}}<br>{{is_oils | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if reusable %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{reusable}};">
+    {% if is_reusable %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_reusable}};">
       <svg class="icon-reusable icon--big normal_bottom"><use xlink:href="#icon-reusable"></use></svg>
-      <p>Reusable<br>container<br>{{reusable | times:100 | floor}}%</p>
+      <p>{{reusable}}<br>{{is_reusable | times:100 | floor}}%</p>
     </div>  
     {% endif %}
 
-    {% if recyclable %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{recyclable}};">
+    {% if is_recyclable %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_recyclable}};">
       <svg class="icon-recyclable icon--big normal_bottom"><use xlink:href="#icon-recyclable"></use></svg>
-      <p>Recyclable<br>materials<br>{{recyclable | times:100 | floor}}%</p>
+      <p>{{recyclable}}<br>{{is_recyclable | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if reduced %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{reduced}};">
+    {% if is_reduced %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_reduced}};">
       <svg class="icon-reduced icon--big normal_bottom"><use xlink:href="#icon-reduced"></use></svg>
-      <p>Reduced usage<br>of materials<br>{{reduced | times:100 | floor}}%</p>
+      <p>{{reduced}}<br>{{is_reduced | times:100 | floor}}%</p>
     </div>
     {% endif %}
 
-    {% if renewable %}
-    <div class="col col--tablet_portrait--3of12" style="opacity: {{renewable}};">
+    {% if is_renewable %}
+    <div class="col col--tablet_portrait--3of12" style="opacity: {{is_renewable}};">
       <svg class="icon-sustainable icon--big normal_bottom"><use xlink:href="#icon-sustainable"></use></svg>
-      <p>Renewable<br>materials<br>{{renewable | times:100 | floor}}%</p>
+      <p>{{sustainable}}<br>{{is_renewable | times:100 | floor}}%</p>
     </div>
     {% endif %}
   </div>

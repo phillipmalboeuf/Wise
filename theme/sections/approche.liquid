@@ -1,4 +1,6 @@
 
+
+
 <div class="grid light_grey_back">
   <div class="col col--6of12 col--phone--12of12">
     {% include 'picture', image: section.settings.image %}
@@ -16,14 +18,15 @@
 </div>
 
 {% for block in section.blocks %}
+{% include 'translations' %}
 
 <article>
   <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle '', 'light_grey_back' %}">
     <div class="col col--12of12">
       <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
       <p class="p--medium">Goal #{{forloop.index}}</p>
-      <h2>{{block.settings.title}}</h2>
-      <p class="p--medium">{{block.settings.body}}</p>
+      <h2>{{block_title}}</h2>
+      <p class="p--medium">{{block_body}}</p>
     </div>
   </div>
 </article>
@@ -71,8 +74,18 @@
         },
         {
           "type": "text",
+          "id": "title_fr",
+          "label": "Title (FR)"
+        },
+        {
+          "type": "text",
           "id": "body",
           "label": "Body"
+        },
+        {
+          "type": "text",
+          "id": "body_fr",
+          "label": "Body (FR)"
         },
 	    {
 	      "type": "select",

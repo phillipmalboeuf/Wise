@@ -1,0 +1,88 @@
+
+{% assign host_split = request.host | split: '.' %}
+{% assign lang = host_split[0] %}
+
+
+
+{% assign product_title = product.title %}
+{% assign product_description = product.description %}
+
+{% assign collection_title = collection.title %}
+{% assign collection_description = collection.description %}
+{% assign other_collection_title = other_collection.title %}
+
+{% assign article_title = article.title %}
+{% assign article_content = article.content %}
+{% assign article_excerpt = article.excerpt %}
+
+{% assign section_title = section.settings.title %}
+{% assign section_text = section.settings.text %}
+{% assign section_body = section.settings.body %}
+{% assign section_description = section.settings.description %}
+{% assign section_button_text = section.settings.button_text %}
+{% assign section_success_text = section.settings.success_text %}
+{% assign section_source_title = section.settings.source_title %}
+
+{% assign block_title = block.settings.title %}
+{% assign block_text = block.settings.text %}
+{% assign block_body = block.settings.body %}
+{% assign block_description = block.settings.description %}
+
+{% assign aim = settings.aim %}
+{% assign natural = settings.natural %}
+{% assign local = settings.local %}
+{% assign healthy = settings.healthy %}
+{% assign oils = settings.oils %}
+{% assign reusable = settings.reusable %}
+{% assign recyclable = settings.recyclable %}
+{% assign reduced = settings.reduced %}
+{% assign sustainable = settings.sustainable %}
+
+
+
+
+{% if lang == 'fr' %}
+
+{% assign id = product.id|append:'_title' %}
+{% if settings[id] != blank %}{% assign product_title = settings[id] %}{% endif %}
+{% assign id = product.id|append:'_description' %}
+{% if settings[id] != blank %}{% assign product_description = settings[id] %}{% endif %}
+
+{% assign id = collection.id|append:'_title' %}
+{% if settings[id] != blank %}{% assign collection_title = settings[id] %}{% endif %}
+{% assign id = collection.id|append:'_description' %}
+{% if settings[id] != blank %}{% assign collection_description = settings[id] %}{% endif %}
+{% assign id = other_collection.id|append:'_title' %}
+{% if settings[id] != blank %}{% assign other_collection_title = settings[id] %}{% endif %}
+
+{% assign id = article.id|append:'_title' %}
+{% if settings[id] != blank %}{% assign article_title = settings[id] %}{% endif %}
+{% assign id = article.id|append:'_content' %}
+{% if settings[id] != blank %}{% assign article_content = settings[id] %}{% endif %}
+{% assign id = article.id|append:'_excerpt' %}
+{% if settings[id] != blank %}{% assign article_excerpt = settings[id] %}{% endif %}
+
+{% assign section_title = section.settings.title_fr %}
+{% assign section_text = section.settings.text_fr %}
+{% assign section_body = section.settings.body_fr %}
+{% assign section_description = section.settings.description_fr %}
+{% assign section_button_text = section.settings.button_text_fr %}
+{% assign section_success_text = section.settings.success_text_fr %}
+{% assign section_source_title = section.settings.source_title_fr %}
+
+{% assign block_title = block.settings.title_fr %}
+{% assign block_text = block.settings.text_fr %}
+{% assign block_body = block.settings.body_fr %}
+{% assign block_description = block.settings.description_fr %}
+
+{% assign aim = settings.aim_fr %}
+{% assign natural = settings.natural_fr %}
+{% assign local = settings.local_fr %}
+{% assign healthy = settings.healthy_fr %}
+{% assign oils = settings.oils_fr %}
+{% assign reusable = settings.reusable_fr %}
+{% assign recyclable = settings.recyclable_fr %}
+{% assign reduced = settings.reduced_fr %}
+{% assign sustainable = settings.sustainable_fr %}
+
+{% endif %}

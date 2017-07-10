@@ -33,31 +33,28 @@
 
 <div class="grid grid--full_height middle center grid--full_height--small padded padded--vertically_thick image_back {{class}}">
   <div>
-    <h2><em>{{section.settings.source_title}}</em></h2>
+    <h2><em>{{section_source_title}}</em></h2>
   </div>
 </div>
 
 
 {% assign collection = collections[section.settings.related_collection] %}
-{% assign products_texts = collection.description | split: '&amp;' %}
 
 {% if collection %}
+{% include 'translations' %}
+
+{% assign products_texts = collection_description | split: '&amp;' %}
+
 <div class="padded padded--thick light_grey_back text_center">
-  <h2><em>This ingredient can be found in the following products</em></h2>
+  <h2><em>{% if lang == 'fr' %}{{settings['found_in_fr']}}{% else %}{{settings['found_in']}}{% endif %}</em></h2>
 
 
-  <h4 class="text_center">{{collection.title}}</h4>
+  <h4 class="text_center">{{collection_title}}</h4>
 
   <div class="grid grid--guttered grid--center grid--overflow">
     {% for product in collection.products %}
     <div class="col col--4of12 col--tablet_portrait--6of12">
       <a class="inline_block relative text_center" href="{{product.url}}">
-        {% comment %}<p class="p--almost flat_bottom a__hide">
-          {{product.title}}<br>
-          {% for variant in product.variants %}
-          <em>{{variant.title}} / {% include 'product_price' %}</em>
-          {% endfor %}
-        </p>{% endcomment %}
 
         {% include 'picture', image: product.featured_image %}
 
@@ -68,3 +65,5 @@
   </div>
 </div>
 {% endif %}
+
+
