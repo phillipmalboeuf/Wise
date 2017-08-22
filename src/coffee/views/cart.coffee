@@ -29,6 +29,7 @@ class Wise.Views.Cart extends Backbone.View
 	render: ->
 		_.extend @data, 
 			model: @model.toJSON()
+			lang: window.lang
 
 		this.$el.html @template(@data)
 

@@ -1,4 +1,15 @@
 
+
+<div class="grid">
+	<div class="col col--4of12 col--tablet_portrait--8of12 col--phone--12of12">
+		<div class="header__logotype"><svg class="icon-logo header__logo"><use xlink:href="#icon-logo"></use></svg></div>
+		<p class="p--medium">{{ page_description }}</p>
+	</div>
+</div>
+
+
+
+{% comment %}
 {{ content_for_index }}
 
 {% include 'translations' %}
@@ -48,4 +59,4 @@
 			<p class="p--almost">{{sustainable}}</p>
 		</div>
 	</div>
-</a>
+</a>{% endcomment %}

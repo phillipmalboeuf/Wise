@@ -6,6 +6,8 @@
 
 {% assign product_title = product.title %}
 {% assign product_description = product.description %}
+{% assign video_text = section.settings.video_text %}
+{% assign video_cta = section.settings.video_cta %}
 
 {% assign collection_title = collection.title %}
 {% assign collection_description = collection.description %}
@@ -14,6 +16,9 @@
 {% assign article_title = article.title %}
 {% assign article_content = article.content %}
 {% assign article_excerpt = article.excerpt %}
+
+{% assign page_title = page.title %}
+{% assign page_content = page.content %}
 
 {% assign section_title = section.settings.title %}
 {% assign section_text = section.settings.text %}
@@ -47,6 +52,8 @@
 {% if settings[id] != blank %}{% assign product_title = settings[id] %}{% endif %}
 {% assign id = product.id|append:'_description' %}
 {% if settings[id] != blank %}{% assign product_description = settings[id] %}{% endif %}
+{% assign video_text = section.settings.video_text_fr %}
+{% assign video_cta = section.settings.video_cta_fr %}
 
 {% assign id = collection.id|append:'_title' %}
 {% if settings[id] != blank %}{% assign collection_title = settings[id] %}{% endif %}
@@ -61,6 +68,11 @@
 {% if settings[id] != blank %}{% assign article_content = settings[id] %}{% endif %}
 {% assign id = article.id|append:'_excerpt' %}
 {% if settings[id] != blank %}{% assign article_excerpt = settings[id] %}{% endif %}
+
+{% assign id = page.id|append:'_title' %}
+{% if settings[id] != blank %}{% assign page_title = settings[id] %}{% endif %}
+{% assign id = page.id|append:'_content' %}
+{% if settings[id] != blank %}{% assign page_content = settings[id] %}{% endif %}
 
 {% assign section_title = section.settings.title_fr %}
 {% assign section_text = section.settings.text_fr %}

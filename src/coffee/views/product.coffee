@@ -21,7 +21,14 @@ class Wise.Views.Product extends Backbone.View
 		e.stopImmediatePropagation()
 		e.currentTarget.blur()
 
-		Wise.cart.add $(e.currentTarget).attr("data-add-to-cart")
+		recurring = this.$el.find("[name='recurring'] option:selected")[0]
+		if recurring.value > 0
+			Wise.cart.add $(e.currentTarget).attr("data-add-to-cart"), 1, {
+				"properties[Recurring]": recurring.innerText
+			}
+		else
+			Wise.cart.add $(e.currentTarget).attr("data-add-to-cart")
+
 		Wise.cart_view.show()
 
 

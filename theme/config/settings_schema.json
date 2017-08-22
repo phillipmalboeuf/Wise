@@ -165,8 +165,71 @@
     ]
   },
   {
+    "name": "Page: About",
+    "settings": [
+      {
+        "type": "text",
+        "id": "194067331_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "194067331_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "text",
+        "id": "goal",
+        "label": "Goal",
+        "default": "Goal"
+      },
+      {
+        "type": "text",
+        "id": "goal_fr",
+        "label": "Goal (FR)",
+        "default": "But"
+      }
+    ]
+  },
+  {
     "name": "Products",
     "settings": [
+      {
+        "type": "text",
+        "id": "all",
+        "label": "All",
+        "default": "All"
+      },
+      {
+        "type": "text",
+        "id": "all_fr",
+        "label": "All (FR)",
+        "default": "Tout"
+      },
+      {
+        "type": "text",
+        "id": "Hair",
+        "label": "Hair (FR)",
+        "default": "Cheveux"
+      },
+      {
+        "type": "text",
+        "id": "Reusable",
+        "label": "Reusable (FR)",
+        "default": "Réutilisable"
+      },
+      {
+        "type": "text",
+        "id": "Refill",
+        "label": "Refill (FR)",
+        "default": "Recharge"
+      },
+      {
+        "type": "text",
+        "id": "Ingredients",
+        "label": "Ingredients (FR)",
+        "default": "Ingrédients"
+      },
       {
         "type": "text",
         "id": "add_to_cart",

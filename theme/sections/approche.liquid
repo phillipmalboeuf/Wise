@@ -1,5 +1,6 @@
 
 
+{% include 'translations' %}
 
 <div class="grid light_grey_back">
   <div class="col col--6of12 col--phone--12of12">
@@ -8,11 +9,11 @@
 
   <div class="col col--6of12 col--phone--12of12 padded">
     <p class="p--medium medium_bottom">
-      {{page.title}}
+      {{page_title}}
     </p>
 
     <div class="medium_bottom underline_links max_width">
-      {{page.content}}
+      {{page_content}}
     </div>
   </div>
 </div>
@@ -24,7 +25,7 @@
   <div class="grid grid--full_height grid--full_height--small padded padded--vertically_thick center middle {% cycle '', 'light_grey_back' %}">
     <div class="col col--12of12">
       <svg class="icon-{{block.settings.icon}} icon--huge medium_bottom"><use xlink:href="#icon-{{block.settings.icon}}"></use></svg>
-      <p class="p--medium">Goal #{{forloop.index}}</p>
+      <p class="p--medium">{% if lang == 'fr' %}{{settings['goal_fr']}}{% else %}{{settings['goal']}}{% endif %} #{{forloop.index}}</p>
       <h2>{{block_title}}</h2>
       <p class="p--medium">{{block_body}}</p>
     </div>

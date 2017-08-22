@@ -1,5 +1,7 @@
 
+{% include 'translations' %}
 {% include 'blog_tags' %}
+
 
 <div class="grid light_grey_back">
   <div class="col col--6of12 col--phone--12of12">
@@ -12,15 +14,15 @@
       {% for tag in article.tags %}
       {% assign first_letter = tag | handleize | first %}
       {% if first_letter != '_' %}
-      <span class="slash_seperated">{{tag}}</span>
+      <span class="slash_seperated">{% if lang == 'fr' %}{{settings[tag]}}{% else %}{{tag}}{% endif %}</span>
       {% endif %} 
       {% endfor %} 
     </p>
-    <h2 class="small_bottom">{{article.title}}</h2>
-    <p class="p--medium"><em>{{article.excerpt}}</em></p>
+    <h2 class="small_bottom">{{article_title}}</h2>
+    <p class="p--medium"><em>{{article_excerpt}}</em></p>
 
     <div class="medium_bottom underline_links max_width">
-      {{article.content}}
+      {{article_content}}
     </div>
   </div>
 </div>

@@ -184,19 +184,21 @@
       return this.fetch();
     };
 
-    Cart.prototype.add = function(id, quantity) {
+    Cart.prototype.add = function(id, quantity, data) {
       if (quantity == null) {
         quantity = 1;
       }
+      if (data == null) {
+        data = {};
+      }
       Turbolinks.controller.adapter.progressBar.setValue(0);
       Turbolinks.controller.adapter.progressBar.show();
+      data["id"] = parseInt(id);
+      data["quantity"] = quantity;
       return $.ajax("/cart/add.js", {
         method: "POST",
         dataType: "json",
-        data: {
-          quantity: quantity,
-          id: parseInt(id)
-        },
+        data: data,
         success: (function(_this) {
           return function(response) {
             Turbolinks.controller.adapter.progressBar.setValue(100);
@@ -265,6 +267,9 @@
     };
 
     Login.prototype.render = function() {
+      _.extend(this.data, {
+        lang: window.lang
+      });
       return this;
     };
 
@@ -384,6 +389,9 @@
     };
 
     Account.prototype.render = function() {
+      _.extend(this.data, {
+        lang: window.lang
+      });
       Account.__super__.render.call(this);
       return this;
     };
@@ -462,7 +470,8 @@
 
     Cart.prototype.render = function() {
       _.extend(this.data, {
-        model: this.model.toJSON()
+        model: this.model.toJSON(),
+        lang: window.lang
       });
       this.$el.html(this.template(this.data));
       return this;
@@ -697,10 +706,18 @@
     };
 
     Product.prototype.add_to_cart = function(e) {
+      var recurring;
       e.preventDefault();
       e.stopImmediatePropagation();
       e.currentTarget.blur();
-      Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"));
+      recurring = this.$el.find("[name='recurring'] option:selected")[0];
+      if (recurring.value > 0) {
+        Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"), 1, {
+          "properties[Recurring]": recurring.innerText
+        });
+      } else {
+        Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"));
+      }
       return Wise.cart_view.show();
     };
 

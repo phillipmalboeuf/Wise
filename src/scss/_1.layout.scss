@@ -35,6 +35,16 @@ header {
 	@media #{$phone} {
 		padding-top: 0;
 	}
+
+	.template-index & {
+		// color: $white;
+		padding: $gutter*2;
+		background-size: cover;
+		background-color: $black;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url('//cdn.shopify.com/s/files/1/1454/8188/files/Glass_in_dopp_bag_gray_test_a4525856-cd09-44b7-a8f1-6ec640ced4ce_1500x.jpg?v=1502282631'); 
+	}
 }
 
 

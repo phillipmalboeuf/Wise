@@ -21,17 +21,18 @@ class Wise.Models.Cart extends Backbone.Model
 
 
 
-	add: (id, quantity=1)->
+	add: (id, quantity=1, data={})->
 
 		Turbolinks.controller.adapter.progressBar.setValue(0)
 		Turbolinks.controller.adapter.progressBar.show()
 
+		data["id"] = parseInt(id)
+		data["quantity"] = quantity
+
 		$.ajax "/cart/add.js",
 			method: "POST"
 			dataType: "json"
-			data:
-				quantity: quantity
-				id: parseInt(id)
+			data: data
 			success: (response)=>
 
 				Turbolinks.controller.adapter.progressBar.setValue(100)

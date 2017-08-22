@@ -21,6 +21,8 @@ class Wise.Views.Login extends Backbone.View
 
 
 	render: ->
+		_.extend @data, 
+			lang: window.lang
 
 		this
 

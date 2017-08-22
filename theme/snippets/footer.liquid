@@ -1,6 +1,8 @@
 
+
 {% include 'translations'  %}
 
+{% if template != 'index' %}
 <footer class="padded thick_line_height">
 	<div class="grid grid--guttered">
 		<nav class="col col--3of12 col--phone--6of12 col--phone--last">
@@ -32,3 +34,4 @@
 		</nav>
 	</div>
 </footer>
+{% endif %}

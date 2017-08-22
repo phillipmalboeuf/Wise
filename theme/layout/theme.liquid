@@ -64,6 +64,7 @@
   
   <script data-turbolinks-eval="false">
     window.variant_colors = {{ settings.variant_colors | strip_newlines }};
+    {% if lang == 'fr' %}window.lang = "fr";{% endif %}
   </script>
   <script src="{{'templates.js' | asset_url}}" data-turbolinks-eval="false"></script>
   <script src="{{'app.js' | asset_url}}" data-turbolinks-eval="false"></script>

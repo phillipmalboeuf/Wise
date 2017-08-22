@@ -1,28 +1,31 @@
 
+{% include 'translations' %}
+
+
 <section class="admin fades_out fade_out" id="account" data-turbolinks-permanent>
 	<a href="#" class="admin__back" data-hide></a>
 
 	<div class="admin__container">
 		<div class="grid grid--stretch">
 			<div class="col col--4of12 overlay__container--with_button">
-				<button class="overlay__link overlay__link--focus" data-show-tab="account">Mon compte</button>
-				<button class="overlay__link" data-show-tab="orders">Mes commandes</button>
-				<button class="overlay__link" data-show-tab="addresses">Mes coordonnées</button>
-				<button class="overlay__link">Méthode de paiement</button>
-				<button class="overlay__link">Livraison</button>
-				<button class="overlay__link">Code promo</button>
+				<button class="overlay__link overlay__link--focus" data-show-tab="account">{% if lang == 'fr' %}Mon compte{% else %}My account{% endif %}</button>
+				<button class="overlay__link" data-show-tab="orders">{% if lang == 'fr' %}Mes commandes{% else %}My orders{% endif %}</button>
+				<button class="overlay__link" data-show-tab="addresses">{% if lang == 'fr' %}Mes coordonnées{% else %}My coordinates{% endif %}</button>
+				<button class="overlay__link">{% if lang == 'fr' %}Méthode de paiement{% else %}My payment methods{% endif %}</button>
+				<button class="overlay__link">{% if lang == 'fr' %}Livraison{% else %}Shipping{% endif %}</button>
+				<button class="overlay__link">{% if lang == 'fr' %}Code promo{% else %}Promo codes{% endif %}</button>
 
-				<button class="overlay__button button--black" data-logout>Logout</button>
+				<button class="overlay__button button--black" data-logout>{% if lang == 'fr' %}Déconnexion{% else %}Logout{% endif %}</button>
 			</div>
 			<div class="col col--8of12 overlay__container--with_button">
 				<div class="padded">
 					<div class="fades_out grid" data-tab="account">
 						<form class="col col--8of12 col--tablet_landscape--10of12">
-							<label for="last_name">Modifiez vos informations</label>
-							<input type="text" name="customer[first_name]" placeholder="Votre prénom">
-							<input type="text" name="customer[last_name]" placeholder="Votre nom de famille">
-							<input type="email" name="customer[email]" id="email" placeholder="Votre courriel">
-							<input type="password" name="customer[password]" placeholder="Votre mot de passe">
+							<label for="last_name">{% if lang == 'fr' %}Modifiez vos informations{% else %}Modify your information{% endif %}</label>
+							<input type="text" name="customer[first_name]" placeholder="{% if lang == 'fr' %}Votre prénom{% else %}Your fist name{% endif %}" value="{{customer.first_name}}">
+							<input type="text" name="customer[last_name]" placeholder="{% if lang == 'fr' %}Votre nom de famille{% else %}Your last name{% endif %}" value="{{customer.last_name}}">
+							<input type="email" name="customer[email]" id="email" placeholder="{% if lang == 'fr' %}Votre courriel{% else %}Your email address{% endif %}" value="{{customer.email}}">
+							<input type="password" name="customer[password]" placeholder="{% if lang == 'fr' %}Votre mot de passe{% else %}Your password{% endif %}">
 
 							<button type="submit" class="hide"></button>
 						</form>
@@ -53,7 +56,7 @@
 							</tbody>
 						</table>
 						{% else %}
-						<p>{{'customer.orders.none' | t}}</p>
+						<p>{% if lang == 'fr' %}Vous n'avez pas encore placé de commandes.{% else %}You haven't placed any orders yet.{% endif %}</p>
 						{% endif %}
 					</div>
 
@@ -87,12 +90,12 @@
 						{% endfor %}
 						{% else %}
 						<div class="col col--6of12">
-							<p>{{'customer.addresses.none' | t}}</p>
+							<p>{% if lang == 'fr' %}Vous n'avez pas encore d'adresses d'enregistrées'.{% else %}You haven't registered any shipping addresses yet.{% endif %}</p>
 						</div>
 						{% endif %}
 					</div>
 
-					<button class="overlay__button" data-submit>Sauvegarder</button>
+					<button class="overlay__button" data-submit>{% if lang == 'fr' %}Sauvegarder{% else %}Save{% endif %}</button>
 				</div>
 			</div>
 		</div>	

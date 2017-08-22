@@ -45,7 +45,7 @@
         {% for tag in product.tags %} 
         {% assign first_letter = tag | first %}
         {% if first_letter != '_' %}
-        <span class="slash_seperated">{{tag}}</span>
+        <span class="slash_seperated">{% if lang == 'fr' %}{{settings[tag]}}{% else %}{{tag}}{% endif %}</span>
         {% endif %} 
         {% endfor %} 
       </p>
@@ -60,14 +60,20 @@
     </div>
 
     <div class="col col--12of12">
-      {% if product.tags contains 'Refill' %} 
       <div class="grid grid--tight_guttered">
         <div class="col col--6of12 relative">
           <select class="select--button" name="recurring">
+            {% if lang == 'fr' %}
+            <option value=0>Achat d'un seul exemplaire</option>
+            <option value=1>Recevoir tous les mois</option>
+            <option value=2>Recevoir tous les 2 mois</option>
+            <option value=3>Recevoir tous les 3 mois</option>
+            {% else %}
             <option value=0>One time purchase</option>
             <option value=1>Ship every month</option>
             <option value=2>Ship every 2 months</option>
             <option value=3>Ship every 3 months</option>
+            {% endif %}
           </select>
           <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
         </div>
@@ -75,9 +81,9 @@
           <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">{% if lang == 'fr' %}{{settings['add_to_cart_fr']}}{% else %}{{settings['add_to_cart']}}{% endif %}</button>
         </div>
       </div>
-      {% else %}
+      {% comment %}
       <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full">{% if lang == 'fr' %}{{settings['add_to_cart_fr']}}{% else %}{{settings['add_to_cart']}}{% endif %}</button>
-      {% endif %}
+      {% endcomment %}
     </div>
   </div>
 </article>

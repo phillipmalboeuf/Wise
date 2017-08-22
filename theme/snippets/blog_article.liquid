@@ -12,7 +12,7 @@
 			{% for tag in article.tags %}
 			{% assign first_letter = tag | handleize | first %}
 			{% if first_letter != '_' %}
-			<span class="slash_seperated">{{tag}}</span>
+			<span class="slash_seperated">{% if lang == 'fr' %}{{settings[tag]}}{% else %}{{tag}}{% endif %}</span>
 			{% endif %} 
 			{% endfor %} 
 	    </p>

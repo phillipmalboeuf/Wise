@@ -20,6 +20,8 @@ class Wise.Views.Account extends Wise.Views.Login
 
 
 	render: ->
+		_.extend @data, 
+			lang: window.lang
 
 		super()
 
