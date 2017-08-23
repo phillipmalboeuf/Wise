@@ -29,3 +29,8 @@
 		.cart__item {
 			border-bottom: 2px solid $highlight;
 		}
+
+		.cart__button {
+			@extend .overlay__button;
+			position: relative;
+		}

@@ -1,5 +1,5 @@
 
-<form action="/checkout{{#if lang}}?locale=fr{{/if}}" method="post" class="cart__container {{#if model.item_count}}overlay__container--with_button{{/if}}" novalidate>
+<form action="/checkout{{#if lang}}?locale=fr{{/if}}" method="post" class="cart__container" novalidate>
 	{{#if model.item_count}}
 	{{#each model.items}}
 	<div class="padded padded--tight text_center cart__item">
@@ -18,12 +18,12 @@
 		<div class="grid grid--spaced grid--middle">
 			<div>{{{money price}}}</div>
 			<div>
-				<button class="button--transparent" data-decrement="{{id}}" data-current-quantity="{{quantity}}">-</button>
+				<button class="button--transparent" data-decrement="{{key}}" data-current-quantity="{{quantity}}">-</button>
 				{{quantity}}
-				<button class="button--transparent" data-increment="{{id}}" data-current-quantity="{{quantity}}">+</button>
+				<button class="button--transparent" data-increment="{{key}}" data-current-quantity="{{quantity}}">+</button>
 			</div>
 			<div>
-				<button data-remove-from-cart="{{id}}" class="button--transparent"><svg class="icon-trash"><use xlink:href="#icon-trash"></use></svg></button>
+				<button data-remove-from-cart="{{key}}" class="button--transparent"><svg class="icon-trash"><use xlink:href="#icon-trash"></use></svg></button>
 			</div>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 		<strong>Total {{{money model.total_price}}}</strong>
 	</div>
 
-	<button type="submit" name="checkout" class="overlay__button">{{#if lang}}Passer la commande{{else}}Continue to Checkout{{/if}}</button>
+	<button type="submit" name="checkout" class="cart__button">{{#if lang}}Passer la commande{{else}}Continue to Checkout{{/if}}</button>
 	{{else}}
 	<div class="padded text_center">
 		{{#if lang}}Votre panier est vide{{else}}Your cart is empty{{/if}}

@@ -209,7 +209,7 @@
       });
     };
 
-    Cart.prototype.change = function(id, quantity) {
+    Cart.prototype.change = function(key, quantity) {
       var post;
       Turbolinks.controller.adapter.progressBar.setValue(0);
       Turbolinks.controller.adapter.progressBar.show();
@@ -218,7 +218,7 @@
         dataType: "json",
         data: {
           quantity: quantity,
-          id: parseInt(id)
+          id: key
         },
         success: (function(_this) {
           return function(response) {

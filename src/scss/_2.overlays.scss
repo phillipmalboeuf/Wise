@@ -8,8 +8,6 @@
 	position: fixed;
 	z-index: 20;
 
-	overflow-y: auto;
-
 	&.overlay--full {
 		@extend .grid--middle;
 		@extend .grid--center;
@@ -57,7 +55,8 @@
 	.overlay__container {
 		@extend .grey_back;
 
-		max-height: 100vh;
+		max-height: 90vh;
+		overflow-y: auto;
 
 		@include shadow(0 0.25rem 1rem fade-out($black, 0.8));
 	}

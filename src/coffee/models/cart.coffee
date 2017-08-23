@@ -45,7 +45,7 @@ class Wise.Models.Cart extends Backbone.Model
 
 
 
-	change: (id, quantity)->
+	change: (key, quantity)->
 
 		Turbolinks.controller.adapter.progressBar.setValue(0)
 		Turbolinks.controller.adapter.progressBar.show()
@@ -55,7 +55,7 @@ class Wise.Models.Cart extends Backbone.Model
 			dataType: "json"
 			data:
 				quantity: quantity
-				id: parseInt(id)
+				id: key
 			success: (response)=>
 
 				Turbolinks.controller.adapter.progressBar.setValue(100)
