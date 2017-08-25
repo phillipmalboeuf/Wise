@@ -30,6 +30,9 @@ class Wise.Views.Login extends Backbone.View
 	customer_login: (e)->
 		e.preventDefault()
 
+		Turbolinks.controller.adapter.progressBar.setValue(0)
+		Turbolinks.controller.adapter.progressBar.show()
+
 		$.ajax e.currentTarget.getAttribute("action"),
 			method: "POST"
 			dataType: "html"
@@ -41,18 +44,24 @@ class Wise.Views.Login extends Backbone.View
 			}
 			success: (response)=>
 
+				Turbolinks.controller.adapter.progressBar.setValue(100)
+				Turbolinks.controller.adapter.progressBar.hide()
+
 				errors = $(response).find(".errors")
 				if errors.length > 0
 					$(e.currentTarget).find("[data-errors]").text(errors.text())
 
 				else
 					$(e.currentTarget).find("[data-errors]").text("")
-					Turbolinks.visit "?account=true"
+					window.location = "?account=true"
 
 
 
 	create_customer: (e)->
 		e.preventDefault()
+
+		Turbolinks.controller.adapter.progressBar.setValue(0)
+		Turbolinks.controller.adapter.progressBar.show()
 
 		$.ajax e.currentTarget.getAttribute("action"),
 			method: "POST"
@@ -66,13 +75,17 @@ class Wise.Views.Login extends Backbone.View
 			}
 			success: (response)=>
 
+				Turbolinks.controller.adapter.progressBar.setValue(100)
+				Turbolinks.controller.adapter.progressBar.hide()
+
 				errors = $(response).find(".errors")
 				if errors.length > 0
 					$(e.currentTarget).find("[data-errors]").text(errors.text())
 
 				else
 					$(e.currentTarget).find("[data-errors]").text("")
-					Turbolinks.visit "?account=true"
+					
+					window.location = "?account=true"
 
 
 

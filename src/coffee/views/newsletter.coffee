@@ -1,6 +1,6 @@
 class Wise.Views.Newsletter extends Wise.Views.Login
 
-	el: $("#newsletter")
+	el: $("[data-newsletter]")
 
 
 	data: {}

@@ -1,0 +1,18 @@
+
+<a href="#" class="admin__back" data-hide></a>
+
+<div class="admin__container overlay__container--with_button">
+	<form id="credit_card_form" class="padded">
+		<label>Enter your payment information for recurring orders:</label>
+
+		<ol>
+			{{#each items}}
+			<li>{{{product_title}}} x {{quantity}} – {{#each properties}}{{#unless_equal @key "Months"}}{{this}}{{/unless_equal}}{{/each}}</li>
+			{{/each}}
+		</ol>
+
+		<div class="input" id="credit_card_input"></div>
+
+		<button class="overlay__button">Continuer</button>
+	</form>
+</div>

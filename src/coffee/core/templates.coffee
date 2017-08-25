@@ -11,3 +11,28 @@ Handlebars.registerHelper 'truncate', (string, end)->
 
 	else 
 		null
+
+
+Handlebars.registerHelper 'if_equal', (left, right, options)->
+	if left is right
+		options.fn this
+	else
+		return null
+
+Handlebars.registerHelper 'if_lower', (left, right, options)->
+	if left < right
+		options.fn this
+	else
+		return null
+
+Handlebars.registerHelper 'if_higher', (left, right, options)->
+	if left > right
+		options.fn this
+	else
+		return null
+
+Handlebars.registerHelper 'unless_equal', (left, right, options)->
+	if left isnt right
+		options.fn this
+	else
+		return null

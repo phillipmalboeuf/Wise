@@ -8,11 +8,11 @@ label,
 	cursor: pointer;
 	display: block;
 
-	font-size: 1rem;
+	font-size: $tiny_size;
 	font-weight: normal;
 	line-height: 1;
 
-	margin-bottom: $vertical_rythm;
+	margin-bottom: $vertical_rythm/4;
 }
 
 
@@ -46,12 +46,12 @@ textarea,
 	line-height: 1;
 
 	color: inherit;
-	background: $grey;
+	background: transparent;
 	padding: $vertical_rythm/4;
-	border: 1px solid transparent;
+	border: 1px solid $grey;
 	border-radius: 0;
 
-	margin-bottom: $vertical_rythm/2;
+	margin-bottom: $vertical_rythm;
 
 	@include transition(background $fast, color $fast, border-color $fast, opacity $fast);
 
@@ -61,6 +61,10 @@ textarea,
 
 	&:active {
 		top: 1px;
+	}
+
+	&:placeholder-shown {
+		background: $grey;
 	}
 
 	&:disabled {
@@ -252,9 +256,7 @@ input[type="radio"] {
 	-moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder,
-:-moz-placeholder, :-moz-placeholder {
-	color: $primary;
-}
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $white; }
+:-moz-placeholder, :-moz-placeholder { color: $white; }
 
 

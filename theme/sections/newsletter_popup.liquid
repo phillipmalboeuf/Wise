@@ -1,7 +1,7 @@
 
 {% include 'translations'  %}
 
-<section class="admin fades_out fade_out" data-section-id="{{ section.id }}" data-section-type="newsletter-section" id="newsletter" data-newsletter-delay={% if section.settings.disabled %}"never"{% else %}{{section.settings.delay}}{% endif %} data-turbolinks-permanent>
+<section class="admin fades_out fade_out" data-section-id="{{ section.id }}" data-section-type="newsletter-section" id="newsletter" data-newsletter data-newsletter-delay={% if section.settings.disabled %}"never"{% else %}{{section.settings.delay}}{% endif %} data-turbolinks-permanent>
   <a href="#" class="admin__back" data-hide></a>
 
   <div class="admin__container overlay__container--with_button">

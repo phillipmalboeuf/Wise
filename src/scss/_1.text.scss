@@ -439,6 +439,11 @@ sub {
 		height: $medium_size;
 		width: $medium_size;
 	}
+
+	&.icon--tiny {
+		height: $tiny_size;
+		width: $tiny_size;
+	}
 }
 
 iframe {
@@ -450,25 +455,31 @@ small,
 	font-size: $small_size;
 	line-height: 1.071rem;
 	letter-spacing: -$letter_spacing/2;
+
+	&.small--tiny {
+		font-size: $tiny_size;
+		line-height: 1rem;
+	}
 }
 
 b,
 strong,
 .strong {
 	font-weight: $bold;
-	font-style: normal;
 }
 
 em,
 .em {
 	font-style: italic;
-	font-weight: normal;
 }
 
 .capitalize { text-transform: capitalize; }
 .strike { text-decoration: line-through; }
 .thick_line_height { line-height: $line_height*1.5; }
 
+.bordered {
+	border: 2px solid $grey;
+}
 
 .slash_seperated,
 .comma_seperated {

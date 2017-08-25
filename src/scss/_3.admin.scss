@@ -24,3 +24,9 @@
 		.admin__close {
 			@extend .overlay__close;
 		}
+
+		.admin__remove_button {
+			@extend .overlay__close;
+
+			padding: $gutter/10 $gutter/6;
+		}

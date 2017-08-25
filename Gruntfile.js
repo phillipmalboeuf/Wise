@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 
     open: {
       start: {
-        path: 'https://wisecare.myshopify.com/',
+        path: 'https://wisemenscare.com/',
         app: 'Google Chrome'
       }
     },

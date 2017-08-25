@@ -1,7 +1,6 @@
 
 {% include 'translations'  %}
 
-{% if template != 'index' %}
 <header class="padded padded--tight grid grid--spaced grid--middle">
 	<div class="col header__logotype">
 		<a href="/"><svg class="icon-logo header__logo"><use xlink:href="#icon-logo"></use></svg></a>
@@ -17,7 +16,7 @@
 			{% endfor %}
 
 			<div class="col grid grid--middle">
-				{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>{% if lang == 'fr' %}Salut{% else %}Hi{% endif %} <span class="hide_on_phone">{{customer.first_name}}</span></a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>{% if lang == 'fr' %}{{settings['login']}}{% else %}Login{% endif %}</a>{% endif %}</a>
+				{% if customer %}<a href="?account=true" class="nav__link" data-toggle-account>{{customer.first_name}}</a>{% else %}<a href="?login=true" class="nav__link" data-toggle-login>{% if lang == 'fr' %}{{settings['login']}}{% else %}Login{% endif %}</a>{% endif %}</a>
 				<a href="?cart=true" class="nav__link nav__link--cart" data-toggle-cart>
 					<svg class="icon-cart"><use xlink:href="#icon-cart"></use></svg>
 					<span id="item_count" data-item-count>{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
@@ -32,4 +31,3 @@
 		</div>
 	</nav>
 </header>
-{% endif %}

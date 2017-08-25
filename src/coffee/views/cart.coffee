@@ -10,6 +10,7 @@ class Wise.Views.Cart extends Backbone.View
 		"click [data-remove-from-cart]": "remove_from_cart"
 		"click [data-increment]": "increment"
 		"click [data-decrement]": "decrement"
+		"submit #cart_form": "checkout"
 
 
 
@@ -83,6 +84,19 @@ class Wise.Views.Cart extends Backbone.View
 		e.preventDefault()
 
 		Wise.cart.change $(e.currentTarget).attr("data-decrement"), parseInt($(e.currentTarget).attr("data-current-quantity"))-1
+
+
+	checkout: (e)->
+
+		Wise.cookies.delete "subscription"
+
+		recurring_items = []
+		_.each @model.attributes.items, (item)=>
+			if item.properties && _.contains(Object.keys(item.properties), "Months")
+				recurring_items.push item
+
+		if recurring_items.length > 0
+			Wise.credit_card_view.show(e, recurring_items)
 
 
 

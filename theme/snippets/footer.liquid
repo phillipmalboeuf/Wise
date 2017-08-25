@@ -2,7 +2,6 @@
 
 {% include 'translations'  %}
 
-{% if template != 'index' %}
 <footer class="padded thick_line_height">
 	<div class="grid grid--guttered">
 		<nav class="col col--3of12 col--phone--6of12 col--phone--last">
@@ -26,12 +25,14 @@
 			{% endfor %}
 		</nav>
 
-		<nav class="col col--3of12 col--phone--6of12">
+		<nav class="col col--3of12 col--phone--6of12" data-newsletter>
 			<p class="small_bottom">{% if lang == 'fr' %}{{settings['subscribe']}}{% else %}Subscribe to our newsletter{% endif %}</p>
-			<form action="#">
+			<form action="https://shopify.destruct.codes/_newsletter/signup" method="post" data-newsletter-form data-succes-text="Success!">
+				<div class="alert alert--errors" data-errors></div>
+				
+				<input type="hidden" name="shop" value="{{shop.domain}}">
 				<input class="input--tight" type="email" placeholder="{% if lang == 'fr' %}{{settings['enter_email']}}{% else %}Enter email here{% endif %}" name="email">
 			</form>
 		</nav>
 	</div>
 </footer>
-{% endif %}

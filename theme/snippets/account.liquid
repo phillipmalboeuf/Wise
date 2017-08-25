@@ -6,96 +6,109 @@
 	<a href="#" class="admin__back" data-hide></a>
 
 	<div class="admin__container">
+
 		<div class="grid grid--stretch">
-			<div class="col col--4of12 overlay__container--with_button">
-				<button class="overlay__link overlay__link--focus" data-show-tab="account">{% if lang == 'fr' %}Mon compte{% else %}My account{% endif %}</button>
-				<button class="overlay__link" data-show-tab="orders">{% if lang == 'fr' %}Mes commandes{% else %}My orders{% endif %}</button>
-				<button class="overlay__link" data-show-tab="addresses">{% if lang == 'fr' %}Mes coordonnées{% else %}My coordinates{% endif %}</button>
-				<button class="overlay__link">{% if lang == 'fr' %}Méthode de paiement{% else %}My payment methods{% endif %}</button>
-				<button class="overlay__link">{% if lang == 'fr' %}Livraison{% else %}Shipping{% endif %}</button>
-				<button class="overlay__link">{% if lang == 'fr' %}Code promo{% else %}Promo codes{% endif %}</button>
+			<div class="col col--4of12 overlay__container--with_button overlay__links">
+				<button class="overlay__link overlay__link--focus" data-show-tab="account">{% if lang == 'fr' %}Compte{% else %}Account{% endif %}</button>
+				<button class="overlay__link" data-show-tab="orders">{% if lang == 'fr' %}Commandes{% else %}My Orders{% endif %}</button>
+				<button class="overlay__link" data-show-tab="addresses">{% if lang == 'fr' %}Adresses de livraison{% else %}Shipping Addresses{% endif %}</button>
+				<button class="overlay__link" data-show-tab="payment_methods">{% if lang == 'fr' %}Méthodes de paiement{% else %}Payment Methods{% endif %}</button>
+				{% comment %}<button class="overlay__link">{% if lang == 'fr' %}Livraison{% else %}Shipping{% endif %}</button>
+				<button class="overlay__link">{% if lang == 'fr' %}Code promo{% else %}Promo codes{% endif %}</button>{% endcomment %}
 
 				<button class="overlay__button button--black" data-logout>{% if lang == 'fr' %}Déconnexion{% else %}Logout{% endif %}</button>
 			</div>
 			<div class="col col--8of12 overlay__container--with_button">
+				<a href="#" class="overlay__close" data-hide><svg class="icon-close icon--small"><use xlink:href="#icon-close"></use></svg></a>
+
 				<div class="padded">
-					<div class="fades_out grid" data-tab="account">
-						<form class="col col--8of12 col--tablet_landscape--10of12">
-							<label for="last_name">{% if lang == 'fr' %}Modifiez vos informations{% else %}Modify your information{% endif %}</label>
-							<input type="text" name="customer[first_name]" placeholder="{% if lang == 'fr' %}Votre prénom{% else %}Your fist name{% endif %}" value="{{customer.first_name}}">
-							<input type="text" name="customer[last_name]" placeholder="{% if lang == 'fr' %}Votre nom de famille{% else %}Your last name{% endif %}" value="{{customer.last_name}}">
-							<input type="email" name="customer[email]" id="email" placeholder="{% if lang == 'fr' %}Votre courriel{% else %}Your email address{% endif %}" value="{{customer.email}}">
-							<input type="password" name="customer[password]" placeholder="{% if lang == 'fr' %}Votre mot de passe{% else %}Your password{% endif %}">
+					<div data-tab="account">
+						<form action="/admin/customers/{{customer.id}}" method="POST">
+							<h5>{% if lang == 'fr' %}Vos informations de compte{% else %}Your account information{% endif %}</h5>
 
-							<button type="submit" class="hide"></button>
+							<label for="first_name">{% if lang == 'fr' %}Prénom{% else %}First name{% endif %}</label>
+							<input type="text" name="customer[first_name]" id="first_name" placeholder="William" value="{{customer.first_name}}">
+
+							<label for="last_name">{% if lang == 'fr' %}Nom de famille{% else %}Last name{% endif %}</label>
+							<input type="text" name="customer[last_name]" id="last_name" placeholder="Blake" value="{{customer.last_name}}">
+
+							<label for="email">{% if lang == 'fr' %}Courriel{% else %}Email address{% endif %}</label>
+							<input type="email" name="customer[email]" id="email" id="email" placeholder="hello@blake.com" value="{{customer.email}}">
+
+							{% comment %}<label for="password">{% if lang == 'fr' %}Mot de passe{% else %}Password{% endif %}</label>
+							<input type="password" name="customer[password]" id="password" placeholder="* * * * * *">{% endcomment %}
+
+							{% comment %}<button class="overlay__button">{% if lang == 'fr' %}Sauvegarder{% else %}Save{% endif %}</button>{% endcomment %}
 						</form>
-						<div class="col col--4of12"></div>
 					</div>
-					<div class="fades_out fade_out hide" data-tab="orders">
-						{% if customer.orders.size != 0 %}
-						<table width="100%" class="table--lined" border="0" cellspacing="0" cellpadding="0">
-							<thead>
-								<tr>
-									<th>{{'customer.orders.order_number' | t}}</th>
-									<th>{{'customer.orders.date' | t}}</th>
-									<th>{{'customer.orders.payment_status' | t}}</th>
-									<th>{{'customer.orders.fulfillment_status' | t}}</th>
-									<th>{{'customer.orders.total' | t}}</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for order in customer.orders %}
-								<tr>
-									<td>{{ order.name | link_to: order.customer_url }}</td>
-									<td>{{ order.created_at | date: format: 'month_day_year' }}</td>
-									<td>{{ order.financial_status_label }}</td>
-									<td>{{ order.fulfillment_status_label }}</td>
-									<td>{{ order.total_price | money }}</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-						{% else %}
-						<p>{% if lang == 'fr' %}Vous n'avez pas encore placé de commandes.{% else %}You haven't placed any orders yet.{% endif %}</p>
-						{% endif %}
-					</div>
+					<div class="hide" data-tab="orders">
+						<h5>{% if lang == 'fr' %}Liste des commandes du compte{% else %}The list of this account's orders{% endif %}</h5>
 
-					<div class="fades_out fade_out hide grid grid--guttered" data-tab="addresses">
-						{% if customer.addresses.size != 0 %}
-						
-						{% for address in customer.addresses %}
-						<div class="col col--6of12">
-						<p>
-							{{ address.address1 }}{% if address == customer.default_address %} <strong>({{'customer.addresses.default' | t}})</strong>{% endif %}<br>
-							{% if address.address2 != "" %}
-							{{ address.address2 }}<br>
-							{% endif %}
-							{% if address.city != "" %}
-							{{ address.city }}<br>
-							{% endif %}
-							{% if address.province_code != "" %}
-							{{ address.province_code | upcase }}<br>
-							{% endif %}
-							{% if address.zip != "" %}
-							{{ address.zip | upcase }}<br>
-							{% endif %}
-							{% if address.country != "" %}
-							{{ address.country }}<br>
-							{% endif %}
-							{% if address.phone != "" %}
-							{{ address.phone }}
-							{% endif %}
-						</p>
+						{% if customer.orders.size != 0 %}
+						{% for order in customer.orders %}
+						<label>{% if lang == 'fr' %}Statut de la commande {% else %}Order status{% endif %}: {{order.fulfillment_status}}</label>
+						<div class="padded padded--very_tight bordered normal_bottom">
+							<div class="grid grid--guttered">
+								<div class="col col--5of12">
+									{{order.shipping_address.name}}<br>
+									{{order.shipping_address.address1}} {{order.shipping_address.address2}}<br>
+									{{order.shipping_address.city}}, {{order.shipping_address.province_code|upcase}} {{order.shipping_address.zip|upcase}}<br>
+									{{order.shipping_address.country}}<br>
+									{% if order.shipping_address.phone != "" %}
+									{{order.shipping_address.phone}}
+									{% endif %}
+								</div>
+								<div class="col col--7of12">
+									{{order.created_at|date: '%Y-%m-%d'}}<br>
+									<em class="strong">Commande# {{order.order_number}}</em><br>
+									{% for fulfillment in order.fulfillments %}
+									Numéro de suivi postal : {{fulfillment.tracking_company}} {% for tracking_number in order.tracking_numbers %} <a href="{{order.tracking_urls[forloop.index0]}}">#{{tracking_number}}</a> {% endfor %}
+									{% endfor %}
+									{% for item in order.line_items  %}
+									<small class="small--tiny">( {{item.quantity}} ) {{item.variant.title}}, {{item.product.title}}</small><br>
+									{% endfor %}
+									{{order.total_price|divided_by:100}} $ CAD
+								</div>
+							</div>
 						</div>
 						{% endfor %}
 						{% else %}
-						<div class="col col--6of12">
-							<p>{% if lang == 'fr' %}Vous n'avez pas encore d'adresses d'enregistrées'.{% else %}You haven't registered any shipping addresses yet.{% endif %}</p>
-						</div>
+						<label>{% if lang == 'fr' %}Vous n'avez pas encore placé de commandes.{% else %}You haven't placed any orders yet.{% endif %}</label>
 						{% endif %}
 					</div>
 
-					<button class="overlay__button" data-submit>{% if lang == 'fr' %}Sauvegarder{% else %}Save{% endif %}</button>
+					<div class="hide" data-tab="addresses">
+						<h5>{% if lang == 'fr' %}Gérez vos adresses de livraison{% else %}Manage your shipping addresses{% endif %}</h5>
+
+						{% if customer.addresses.size != 0 %}
+						<div class="grid grid--guttered">
+						{% for address in customer.addresses %}
+							<div class="col col--6of12">
+								<label>{% if address == customer.default_address %}{% if lang == 'fr' %}Adresse sélectionée{% else %}Default address{% endif %}{% else %}&nbsp;{% endif %}</label>
+								<div class="padded padded--very_tight bordered relative{% if address == customer.default_address %} grey_back{% endif %}">
+									<a href="#" class="admin__remove_button" data-remove-address="{{address.id}}"><svg class="icon-close icon--tiny"><use xlink:href="#icon-close"></use></svg></a>
+
+									{{address.name}}<br>
+									{{address.address1}} {{address.address2}}<br>
+									{{address.city}}, {{address.province_code|upcase}} {{address.zip|upcase}}<br>
+									{{address.country}}<br>
+									{% if address.phone != "" %}
+									{{address.phone}}
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+						{% else %}
+						<label>{% if lang == 'fr' %}Vous n'avez pas encore d'adresses d'enregistrées'.{% else %}You haven't registered any shipping addresses yet.{% endif %}</label>
+						{% endif %}
+
+						{% comment %}<button class="overlay__button">{% if lang == 'fr' %}Ajouter une adresse{% else %}Add a new address{% endif %}</button>{% endcomment %}
+					</div>
+
+					<div class="hide" data-tab="payment_methods">
+						<h5>{% if lang == 'fr' %}Gérez vos méthodes de paiement{% else %}Manage your payment methods{% endif %}</h5>
+					</div>
 				</div>
 			</div>
 		</div>	

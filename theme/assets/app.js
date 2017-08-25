@@ -13,6 +13,7 @@
         model: this.cart
       });
       this.login_view = new Wise.Views.Login();
+      this.credit_card_view = new Wise.Views.CreditCard();
       this.account_view = new Wise.Views.Account();
       this.newsletter_view = new Wise.Views.Newsletter();
       this.render_views();
@@ -59,10 +60,18 @@
       } else {
         Wise.login_view.hide();
       }
-      if (this.query.account != null) {
-        return Wise.account_view.show();
+      if (this.query.credit_card != null) {
+        Wise.credit_card_view.show();
       } else {
-        return Wise.account_view.hide();
+        Wise.credit_card_view.hide();
+      }
+      if (this.query.account != null) {
+        Wise.account_view.show();
+      } else {
+        Wise.account_view.hide();
+      }
+      if ($("[data-show-cart]").length > 0) {
+        return this.cart_view.show();
       }
     }
   };
@@ -151,6 +160,38 @@
         string += "...";
       }
       return string;
+    } else {
+      return null;
+    }
+  });
+
+  Handlebars.registerHelper('if_equal', function(left, right, options) {
+    if (left === right) {
+      return options.fn(this);
+    } else {
+      return null;
+    }
+  });
+
+  Handlebars.registerHelper('if_lower', function(left, right, options) {
+    if (left < right) {
+      return options.fn(this);
+    } else {
+      return null;
+    }
+  });
+
+  Handlebars.registerHelper('if_higher', function(left, right, options) {
+    if (left > right) {
+      return options.fn(this);
+    } else {
+      return null;
+    }
+  });
+
+  Handlebars.registerHelper('unless_equal', function(left, right, options) {
+    if (left !== right) {
+      return options.fn(this);
     } else {
       return null;
     }
@@ -275,6 +316,8 @@
 
     Login.prototype.customer_login = function(e) {
       e.preventDefault();
+      Turbolinks.controller.adapter.progressBar.setValue(0);
+      Turbolinks.controller.adapter.progressBar.show();
       return $.ajax(e.currentTarget.getAttribute("action"), {
         method: "POST",
         dataType: "html",
@@ -287,12 +330,14 @@
         success: (function(_this) {
           return function(response) {
             var errors;
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
             errors = $(response).find(".errors");
             if (errors.length > 0) {
               return $(e.currentTarget).find("[data-errors]").text(errors.text());
             } else {
               $(e.currentTarget).find("[data-errors]").text("");
-              return Turbolinks.visit("?account=true");
+              return window.location = "?account=true";
             }
           };
         })(this)
@@ -301,6 +346,8 @@
 
     Login.prototype.create_customer = function(e) {
       e.preventDefault();
+      Turbolinks.controller.adapter.progressBar.setValue(0);
+      Turbolinks.controller.adapter.progressBar.show();
       return $.ajax(e.currentTarget.getAttribute("action"), {
         method: "POST",
         data: {
@@ -314,12 +361,14 @@
         success: (function(_this) {
           return function(response) {
             var errors;
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
             errors = $(response).find(".errors");
             if (errors.length > 0) {
               return $(e.currentTarget).find("[data-errors]").text(errors.text());
             } else {
               $(e.currentTarget).find("[data-errors]").text("");
-              return Turbolinks.visit("?account=true");
+              return window.location = "?account=true";
             }
           };
         })(this)
@@ -381,7 +430,8 @@
     Account.prototype.events = {
       "click [data-hide]": "hide",
       "click [data-logout]": "logout",
-      "click [data-show-tab]": "show_tab"
+      "click [data-show-tab]": "show_tab",
+      "click [data-remove-address]": "remove_address"
     };
 
     Account.prototype.initialize = function() {
@@ -399,25 +449,28 @@
     Account.prototype.show_tab = function(e) {
       var show;
       show = e.currentTarget.getAttribute("data-show-tab");
-      this.$el.find("[data-tab]").addClass("fade_out");
       this.$el.find("[data-show-tab]").removeClass("overlay__link--focus");
-      return setTimeout((function(_this) {
-        return function() {
-          _this.$el.find("[data-tab]").addClass("hide");
-          _this.$el.find("[data-tab='" + show + "']").removeClass("hide");
-          _this.$el.find("[data-show-tab='" + show + "']").addClass("overlay__link--focus");
-          return setTimeout(function() {
-            return _this.$el.find("[data-tab='" + show + "']").removeClass("fade_out");
-          }, 10);
-        };
-      })(this), 500);
+      this.$el.find("[data-tab]").addClass("hide");
+      this.$el.find("[data-tab='" + show + "']").removeClass("hide");
+      return this.$el.find("[data-show-tab='" + show + "']").addClass("overlay__link--focus");
     };
 
     Account.prototype.logout = function(e) {
+      e.preventDefault();
       return $.ajax("/account/logout", {
         method: "GET",
         success: function(response) {
-          return Turbolinks.visit("/");
+          return window.location = window.location;
+        }
+      });
+    };
+
+    Account.prototype.remove_address = function(e) {
+      e.preventDefault();
+      return $.ajax("/account/addresses/" + e.currentTarget.getAttribute("data-remove-address"), {
+        method: "DELETE",
+        success: function(response) {
+          return $(e.currentTarget).parent().parent().remove();
         }
       });
     };
@@ -455,7 +508,8 @@
     Cart.prototype.events = {
       "click [data-remove-from-cart]": "remove_from_cart",
       "click [data-increment]": "increment",
-      "click [data-decrement]": "decrement"
+      "click [data-decrement]": "decrement",
+      "submit #cart_form": "checkout"
     };
 
     Cart.prototype.initialize = function() {
@@ -514,6 +568,22 @@
       return Wise.cart.change($(e.currentTarget).attr("data-decrement"), parseInt($(e.currentTarget).attr("data-current-quantity")) - 1);
     };
 
+    Cart.prototype.checkout = function(e) {
+      var recurring_items;
+      Wise.cookies["delete"]("subscription");
+      recurring_items = [];
+      _.each(this.model.attributes.items, (function(_this) {
+        return function(item) {
+          if (item.properties && _.contains(Object.keys(item.properties), "Months")) {
+            return recurring_items.push(item);
+          }
+        };
+      })(this));
+      if (recurring_items.length > 0) {
+        return Wise.credit_card_view.show(e, recurring_items);
+      }
+    };
+
     return Cart;
 
   })(Backbone.View);
@@ -560,6 +630,124 @@
     return Collections;
 
   })(Backbone.View);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Wise.Views.CreditCard = (function(superClass) {
+    extend(CreditCard, superClass);
+
+    function CreditCard() {
+      return CreditCard.__super__.constructor.apply(this, arguments);
+    }
+
+    CreditCard.prototype.el = $("#credit_card");
+
+    CreditCard.prototype.template = templates["credit_card"];
+
+    CreditCard.prototype.data = {};
+
+    CreditCard.prototype.events = {
+      "click [data-hide]": "hide",
+      "submit #credit_card_form": "submit"
+    };
+
+    CreditCard.prototype.items = [];
+
+    CreditCard.prototype.initialize = function() {
+      return CreditCard.__super__.initialize.call(this);
+    };
+
+    CreditCard.prototype.render = function() {
+      _.extend(this.data, {
+        lang: window.lang,
+        items: this.items
+      });
+      this.$el.html(this.template(this.data));
+      this.elements = stripe.elements();
+      this.card = this.elements.create("card", {
+        style: {
+          base: {
+            color: "#a98e63",
+            fontSize: "16px",
+            fontFamily: "Agendatype"
+          },
+          invalid: {
+            color: "#d20000",
+            iconColor: "#d20000"
+          }
+        }
+      });
+      this.card.addEventListener("change", this.card_change.bind(this));
+      this.card.mount("#credit_card_input");
+      CreditCard.__super__.render.call(this);
+      return this;
+    };
+
+    CreditCard.prototype.card_change = function(event) {
+      if (event.complete) {
+        Turbolinks.controller.adapter.progressBar.setValue(0);
+        Turbolinks.controller.adapter.progressBar.show();
+        return stripe.createToken(this.card).then((function(_this) {
+          return function(result) {
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
+            if (result.token) {
+              return _this.token = result.token.id;
+            }
+          };
+        })(this));
+      }
+    };
+
+    CreditCard.prototype.submit = function(e) {
+      e.preventDefault();
+      if (this.token) {
+        Turbolinks.controller.adapter.progressBar.setValue(0);
+        Turbolinks.controller.adapter.progressBar.show();
+        return $.ajax("https://shopify.destruct.codes/subscriptions", {
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({
+            token: this.token,
+            plans: _.map(this.items, function(item) {
+              return {
+                "plan": item.product_id + "-" + item.properties["Months"],
+                "quantity": item.quantity
+              };
+            })
+          }),
+          success: (function(_this) {
+            return function(response) {
+              Turbolinks.controller.adapter.progressBar.setValue(100);
+              Turbolinks.controller.adapter.progressBar.hide();
+              Wise.cookies.set("subscription", response._id);
+              if (window.lang) {
+                return window.location = "/checkout?locale=" + window.lang;
+              } else {
+                return window.location = "/checkout";
+              }
+            };
+          })(this)
+        });
+      }
+    };
+
+    CreditCard.prototype.show = function(e, items) {
+      if (e != null) {
+        e.preventDefault();
+      }
+      this.items = items;
+      this.render();
+      return this.$el.removeClass("fade_out");
+    };
+
+    return CreditCard;
+
+  })(Wise.Views.Login);
 
 }).call(this);
 
@@ -620,7 +808,7 @@
       return Newsletter.__super__.constructor.apply(this, arguments);
     }
 
-    Newsletter.prototype.el = $("#newsletter");
+    Newsletter.prototype.el = $("[data-newsletter]");
 
     Newsletter.prototype.data = {};
 
@@ -713,7 +901,8 @@
       recurring = this.$el.find("[name='recurring'] option:selected")[0];
       if (recurring.value > 0) {
         Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"), 1, {
-          "properties[Recurring]": recurring.innerText
+          "properties[Recurring]": recurring.innerText,
+          "properties[Months]": recurring.value
         });
       } else {
         Wise.cart.add($(e.currentTarget).attr("data-add-to-cart"));

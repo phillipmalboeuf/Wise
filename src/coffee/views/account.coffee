@@ -9,6 +9,7 @@ class Wise.Views.Account extends Wise.Views.Login
 		"click [data-hide]": "hide"
 		"click [data-logout]": "logout"
 		"click [data-show-tab]": "show_tab"
+		"click [data-remove-address]": "remove_address"
 
 
 
@@ -30,26 +31,39 @@ class Wise.Views.Account extends Wise.Views.Login
 
 	show_tab: (e)->
 		show = e.currentTarget.getAttribute("data-show-tab")
-		this.$el.find("[data-tab]").addClass "fade_out"
+		# this.$el.find("[data-tab]").addClass "fade_out"
 		this.$el.find("[data-show-tab]").removeClass "overlay__link--focus"
 
-		setTimeout =>
-			this.$el.find("[data-tab]").addClass "hide"
-			this.$el.find("[data-tab='"+show+"']").removeClass "hide"
-			this.$el.find("[data-show-tab='"+show+"']").addClass "overlay__link--focus"
-			setTimeout =>
-				this.$el.find("[data-tab='"+show+"']").removeClass "fade_out"
-			, 10
+		# setTimeout =>
+		this.$el.find("[data-tab]").addClass "hide"
+		this.$el.find("[data-tab='"+show+"']").removeClass "hide"
+		this.$el.find("[data-show-tab='"+show+"']").addClass "overlay__link--focus"
+			# setTimeout =>
+			# 	this.$el.find("[data-tab='"+show+"']").removeClass "fade_out"
+			# , 10
 
-		, 500
+		# , 500
 
 
 
 	logout: (e)->
+		e.preventDefault()
+
 		$.ajax "/account/logout",
 			method: "GET",
 			success: (response)->
-				Turbolinks.visit "/"
+				window.location = window.location
+
+
+	remove_address: (e)->
+		e.preventDefault()
+
+		$.ajax "/account/addresses/" + e.currentTarget.getAttribute("data-remove-address"),
+			method: "DELETE",
+			success: (response)->
+				$(e.currentTarget).parent().parent().remove()
+
+
 
 
 	show: (e)->

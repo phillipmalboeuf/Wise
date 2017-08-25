@@ -1,5 +1,5 @@
 
-<form action="/checkout{{#if lang}}?locale=fr{{/if}}" method="post" class="cart__container" novalidate>
+<form action="/checkout{{#if lang}}?locale=fr{{/if}}" method="post" class="cart__container" id="cart_form" novalidate>
 	{{#if model.item_count}}
 	{{#each model.items}}
 	<div class="padded padded--tight text_center cart__item">
@@ -12,7 +12,9 @@
 
 		
 		{{#each properties}}
+		{{#unless_equal @key "Months"}}
 		<br>{{this}}
+		{{/unless_equal}}
 		{{/each}}
 
 		<div class="grid grid--spaced grid--middle">

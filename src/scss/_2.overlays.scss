@@ -73,7 +73,7 @@
 			top: 0;
 			right: 0;
 
-			padding: $gutter/2;
+			padding: $gutter/4;
 		}
 
 		.overlay__button {
@@ -98,6 +98,11 @@
 			}
 		}
 
+		.overlay__links {
+			border-right: 2px solid $highlight;
+			min-height: 40vh;
+		}
+
 		.overlay__link {
 			@extend .button--full;
 
@@ -111,6 +116,7 @@
 			border-radius: 0;
 			border-top: 0;
 			border-left: 0;
+			border-right: 0;
 
 			margin-bottom: -2px !important;
 

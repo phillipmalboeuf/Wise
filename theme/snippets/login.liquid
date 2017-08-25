@@ -3,15 +3,22 @@
 	<a href="#" class="admin__back" data-hide></a>
 
 	<div class="admin__container overlay__container--with_button">
+		<a href="#" class="overlay__close" data-hide><svg class="icon-close icon--small"><use xlink:href="#icon-close"></use></svg></a>
+		
 		<div class="padded">
 			<div class="grid grid--guttered">
 				<div class="col col--6of12">
 					{% form 'create_customer' %}
-					<label for="email">Créer un compte</label>
-					<input type="text" name="customer[first_name]" placeholder="Votre prénom">
-					<input type="text" name="customer[last_name]" placeholder="Votre nom de famille">
-					<input type="email" name="customer[email]" id="email" placeholder="Votre courriel">
-					<input type="password" name="customer[password]" placeholder="Votre mot de passe">
+					<h5>{% if lang == 'fr' %}Créer un compte{% else %}Create an account{% endif %}</h5>
+					<label for="last_name">{% if lang == 'fr' %}Prénom{% else %}First name{% endif %}</label>
+					<input type="text" name="customer[first_name]" placeholder="William">
+					<label for="last_name">{% if lang == 'fr' %}Nom de famille{% else %}Last name{% endif %}</label>
+					<input type="text" name="customer[last_name]" placeholder="Blake">
+					<label for="email">{% if lang == 'fr' %}Courriel{% else %}Email address{% endif %}</label>
+					<input type="email" name="customer[email]" required id="email" placeholder="hello@blake.com">
+
+					<label for="password">{% if lang == 'fr' %}Mot de passe{% else %}Password{% endif %}</label>
+					<input type="password" autocomplete="new-password" name="customer[password]" required type="password" placeholder="* * * * * *" class="flat_bottom">
 
 					<button type="submit" class="hide"></button>
 					{% endform %}
@@ -20,13 +27,18 @@
 				<div class="col col--6of12">
 					
 					{% form 'customer_login' %}
-					<label for="login_email">Connectez-vous à un compte existant</label>
-					<input type="email" name="customer[email]" id="login_email" placeholder="Votre courriel">
-					<input type="password" name="customer[password]" placeholder="Votre mot de passe">
+					<h5>{% if lang == 'fr' %}Connectez-vous à un compte existant{% else %}Connect to an existing account{% endif %}</h5>
+					<label for="login_email">{% if lang == 'fr' %}Courriel{% else %}Email address{% endif %}</label>
+					<input type="email" name="customer[email]" required id="login_email" placeholder="hello@blake.com">
+
+					<label for="login_password">{% if lang == 'fr' %}Mot de passe{% else %}Password{% endif %}</label>
+					<input type="password" name="customer[password]" required placeholder="* * * * * *">
 
 					<div class="alert alert--errors" data-errors></div>
 
 					<button type="submit" class="hide"></button>
+
+					<a href="#" class="a--underline small grey">Mot de passe oublié?</a>
 					{% endform %}
 				</div>
 			</div>

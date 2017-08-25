@@ -1,21 +1,21 @@
 
 
-<div class="grid">
+{% comment %}<div class="grid">
 	<div class="col col--4of12 col--tablet_portrait--8of12 col--phone--12of12">
 		<div class="header__logotype"><svg class="icon-logo header__logo"><use xlink:href="#icon-logo"></use></svg></div>
 		<p class="p--medium">{{ page_description }}</p>
 	</div>
-</div>
+</div>{% endcomment %}
 
 
 
-{% comment %}
+
 {{ content_for_index }}
 
 {% include 'translations' %}
 
 
-<a href="pages/approche" class="block padded padded--thick light_grey_back text_center">
+<a href="/pages/about-us" class="block padded padded--thick light_grey_back text_center">
 	<h2 class="big_bottom black">{{aim}}</h2>
 
 	<div class="grid grid--thick_guttered grid--center">
@@ -59,4 +59,4 @@
 			<p class="p--almost">{{sustainable}}</p>
 		</div>
 	</div>
-</a>{% endcomment %}
+</a>

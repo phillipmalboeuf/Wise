@@ -4,7 +4,7 @@
     "settings": [
       {
         "type": "text",
-        "id": "pages_approche",
+        "id": "pages_about-us",
         "label": "About (FR)",
         "default": "Approche"
       },
@@ -39,21 +39,21 @@
       },
       {
         "type": "text",
-        "id": "pages_conditions-dachat",
+        "id": "pages_terms-and-conditions",
         "label": "Terms of purchase (FR)",
-        "default": "Conditions d'achat"
+        "default": "Termes et conditions"
       },
       {
         "type": "text",
-        "id": "pages_politique-de-retour",
-        "label": "Return policy (FR)",
-        "default": "Politique de retour"
+        "id": "pages_refund-policy",
+        "label": "Refund policy (FR)",
+        "default": "Politique de remboursement"
       },
       {
         "type": "text",
-        "id": "pages_infos-sur-le-transport",
-        "label": "Shipping Information (FR)",
-        "default": "Info sur le transport"
+        "id": "pages_privacy-policy",
+        "label": "Privacy Policy (FR)",
+        "default": "Politique de confidentialité"
       },
       {
         "type": "text",
@@ -66,6 +66,16 @@
         "id": "enter_email",
         "label": "Enter email here (FR)",
         "default": "Entrez votre adresse courriel"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "facebook_image",
+        "label": "Facebook Image"
       }
     ]
   },

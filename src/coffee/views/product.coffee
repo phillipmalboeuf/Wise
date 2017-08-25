@@ -24,7 +24,8 @@ class Wise.Views.Product extends Backbone.View
 		recurring = this.$el.find("[name='recurring'] option:selected")[0]
 		if recurring.value > 0
 			Wise.cart.add $(e.currentTarget).attr("data-add-to-cart"), 1, {
-				"properties[Recurring]": recurring.innerText
+				"properties[Recurring]": recurring.innerText,
+				"properties[Months]": recurring.value
 			}
 		else
 			Wise.cart.add $(e.currentTarget).attr("data-add-to-cart")
