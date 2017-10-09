@@ -20,6 +20,8 @@
 					<label for="password">{% if lang == 'fr' %}Mot de passe{% else %}Password{% endif %}</label>
 					<input type="password" autocomplete="new-password" name="customer[password]" required type="password" placeholder="* * * * * *" class="flat_bottom">
 
+					<div class="alert alert--errors" data-errors></div>
+
 					<button type="submit" class="hide"></button>
 					{% endform %}
 				</div>
@@ -38,7 +40,7 @@
 
 					<button type="submit" class="hide"></button>
 
-					<a href="#" class="a--underline small grey">Mot de passe oublié?</a>
+					<a href="#" class="a--underline small grey" data-show-forgot-password>{% if lang == 'fr' %}Mot de passe oublié?{% else %}Forgot your password?{% endif %}</a>
 					{% endform %}
 				</div>
 			</div>

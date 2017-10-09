@@ -13,8 +13,9 @@
         model: this.cart
       });
       this.login_view = new Wise.Views.Login();
-      this.credit_card_view = new Wise.Views.CreditCard();
       this.account_view = new Wise.Views.Account();
+      this.forgot_password_view = new Wise.Views.ForgotPassword();
+      this.credit_card_view = new Wise.Views.CreditCard();
       this.newsletter_view = new Wise.Views.Newsletter();
       this.render_views();
       return document.addEventListener("turbolinks:render", this.render_views.bind(this));
@@ -75,6 +76,10 @@
       }
     }
   };
+
+  if (window.location.host === "wisecare.co") {
+    window.location = "https://wisemenscare.com" + window.location.pathname;
+  }
 
   Wise = window.Wise;
 
@@ -300,7 +305,8 @@
       "click [data-hide]": "hide",
       "submit #customer_login": "customer_login",
       "submit #create_customer": "create_customer",
-      "click [data-submit]": "submit_form"
+      "click [data-submit]": "submit_form",
+      "click [data-show-forgot-password]": "show_forgot_password"
     };
 
     Login.prototype.initialize = function() {
@@ -406,6 +412,10 @@
       return this.$el.addClass("fade_out");
     };
 
+    Login.prototype.show_forgot_password = function(e) {
+      return Wise.forgot_password_view.show(e);
+    };
+
     return Login;
 
   })(Backbone.View);
@@ -460,7 +470,7 @@
       return $.ajax("/account/logout", {
         method: "GET",
         success: function(response) {
-          return window.location = window.location;
+          return window.location = window.location.pathname;
         }
       });
     };
@@ -746,6 +756,70 @@
     };
 
     return CreditCard;
+
+  })(Wise.Views.Login);
+
+}).call(this);
+
+(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Wise.Views.ForgotPassword = (function(superClass) {
+    extend(ForgotPassword, superClass);
+
+    function ForgotPassword() {
+      return ForgotPassword.__super__.constructor.apply(this, arguments);
+    }
+
+    ForgotPassword.prototype.el = $("#forgot_password");
+
+    ForgotPassword.prototype.data = {};
+
+    ForgotPassword.prototype.events = {
+      "click [data-hide]": "hide",
+      "submit [action='/account/recover']": "recover_customer_password"
+    };
+
+    ForgotPassword.prototype.initialize = function() {
+      return ForgotPassword.__super__.initialize.call(this);
+    };
+
+    ForgotPassword.prototype.render = function() {
+      ForgotPassword.__super__.render.call(this);
+      return this;
+    };
+
+    ForgotPassword.prototype.recover_customer_password = function(e) {
+      e.preventDefault();
+      Turbolinks.controller.adapter.progressBar.setValue(0);
+      Turbolinks.controller.adapter.progressBar.show();
+      return $.ajax(e.currentTarget.getAttribute("action"), {
+        method: "POST",
+        dataType: "html",
+        data: {
+          "email": e.currentTarget["email"].value,
+          form_type: "recover_customer_password",
+          utf8: "✓"
+        },
+        success: (function(_this) {
+          return function(response) {
+            var errors;
+            Turbolinks.controller.adapter.progressBar.setValue(100);
+            Turbolinks.controller.adapter.progressBar.hide();
+            errors = $(response).find(".errors");
+            if (errors.length > 0) {
+              return $(e.currentTarget).find("[data-errors]").text(errors.text());
+            } else {
+              $(e.currentTarget).find("[data-errors]").text("");
+              return $(e.currentTarget).find("[data-success]").text("Success!");
+            }
+          };
+        })(this)
+      });
+    };
+
+    return ForgotPassword;
 
   })(Wise.Views.Login);
 

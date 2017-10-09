@@ -10,6 +10,7 @@ class Wise.Views.Login extends Backbone.View
 		"submit #customer_login": "customer_login"
 		"submit #create_customer": "create_customer"
 		"click [data-submit]": "submit_form"
+		"click [data-show-forgot-password]": "show_forgot_password"
 
 
 
@@ -121,5 +122,10 @@ class Wise.Views.Login extends Backbone.View
 			e.preventDefault()
 		
 		this.$el.addClass "fade_out"
+
+
+	show_forgot_password: (e)->
+		Wise.forgot_password_view.show(e)
+
 
 

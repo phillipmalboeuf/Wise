@@ -23,23 +23,33 @@
 
 				<div class="padded">
 					<div data-tab="account">
-						<form action="/admin/customers/{{customer.id}}" method="POST">
+						<div>
 							<h5>{% if lang == 'fr' %}Vos informations de compte{% else %}Your account information{% endif %}</h5>
 
 							<label for="first_name">{% if lang == 'fr' %}Prénom{% else %}First name{% endif %}</label>
-							<input type="text" name="customer[first_name]" id="first_name" placeholder="William" value="{{customer.first_name}}">
+							<input type="text" disabled name="customer[first_name]" id="first_name" placeholder="William" value="{{customer.first_name}}">
 
 							<label for="last_name">{% if lang == 'fr' %}Nom de famille{% else %}Last name{% endif %}</label>
-							<input type="text" name="customer[last_name]" id="last_name" placeholder="Blake" value="{{customer.last_name}}">
+							<input type="text" disabled name="customer[last_name]" id="last_name" placeholder="Blake" value="{{customer.last_name}}">
 
 							<label for="email">{% if lang == 'fr' %}Courriel{% else %}Email address{% endif %}</label>
-							<input type="email" name="customer[email]" id="email" id="email" placeholder="hello@blake.com" value="{{customer.email}}">
+							<input type="email" disabled name="customer[email]" id="email" id="email" placeholder="hello@blake.com" value="{{customer.email}}">
 
-							{% comment %}<label for="password">{% if lang == 'fr' %}Mot de passe{% else %}Password{% endif %}</label>
-							<input type="password" name="customer[password]" id="password" placeholder="* * * * * *">{% endcomment %}
+							{% comment %}{% form 'reset_customer_password' %}
+      
+							<h5>{% if lang == 'fr' %}Entrer un nouveau mot de pass{% else %}Enter a new password{% endif %}</h5>
 
-							{% comment %}<button class="overlay__button">{% if lang == 'fr' %}Sauvegarder{% else %}Save{% endif %}</button>{% endcomment %}
-						</form>
+							<label for="ResetPassword">{{ 'customer.reset_password.password' | t }}</label>
+							<input type="password" value="" name="customer[password]" id="ResetPassword" class="{% if form.errors contains 'password' %} input--error{% endif %}">
+
+							<label for="PasswordConfirmation">{{ 'customer.reset_password.password_confirm' | t }}</label>
+							<input type="password" value="" name="customer[password_confirmation]" id="PasswordConfirmation" class="{% if form.errors contains 'password_confirmation' %} input--error{% endif %}">
+
+							{{ form.errors | default_errors }}
+
+							<button class="overlay__button">{% if lang == 'fr' %}Sauvegarder{% else %}Reset{% endif %}</button>
+							{% endform %}{% endcomment %}
+						</div>
 					</div>
 					<div class="hide" data-tab="orders">
 						<h5>{% if lang == 'fr' %}Liste des commandes du compte{% else %}The list of this account's orders{% endif %}</h5>

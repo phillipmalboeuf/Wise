@@ -6,3 +6,11 @@ Success
 {{ form.errors | default_errors }}
 {% endif %}
 {% endform %}
+
+{% form 'recover_customer_password' %}
+{% if form.posted_successfully? %}
+Success
+{% else %}
+{{ form.errors | default_errors }}
+{% endif %}
+{% endform %}

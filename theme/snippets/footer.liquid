@@ -17,6 +17,12 @@
 			{% assign path = link.url|replace_first:'/',''|replace:'/','_' %}
 			<a href="{{ link.url }}" class="nav__link">{% if lang == 'fr' %}{{settings[path]}}{% else %}{{ link.title }}{% endif %}</a><br>
 			{% endfor %}
+
+			{% if lang == 'fr' %}
+			<div class="col nav__link tablet_portrait_only"><small><a href="https://{{shop.domain}}{{request.path}}">En</a> / <strong>Fr</strong></small></a>
+			{% else %}
+			<div class="col nav__link tablet_portrait_only"><small><strong>En</strong> / <a href="https://fr.wisemenscare.com{{request.path}}">Fr</a></small></a>
+			{% endif %}
 		</nav>
 
 		<nav class="col col--3of12 col--phone--6of12">
@@ -25,7 +31,7 @@
 			{% endfor %}
 		</nav>
 
-		<nav class="col col--3of12 col--phone--6of12" data-newsletter>
+		<nav class="col col--3of12 col--phone--6of12" data-newsletter data-newsletter-delay="40">
 			<p class="small_bottom">{% if lang == 'fr' %}{{settings['subscribe']}}{% else %}Subscribe to our newsletter{% endif %}</p>
 			<form action="https://shopify.destruct.codes/_newsletter/signup" method="post" data-newsletter-form data-succes-text="Success!">
 				<div class="alert alert--errors" data-errors></div>

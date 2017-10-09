@@ -52,7 +52,7 @@ class Wise.Views.Account extends Wise.Views.Login
 		$.ajax "/account/logout",
 			method: "GET",
 			success: (response)->
-				window.location = window.location
+				window.location = window.location.pathname
 
 
 	remove_address: (e)->

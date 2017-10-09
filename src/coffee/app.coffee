@@ -16,8 +16,9 @@ window.Wise =
 			model: @cart
 
 		@login_view = new Wise.Views.Login()
-		@credit_card_view = new Wise.Views.CreditCard()
 		@account_view = new Wise.Views.Account()
+		@forgot_password_view = new Wise.Views.ForgotPassword()
+		@credit_card_view = new Wise.Views.CreditCard()
 		@newsletter_view = new Wise.Views.Newsletter()
 		
 
@@ -62,6 +63,10 @@ window.Wise =
 			@cart_view.show()
 
 
+
+
+if window.location.host == "wisecare.co"
+	window.location = "https://wisemenscare.com" + window.location.pathname
 
 
 
