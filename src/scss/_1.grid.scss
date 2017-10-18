@@ -100,6 +100,7 @@
 	}
 
 	&.grid--full_height {
+		position: relative;
 		min-height: 85vh;
 		height: 1rem;
 
@@ -123,6 +124,16 @@
 		&.right {
 			@extend .grid--right;
 			text-align: right;
+		}
+
+		.grid--full_height__icon {
+			position: absolute;
+			bottom: 0;
+
+			padding: $gutter 0;
+
+			font-size: $almost_size;
+			text-align: center;
 		}
 	}
 

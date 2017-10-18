@@ -84,6 +84,42 @@
     "settings": [
       {
         "type": "text",
+        "id": "carryon",
+        "label": "Carry-on",
+        "default": "Carry-on<br>size"
+      },
+      {
+        "type": "text",
+        "id": "carryon_fr",
+        "label": "Carry-on (FR)",
+        "default": "Format bagage<br>de cabine"
+      },
+      {
+        "type": "text",
+        "id": "outdoors",
+        "label": "Outdoors",
+        "default": "Outdoors<br>lifestyle"
+      },
+      {
+        "type": "text",
+        "id": "outdoors_fr",
+        "label": "Outdoors (FR)",
+        "default": "Style<br>aventurier"
+      },
+      {
+        "type": "text",
+        "id": "jetsetter",
+        "label": "Jet setter",
+        "default": "Jet setter<br>lifestyle"
+      },
+      {
+        "type": "text",
+        "id": "jetsetter_fr",
+        "label": "Jet setter (FR)",
+        "default": "Style<br>jet setter"
+      },
+      {
+        "type": "text",
         "id": "aim",
         "label": "We Aim"
       },

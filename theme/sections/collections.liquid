@@ -15,6 +15,14 @@
 	<div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
 		{{collection_description}}
 	</div>
+
+	{% assign icon = block.settings.icon %}
+	{% if icon != 'none' %}
+	<div class="grid--full_height__icon">
+		<svg class="icon-{{icon}} icon--big small_bottom"><use xlink:href="#icon-{{icon}}"></use></svg>
+		<div>{% if icon == 'carryon' %}{{carryon}}{% elsif icon == 'jetsetter' %}{{jetsetter}}{% elsif icon == 'outdoors' %}{{outdoors}}{% endif %}</div>
+	</div>
+	{% endif %}
 </div>
 
 <div class="grid grid--middle">
@@ -105,8 +113,31 @@
 	          "label": "Bottom"
 	        }
 	      ]
+	    },
+        {
+	      "type": "select",
+	      "id": "icon",
+	      "label": "Icon",
+	      "default": "none",
+	      "options": [
+	        {
+	          "value": "none",
+	          "label": "None"
+	        },
+	        {
+	          "value": "carryon",
+	          "label": "Carry-on"
+	        },
+	        {
+	          "value": "outdoors",
+	          "label": "Outdoors"
+	        },
+	        {
+	          "value": "jetsetter",
+	          "label": "Jet setter"
+	        }
+	      ]
 	    }
-        
       ]
     }
   ],

@@ -17,6 +17,17 @@
 
 <article class="grid grid--stretch light_grey_back" data-product-id="{{product.id}}">
   <div class="col col--6of12 col--phone--12of12 slider" data-slider>
+    {% for tag in product.tags %} 
+    {% assign tag_split = tag | split: ':' %}
+    {% if tag_split[0] == '_icon' %}
+      {% assign icon = tag_split[1] %}
+      <div class="slider__icon">
+        <svg class="icon-{{icon}} icon--big small_bottom"><use xlink:href="#icon-{{icon}}"></use></svg>
+        <div>{% if icon == 'carryon' %}{{carryon}}{% elsif icon == 'jetsetter' %}{{jetsetter}}{% elsif icon == 'outdoors' %}{{outdoors}}{% endif %}</div>
+      </div>
+    {% endif %} 
+    {% endfor %}
+
     {% assign images_size = product.images | size %}
     <div class="slider__container" style="width: {{images_size}}00%;" data-slider-container>
       {% for image in product.images %}
