@@ -1,18 +1,18 @@
 {% if image != blank %}
   <style>
     .{{class}} {
-      background-image: url('{{image.src|img_url: '1500x'}}');
+      background-image: url('{{image.src|img_url: 'master'|replace: '//cdn.shopify.com', 'https://wisemens.imgix.net'}}&auto=format,compress&w=1500');
     }
 
     @media screen and (max-width: 1200px) {
       .{{class}} {
-        background-image: url('{{image.src| img_url: '1200x' }}');
+        background-image: url('{{image.src|img_url: 'master'|replace: '//cdn.shopify.com', 'https://wisemens.imgix.net'}}&auto=format,compress&w=1200}');
       }
     }
 
     @media screen and (max-width: 900px) {
       .{{class}} {
-        background-image: url('{{image.src| img_url: '900x' }}');
+        background-image: url('{{image.src|img_url: 'master'|replace: '//cdn.shopify.com', 'https://wisemens.imgix.net'}}&auto=format,compress&w=900}');
       }
     }
 
