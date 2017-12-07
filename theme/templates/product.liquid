@@ -89,7 +89,7 @@
           <svg class="select--button__icon icon-left icon--small"><use xlink:href="#icon-left"></use></svg>
         </div>
         <div class="col col--6of12">
-          <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight">{% if lang == 'fr' %}{{settings['add_to_cart_fr']}}{% else %}{{settings['add_to_cart']}}{% endif %}</button>
+          <button data-add-to-cart="{% for variant in product.variants %}{{variant.id}}{% endfor %}" class="button--full button--full--left button--highlight"{% unless product.available %} disabled{% endunless %}>{% if lang == 'fr' %}{% if product.available %}{{settings['add_to_cart_fr']}}{% else %}{{settings['out_of_stock_fr']}}{% endif %}{% else %}{% if product.available %}{{settings['add_to_cart']}}{% else %}{{settings['out_of_stock']}}{% endif %}{% endif %}</button>
         </div>
       </div>
       {% comment %}
@@ -112,6 +112,18 @@
 {% section 'product_8737823811' %}
 {% elsif product.id == 8190808451 %}
 {% section 'product_8190808451' %}
+{% elsif product.id == 414115397669 %}
+{% section 'product_414115397669' %}
+{% elsif product.id == 414120804389 %}
+{% section 'product_414120804389' %}
+{% elsif product.id == 413930946597 %}
+{% section 'product_413930946597' %}
+{% elsif product.id == 413917216805 %}
+{% section 'product_413917216805' %}
+{% elsif product.id == 414118150181 %}
+{% section 'product_414118150181' %}
+{% elsif product.id == 414091345957 %}
+{% section 'product_414091345957' %}
 {% endif %}
 
 

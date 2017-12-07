@@ -290,6 +290,18 @@
       },
       {
         "type": "text",
+        "id": "out_of_stock",
+        "label": "Out of Stock",
+        "default": "Out of Stock"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_fr",
+        "label": "Out of Stock (FR)",
+        "default": "Inventaire épuisé"
+      },
+      {
+        "type": "text",
         "id": "respects",
         "label": "Respects",
         "default": "This product respects the following:"
@@ -400,6 +412,96 @@
       {
         "type": "html",
         "id": "8737960579_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Kelp Bar of Soap",
+    "settings": [
+      {
+        "type": "text",
+        "id": "414115397669_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "414115397669_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Neem Wood Comb",
+    "settings": [
+      {
+        "type": "text",
+        "id": "414120804389_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "414120804389_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: 80$ Holiday Gift Bundle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "413930946597_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "413930946597_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Wise 50$ Holiday Gift Bundle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "413917216805_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "413917216805_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Wise Dopp Kit",
+    "settings": [
+      {
+        "type": "text",
+        "id": "414118150181_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "414118150181_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Product: Wise Dopp Kit Gift Bundle",
+    "settings": [
+      {
+        "type": "text",
+        "id": "414091345957_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "414091345957_description",
         "label": "Description (FR)"
       }
     ]
@@ -552,6 +654,66 @@
       {
         "type": "html",
         "id": "148196483_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Article: Why do we use essential oils instead of perfumes in our products?",
+    "settings": [
+      {
+        "type": "text",
+        "id": "5929107493_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "5929107493_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "5929107493_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Article: Port franc",
+    "settings": [
+      {
+        "type": "text",
+        "id": "6078005285_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "6078005285_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "6078005285_excerpt",
+        "label": "Excerpt (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Article: Kelp",
+    "settings": [
+      {
+        "type": "text",
+        "id": "6078038053_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "6078038053_content",
+        "label": "Content (FR)"
+      },
+      {
+        "type": "html",
+        "id": "6078038053_excerpt",
         "label": "Excerpt (FR)"
       }
     ]
