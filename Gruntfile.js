@@ -65,6 +65,19 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      js: {
+        files: {
+          'theme/assets/app.min.js': ['theme/assets/app.js']
+        }
+      },
+      handlebars: {
+        files: {
+          'theme/assets/templates.min.js': ['theme/assets/templates.js']
+        }
+      }
+    },
+
 
     open: {
       start: {
@@ -89,7 +102,7 @@ module.exports = function(grunt) {
       },
       handlebars: {
         files: 'src/templates/**/*.hbs',
-        tasks: ['handlebars'],
+        tasks: ['handlebars', 'uglify:handlebars'],
       },
       sass: {
         files: 'src/scss/**/*.scss',
@@ -97,7 +110,7 @@ module.exports = function(grunt) {
       },
       coffee: {
         files: 'src/coffee/**/*.coffee',
-        tasks: ['coffee'],
+        tasks: ['coffee', 'uglify:js'],
       }
     }
 
@@ -109,6 +122,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-open');
 

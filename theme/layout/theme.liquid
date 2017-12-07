@@ -26,6 +26,8 @@
   {{ 'all.css' | asset_url | stylesheet_tag }}
 
 
+  <script src="//load.sumome.com/" data-sumo-site-id="80ef0299d3570e82df3b412898279ef6c72e9b9e617930ababac83dbe020f10e" async="async"></script>
+  
   {{ content_for_header }}
   
 </head>
@@ -53,7 +55,7 @@
 
 
   {% include 'footer' %}
-  {% section 'newsletter_popup' %}
+  {% comment %}{% section 'newsletter_popup' %}{% endcomment %}
   
 
   
@@ -70,8 +72,8 @@
     window.stripe = Stripe("pk_live_xHY3EoGBpE0RG6vncftCGvUX");
     {% if lang == 'fr' %}window.lang = "fr";{% endif %}
   </script>
-  <script src="{{'templates.js' | asset_url}}" data-turbolinks-eval="false"></script>
-  <script src="{{'app.js' | asset_url}}" data-turbolinks-eval="false"></script>
+  <script src="{{'templates.min.js' | asset_url}}" data-turbolinks-eval="false"></script>
+  <script src="{{'app.min.js' | asset_url}}" data-turbolinks-eval="false"></script>
 
 
   <script src="//localhost:9000/livereload.js" async data-turbolinks-eval="false"></script>
