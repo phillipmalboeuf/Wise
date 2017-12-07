@@ -537,6 +537,66 @@
     ]
   },
   {
+    "name": "Collection: Holiday Bundles",
+    "settings": [
+      {
+        "type": "text",
+        "id": "26191364133_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "26191364133_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Hair",
+    "settings": [
+      {
+        "type": "text",
+        "id": "26191462437_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "26191462437_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "26191560741_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "26191560741_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
+    "name": "Collection: Accessories",
+    "settings": [
+      {
+        "type": "text",
+        "id": "26191593509_title",
+        "label": "Title (FR)"
+      },
+      {
+        "type": "html",
+        "id": "26191593509_description",
+        "label": "Description (FR)"
+      }
+    ]
+  },
+  {
     "name": "Collection: Glacier Clay Pomade",
     "settings": [
       {
