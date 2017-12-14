@@ -8,10 +8,11 @@
 
 {% assign image = block.settings.image | default: collection.image %}
 
+{% if block.settings.image != blank %}
 {% assign class = 'collection--'|append: collection.id %}
 {% include 'background', class: class, image: image %}
 
-<div class="grid grid--full_height grid--full_height--small padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
+<{% if block.settings.is_link %}a href="{{collection.url}}"{% else %}div{% endif %} class="grid grid--full_height grid--full_height--small padded image_back {{block.settings.color}} {{block.settings.horizontal_alignment}} {{block.settings.vertical_alignment}} {{class}}">
 	<div class="col col--4of12 col--tablet_portrait--6of12 col--phone--9of12">
 		{{collection_description}}
 	</div>
@@ -23,17 +24,21 @@
 		<div>{% if icon == 'carryon' %}{{carryon}}{% elsif icon == 'jetsetter' %}{{jetsetter}}{% elsif icon == 'outdoors' %}{{outdoors}}{% endif %}</div>
 	</div>
 	{% endif %}
+</{% if block.settings.is_link %}a{% else %}div{% endif %}>
+{% else %}
+<div class="padded padded--thick_top text_center">
+	<h1>{{collection_title}}</h1>
+	{{collection_description}}
 </div>
+{% endif %}
 
+{% unless block.settings.is_link %}
 <div class="grid grid--middle">
 {% for product in collection.products %}
 	{% include 'products_product' %}
 {% endfor %}
-
-<div class="col col--6of12 text_center hide_on_tablet_portrait">
-	<em>{% if lang == 'fr' %}{{settings['more_products_fr']}}{% else %}{{settings['more_products']}}{% endif %}</em>
 </div>
-</div>
+{% endunless %}
 {% endfor %}
 
 
@@ -137,6 +142,12 @@
 	          "label": "Jet setter"
 	        }
 	      ]
+	    },
+	    {
+	      "type": "checkbox",
+	      "id": "is_link",
+	      "label": "Is a link?",
+	      "default": false
 	    }
       ]
     }

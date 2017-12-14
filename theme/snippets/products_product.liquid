@@ -28,7 +28,7 @@
       <h3>{{product_title}}</h3>
 
       {% for variant in product.variants %}
-      <p><em>{{variant.title}} / {% include 'product_price' %}</em></p>
+      <p><em>{% if variant.title != 'Default Title' %}{{variant.title}} / {% endif %}{% include 'product_price' %}</em></p>
       {% endfor %}
     </div>
   </a>

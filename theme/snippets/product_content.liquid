@@ -2,6 +2,7 @@
 {% include 'translations' %}
 
 
+{% if section.settings.video.id %}
 <div class="grid grid--stretch">
   <div class="col col--7of12 col--phone--12of12 col--phone--last grid grid--vertically_spaced">
     <div class="col col--12of12"></div>
@@ -17,34 +18,35 @@
     {% comment %}<button class="button--transparent"><svg class="icon-play icon--medium"><use xlink:href="#icon-play"></use></svg></button>{% endcomment %}
   </div>
 </div>
+{% endif %}
 
 
+{% for tag in product.tags %} 
+{% assign tag_split = tag | split: ':' %}
+{% if tag_split[0] == '_natural' %}
+  {% assign is_natural = tag_split[1] %}
+{% elsif tag_split[0] == '_local' %}
+  {% assign is_local = tag_split[1] %}
+{% elsif tag_split[0] == '_healthy' %}
+  {% assign is_healthy = tag_split[1] %}
+{% elsif tag_split[0] == '_oils' %}
+  {% assign is_oils = tag_split[1] %}
+{% elsif tag_split[0] == '_reusable' %}
+  {% assign is_reusable = tag_split[1] %}
+{% elsif tag_split[0] == '_recyclable' %}
+  {% assign is_recyclable = tag_split[1] %}
+{% elsif tag_split[0] == '_reduced' %}
+  {% assign is_reduced = tag_split[1] %}
+{% elsif tag_split[0] == '_renewable' %}
+  {% assign is_renewable = tag_split[1] %}
+{% endif %} 
+{% endfor %} 
 
+{% if is_natural or is_local or is_healthy or is_oils or is_reusable or is_recyclable or is_reduced or is_renewable %}
 <a href="/pages/about-us" class="block padded padded--thick light_grey_back text_center">
   <h2 class="big_bottom black">{% if lang == 'fr' %}{{settings['respects_fr']}}{% else %}{{settings['respects']}}{% endif %}</h2>
 
   <div class="grid grid--spaced_around">
-    {% for tag in product.tags %} 
-    {% assign tag_split = tag | split: ':' %}
-    {% if tag_split[0] == '_natural' %}
-      {% assign is_natural = tag_split[1] %}
-    {% elsif tag_split[0] == '_local' %}
-      {% assign is_local = tag_split[1] %}
-    {% elsif tag_split[0] == '_healthy' %}
-      {% assign is_healthy = tag_split[1] %}
-    {% elsif tag_split[0] == '_oils' %}
-      {% assign is_oils = tag_split[1] %}
-    {% elsif tag_split[0] == '_reusable' %}
-      {% assign is_reusable = tag_split[1] %}
-    {% elsif tag_split[0] == '_recyclable' %}
-      {% assign is_recyclable = tag_split[1] %}
-    {% elsif tag_split[0] == '_reduced' %}
-      {% assign is_reduced = tag_split[1] %}
-    {% elsif tag_split[0] == '_renewable' %}
-      {% assign is_renewable = tag_split[1] %}
-    {% endif %} 
-    {% endfor %} 
-    
     {% if is_natural %}
     <div class="col col--tablet_portrait--3of12" style="opacity: {{is_natural}};">
       <svg class="icon-natural icon--big normal_bottom"><use xlink:href="#icon-natural"></use></svg>
@@ -102,7 +104,7 @@
     {% endif %}
   </div>
 </a>
-
+{% endif %}
 
 {% for block in section.blocks %}
   {% if block.type == 'content_block' %}

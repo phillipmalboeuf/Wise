@@ -62,7 +62,7 @@
       </p>
       <h2 class="small_bottom">{{product_title}}</h2>
       {% for variant in product.variants %}
-      <p class="p--medium"><em>{{variant.title}} / {% include 'product_price' %}</em></p>
+      <p class="p--medium"><em>{% if variant.title != 'Default Title' %}{{variant.title}} / {% endif %}{% include 'product_price' %}</em></p>
       {% endfor %}
 
       <div class="big_bottom underline_links max_width product__description">

@@ -7,12 +7,6 @@
 {% for product in collection.products %}
 	{% include 'products_product' %}
 {% endfor %}
-	
-{% if collection.products_count % 2 %}
-	<div class="col col--6of12 hide_on_tablet_portrait text_center">
-		<em>{% if lang == 'fr' %}{{settings['more_products_fr']}}{% else %}{{settings['more_products']}}{% endif %}</em>
-	</div>
-{% endif %}
 </div>
 
 

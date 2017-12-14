@@ -111,6 +111,10 @@ footer {
 		padding-bottom: $gutter*2;
 	}
 
+	&.padded--thick_top {
+		padding-top: $gutter*2;
+	}
+
 	&.padded--flat_bottom {
 		padding-bottom: 0;
 	}
